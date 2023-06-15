@@ -1,9 +1,12 @@
-import "./App.css";
+import { Toaster } from "react-hot-toast";
+import { RouterProvider } from "react-router-dom";
+import router from "./Routes/Routes/Route";
 
 function App() {
   return (
     <>
-      <h1 className=" text-red-500 text-5xl">Hello world!</h1>
+      <RouterProvider router={router} />
+      <Toaster></Toaster>
     </>
   );
 }
