@@ -8,3 +8,14 @@
   font-weight: 500;
   color: #222222;
 }
+.user__menu > a {
+  padding: 10px 16px;
+  width: 100%;
+  font-size: 14px;
+  color: #222222;
+  opacity: 0.9;
+}
+.user__menu > a:hover {
+  background-color: #f7f7f7;
+  transition: all 0.2s ease-in;
+}

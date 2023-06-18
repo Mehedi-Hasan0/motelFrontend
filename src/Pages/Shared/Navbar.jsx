@@ -1,9 +1,25 @@
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import searchIcon from "../../assets/basicIcon/search.svg";
 import hamburgerMenu from "../../assets/basicIcon/hamburgerMenu.svg";
 import userProfile from "../../assets/basicIcon/user-profile.png";
 
 const Navbar = () => {
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const userMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setShowUserMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
   return (
     <nav className=" max-w-screen-2xl xl:mx-auto">
       <div className="xl:px-10 grid grid-cols-3 py-4">
@@ -31,10 +47,29 @@ const Navbar = () => {
               Motel your home
             </p>
           </div>
-          <div className="border-[1px] border-[#dddddd] rounded-full py-1 px-2 flex flex-row gap-2 hover:shadow-md transition-all cursor-pointer">
+          <div
+            className="border-[1px] border-[#dddddd] rounded-full py-1 px-2 flex flex-row gap-2 hover:shadow-md transition-all cursor-pointer relative"
+            onClick={() => {
+              setShowUserMenu(!showUserMenu);
+            }}
+          >
             <img src={hamburgerMenu} alt="Motel user menu" className="w-4" />
             <img src={userProfile} alt="user profile icon" className="w-8" />
           </div>
+          {showUserMenu ? (
+            <>
+              <div
+                ref={userMenuRef}
+                className="shadow-md absolute right-9 top-[74px] bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
+              >
+                <Link className="font-medium">Sign up</Link>
+                <Link>Login</Link>
+                <hr className="h-[1.5px] bg-[#dddddd] my-1" />
+                <Link>Motel your home</Link>
+                <Link>Help</Link>
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
     </nav>
