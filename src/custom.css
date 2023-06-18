@@ -1,0 +1,21 @@
+/* Main page custom css */
+.nav__search__button > p {
+  padding-inline: 12px;
+  font-size: 14px;
+}
+.nav__search__button > p:nth-child(-n + 2) {
+  border-right: 1.5px solid #dddddd;
+  font-weight: 500;
+  color: #222222;
+}
+.user__menu > a {
+  padding: 10px 16px;
+  width: 100%;
+  font-size: 14px;
+  color: #222222;
+  opacity: 0.9;
+}
+.user__menu > a:hover {
+  background-color: #f7f7f7;
+  transition: all 0.2s ease-in;
+}
