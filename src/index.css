@@ -9,3 +9,6 @@ body {
   box-sizing: border-box;
   background-color: #ffffff;
 }
+p {
+  color: #222222;
+}
