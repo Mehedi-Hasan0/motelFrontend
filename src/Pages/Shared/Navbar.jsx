@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import searchIcon from "../../assets/basicIcon/search.svg";
 import hamburgerMenu from "../../assets/basicIcon/hamburgerMenu.svg";
 import userProfile from "../../assets/basicIcon/user-profile.png";
+import AuthenticationPopUp from "../../popUp/AuthenticationPopUp";
 
 const Navbar = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const userMenuRef = useRef(null);
+  const [popup, setPopup] = useState(false);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -14,9 +16,9 @@ const Navbar = () => {
         setShowUserMenu(false);
       }
     };
-    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("mouseup", handleOutsideClick);
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("mouseup", handleOutsideClick);
     };
   }, []);
 
@@ -28,7 +30,7 @@ const Navbar = () => {
           <Link className="text-xl text-[#ff385c] font-bold">motel</Link>
         </div>
         {/* search bar */}
-        <div className="mx-auto">
+        <div className="mx-auto max-w-sm">
           <div className="border-[1px] border-[#dddddd] rounded-full px-3 py-2 flex items-center shadow hover:shadow-md transition-all cursor-pointer">
             <div className="flex flex-row items-center nav__search__button">
               <p>Anywhere</p>
@@ -50,7 +52,7 @@ const Navbar = () => {
           <div
             className="border-[1px] border-[#dddddd] rounded-full py-1 px-2 flex flex-row gap-2 hover:shadow-md transition-all cursor-pointer relative"
             onClick={() => {
-              setShowUserMenu(!showUserMenu);
+              setShowUserMenu((prevValue) => !prevValue);
             }}
           >
             <img src={hamburgerMenu} alt="Motel user menu" className="w-4" />
@@ -62,8 +64,23 @@ const Navbar = () => {
                 ref={userMenuRef}
                 className="shadow-md absolute right-9 top-[74px] bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
               >
-                <Link className="font-medium">Sign up</Link>
-                <Link>Login</Link>
+                <Link
+                  className="font-medium"
+                  onClick={() => {
+                    setShowUserMenu(false);
+                    setPopup(true);
+                  }}
+                >
+                  Sign up
+                </Link>
+                <Link
+                  onClick={() => {
+                    setShowUserMenu(false);
+                    setPopup(true);
+                  }}
+                >
+                  Login
+                </Link>
                 <hr className="h-[1.5px] bg-[#dddddd] my-1" />
                 <Link>Motel your home</Link>
                 <Link>Help</Link>
@@ -72,6 +89,7 @@ const Navbar = () => {
           ) : null}
         </div>
       </div>
+      <AuthenticationPopUp popup={popup} setPopup={setPopup} />
     </nav>
   );
 };
