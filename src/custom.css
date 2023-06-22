@@ -19,6 +19,11 @@
   background-color: #f7f7f7;
   transition: all 0.2s ease-in;
 }
+input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+  accent-color: #222222;
+}
 
 /* Pop up css */
 .placeholder-shrink::placeholder {

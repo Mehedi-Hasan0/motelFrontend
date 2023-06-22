@@ -2,8 +2,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
-import backIcon from "../assets/basicIcon/backIcon.png";
-const LogInPopup = ({ onBack }) => {
+const LogInPopup = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -15,23 +14,8 @@ const LogInPopup = ({ onBack }) => {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
-  const handleBackClcik = () => {
-    onBack();
-  };
   return (
     <div className="flex flex-col gap-4">
-      <div className=" flex items-center justify-between w-full py-4 border-b-[1px] px-8">
-        <img
-          src={backIcon}
-          alt="close icon"
-          className="w-8 hover:bg-[#f1f1f1] transition-colors rounded-full p-2 cursor-pointer"
-          onClick={() => {
-            handleBackClcik();
-          }}
-        />
-        <p className="text-base font-semibold text-[#222222]">Log in</p>
-        <div className="w-[24px]"> </div>
-      </div>
       <div className="px-8 pt-1">
         <form>
           <div className="relative my-4">
