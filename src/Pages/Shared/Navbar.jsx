@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import searchIcon from "../../assets/basicIcon/search.svg";
 import hamburgerMenu from "../../assets/basicIcon/hamburgerMenu.svg";
 import userProfile from "../../assets/basicIcon/user-profile.png";
-import AuthenticationPopUp from "../../popUp/AuthenticationPopUp";
+import AuthenticationPopUp from "../../components/popUp/AuthenticationPopUp";
 
 const Navbar = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
