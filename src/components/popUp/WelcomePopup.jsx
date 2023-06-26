@@ -3,15 +3,16 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { API } from "../backend";
+import { API } from "../../backend";
 import { PulseLoader } from "react-spinners";
-import google from "../assets/basicIcon/google.svg";
-import facebook from "../assets/basicIcon/facebook.svg";
+import google from "../../assets/basicIcon/google.svg";
+import facebook from "../../assets/basicIcon/facebook.svg";
 
 const WelcomePopup = ({
   setDefaultPopup,
   setShowLoginPopup,
   setShowCreateUserPopup,
+  setLoginEmail,
 }) => {
   const [inputFocused, setInputFocused] = useState(false);
   const { handleSubmit, register, reset } = useForm();
@@ -27,8 +28,8 @@ const WelcomePopup = ({
 
   const handleCheckEmail = async (data) => {
     const email = data.email;
+    setLoginEmail(email);
     setIsLoading(true);
-
     try {
       const response = await axios.post(
         `${API}auth/check_email`,
@@ -42,12 +43,12 @@ const WelcomePopup = ({
         }
       );
 
-      console.log(response.data);
       const responseData = response?.data;
       if (responseData?.success === 1) {
         setDefaultPopup(false);
         setShowLoginPopup(true);
-      } else if (responseData?.success === 0) {
+      }
+      if (responseData?.success === 0) {
         setDefaultPopup(false);
         setShowCreateUserPopup(true);
       }

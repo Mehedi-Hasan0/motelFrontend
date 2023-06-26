@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
-import errorIcon from "../assets/basicIcon/errorIcon.png";
-import { API } from "../backend";
+import errorIcon from "../../assets/basicIcon/errorIcon.png";
+import { API } from "../../backend";
 
 const CreateUserPopup = () => {
   const [inputDateFocused, setInputDateFocused] = useState(false);
@@ -43,16 +43,43 @@ const CreateUserPopup = () => {
     };
     setIsLoading(true);
     try {
-      const response = await axios.post(`${API}auth/create_user`, user, {
+      const response = await axios.post(`${API}auth/sign_up`, user, {
         headers: { "Content-Type": "application/json" },
       });
 
       console.log(response);
+      const responseData = response?.data;
+      let accessToken = localStorage.getItem("accessToken");
+      let refreshToken = localStorage.getItem("refreshToken");
+      if (responseData?.success === 1) {
+        console.log(refreshToken);
+        if (!accessToken) {
+          localStorage.setItem(
+            "accessToken",
+            JSON.stringify(responseData?.accessToken)
+          );
+        } else if (accessToken) {
+          accessToken = responseData?.accessToken;
+          localStorage.setItem("accessToken", JSON.stringify(accessToken));
+        }
+        if (!refreshToken) {
+          localStorage.setItem(
+            "refreshToken",
+            JSON.stringify(responseData?.refreshToken)
+          );
+        } else if (refreshToken) {
+          refreshToken = responseData?.refreshToken;
+          console.log(refreshToken);
+          localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
+        }
+      }
       setTimeout(() => {
         reset();
       }, 100);
     } catch (error) {
       console.log(error);
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
     } finally {
       setIsLoading(false);
     }

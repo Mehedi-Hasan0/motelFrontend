@@ -1,7 +1,7 @@
 // import PropTypes from "prop-types";
 import { useState, useEffect, useRef } from "react";
-import closeIcon from "../assets/basicIcon/closeIcon.svg";
-import backIcon from "../assets/basicIcon/backIcon.png";
+import closeIcon from "../../assets/basicIcon/closeIcon.svg";
+import backIcon from "../../assets/basicIcon/backIcon.png";
 
 import LogInPopup from "./LogInPopup";
 import CreateUserPopup from "./CreateUserPopup";
@@ -12,6 +12,7 @@ const AuthenticationPopUp = ({ popup, setPopup }) => {
   const [showCreateUserPopup, setShowCreateUserPopup] = useState(false);
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [defaultPopup, setDefaultPopup] = useState(true);
+  const [loginEmail, setLoginEmail] = useState(null);
   const popUpRef = useRef(null);
 
   const handleCloseLoginPopup = () => {
@@ -86,10 +87,14 @@ const AuthenticationPopUp = ({ popup, setPopup }) => {
                   setDefaultPopup={setDefaultPopup}
                   setShowLoginPopup={setShowLoginPopup}
                   setShowCreateUserPopup={setShowCreateUserPopup}
+                  setLoginEmail={setLoginEmail}
                 />
               )}
               {!showLoginPopup ? null : (
-                <LogInPopup onBack={handleCloseLoginPopup} />
+                <LogInPopup
+                  onBack={handleCloseLoginPopup}
+                  loginEmail={loginEmail}
+                />
               )}
               {!showCreateUserPopup ? null : (
                 <CreateUserPopup onBack={handleCloseLoginPopup} />

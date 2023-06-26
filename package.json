@@ -17,8 +17,12 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.44.3",
     "react-hot-toast": "^2.4.1",
+    "react-redux": "^8.1.1",
     "react-router-dom": "^6.12.1",
     "react-spinners": "^0.13.8",
+    "redux": "^4.2.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.2",
     "twind": "^0.16.19"
   },
   "devDependencies": {
