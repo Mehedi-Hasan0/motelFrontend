@@ -6,11 +6,13 @@ import backIcon from "../../assets/basicIcon/backIcon.png";
 import LogInPopup from "./LogInPopup";
 import CreateUserPopup from "./CreateUserPopup";
 import WelcomePopup from "./WelcomePopup";
+import CreateProfilePopup from "./CreateProfilePopup";
 
 // eslint-disable-next-line react/prop-types
 const AuthenticationPopUp = ({ popup, setPopup }) => {
   const [showCreateUserPopup, setShowCreateUserPopup] = useState(false);
   const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [profilePopup, setProfilePopup] = useState(false);
   const [defaultPopup, setDefaultPopup] = useState(true);
   const [loginEmail, setLoginEmail] = useState(null);
   const popUpRef = useRef(null);
@@ -40,7 +42,7 @@ const AuthenticationPopUp = ({ popup, setPopup }) => {
           <div
             ref={popUpRef}
             className={`absolute left-[27.5%] right-[27.5%] top-[12%] ${
-              showLoginPopup
+              showLoginPopup || profilePopup
                 ? " h-[60vh] popup__container__login"
                 : "h-[80vh] popup__container"
             } w-[45vw] bg-[#ffffff] shadow-2xl rounded-xl overflow-hidden`}
@@ -48,6 +50,15 @@ const AuthenticationPopUp = ({ popup, setPopup }) => {
             {/* pop-up navbar */}
             <div className=" flex items-center w-full py-4 border-b-[1px] px-8 sticky top-0 bg-[#ffffff]">
               {defaultPopup ? (
+                <img
+                  src={closeIcon}
+                  alt="close icon"
+                  className="w-8 hover:bg-[#f1f1f1] transition-colors rounded-full p-2 cursor-pointer"
+                  onClick={() => {
+                    setPopup(false);
+                  }}
+                />
+              ) : profilePopup ? (
                 <img
                   src={closeIcon}
                   alt="close icon"
@@ -73,6 +84,8 @@ const AuthenticationPopUp = ({ popup, setPopup }) => {
                   ? "Log in"
                   : showCreateUserPopup
                   ? "Finish signing up"
+                  : profilePopup
+                  ? "Create your profile"
                   : "Log in or sign up"}
               </p>
               <div className="w-[14px]"> </div>
@@ -97,7 +110,19 @@ const AuthenticationPopUp = ({ popup, setPopup }) => {
                 />
               )}
               {!showCreateUserPopup ? null : (
-                <CreateUserPopup onBack={handleCloseLoginPopup} />
+                <CreateUserPopup
+                  onBack={handleCloseLoginPopup}
+                  loginEmail={loginEmail}
+                  setProfilePopup={setProfilePopup}
+                  showCreatePopUp={setShowCreateUserPopup}
+                  setPopup={setPopup}
+                />
+              )}
+              {!profilePopup ? null : (
+                <CreateProfilePopup
+                  setShowProfilePopup={setProfilePopup}
+                  setPopup={setPopup}
+                />
               )}
             </div>
           </div>

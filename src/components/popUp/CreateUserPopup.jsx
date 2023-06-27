@@ -2,12 +2,18 @@
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 import errorIcon from "../../assets/basicIcon/errorIcon.png";
 import { API } from "../../backend";
 
-const CreateUserPopup = () => {
+const CreateUserPopup = ({
+  loginEmail,
+  setProfilePopup,
+  showCreatePopUp,
+  setPopup,
+}) => {
   const [inputDateFocused, setInputDateFocused] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -53,6 +59,7 @@ const CreateUserPopup = () => {
       let refreshToken = localStorage.getItem("refreshToken");
       if (responseData?.success === 1) {
         console.log(refreshToken);
+        toast.success(responseData.info);
         if (!accessToken) {
           localStorage.setItem(
             "accessToken",
@@ -72,6 +79,12 @@ const CreateUserPopup = () => {
           console.log(refreshToken);
           localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
         }
+        showCreatePopUp(false);
+        setPopup(false);
+        setTimeout(() => {
+          setProfilePopup(true);
+          setPopup(true);
+        }, 3000);
       }
       setTimeout(() => {
         reset();
@@ -80,6 +93,8 @@ const CreateUserPopup = () => {
       console.log(error);
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
+      toast.error("Network error try again later!");
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }
@@ -167,6 +182,7 @@ const CreateUserPopup = () => {
           <input
             className="w-full border-[1.4px] border-[#dddddd] p-3 rounded-lg"
             type="email"
+            defaultValue={loginEmail}
             placeholder="Email"
             {...register("email", { required: true })}
             aria-invalid={errors.email ? "true" : "false"}
@@ -181,7 +197,7 @@ const CreateUserPopup = () => {
                 alt="Last name is requires"
                 className="w-5"
               />
-              <p className="text-xs text-[#c13515]">Email date is required</p>
+              <p className="text-xs text-[#c13515]">Email is required</p>
             </div>
           )}
           <p
@@ -218,7 +234,9 @@ const CreateUserPopup = () => {
                 alt="Last name is requires"
                 className="w-5"
               />
-              <p className="text-xs text-[#c13515]">Password required</p>
+              <p className="text-xs text-[#c13515]">
+                At least 8 characters & Contains a number or symbol
+              </p>
             </div>
           )}
           <p
@@ -226,7 +244,7 @@ const CreateUserPopup = () => {
               errors.password ? "hidden" : "block opacity-60"
             }`}
           >
-            Must be 8 character long.
+            At least 8 characters & Contains a number or symbol
           </p>
         </div>
         <div>
