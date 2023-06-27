@@ -10,7 +10,12 @@ import { userLogIn } from "../../redux/actions/userActions";
 import { toast } from "react-hot-toast";
 import errorIcon from "../../assets/basicIcon/errorIcon.png";
 
-const LogInPopup = ({ loginEmail, showLoginPopup }) => {
+const LogInPopup = ({
+  loginEmail,
+  setShowLoginPopup,
+  setPopup,
+  setDefaultPopup,
+}) => {
   const { handleSubmit, register } = useForm();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,34 +44,39 @@ const LogInPopup = ({ loginEmail, showLoginPopup }) => {
       const userData = response.data;
       setIsLoading(false);
       console.log(userData);
+
       if (userData?.success === 0) {
         toast.error(userData?.info);
         setShowErrorMessage(true);
-      }
-      dispatch(userLogIn(userData));
-      let accessToken = localStorage.getItem("accessToken");
-      let refreshToken = localStorage.getItem("refreshToken");
-      console.log(refreshToken);
-      if (!accessToken) {
-        localStorage.setItem(
-          "accessToken",
-          JSON.stringify(userData?.accessToken)
-        );
-      } else if (accessToken) {
-        accessToken = userData?.accessToken;
-        localStorage.setItem("accessToken", JSON.stringify(accessToken));
-      }
-      if (!refreshToken) {
-        localStorage.setItem(
-          "refreshToken",
-          JSON.stringify(userData?.refreshToken)
-        );
-      } else if (refreshToken) {
-        refreshToken = userData?.refreshToken;
+      } else if (userData?.success === 1) {
+        dispatch(userLogIn(userData));
+        let accessToken = localStorage.getItem("accessToken");
+        let refreshToken = localStorage.getItem("refreshToken");
         console.log(refreshToken);
-        localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
+
+        if (!accessToken) {
+          localStorage.setItem(
+            "accessToken",
+            JSON.stringify(userData?.accessToken)
+          );
+        } else if (accessToken) {
+          accessToken = userData?.accessToken;
+          localStorage.setItem("accessToken", JSON.stringify(accessToken));
+        }
+        if (!refreshToken) {
+          localStorage.setItem(
+            "refreshToken",
+            JSON.stringify(userData?.refreshToken)
+          );
+        } else if (refreshToken) {
+          refreshToken = userData?.refreshToken;
+          console.log(refreshToken);
+          localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
+        }
+        setShowLoginPopup(false);
+        setDefaultPopup(true);
+        setPopup(false);
       }
-      showLoginPopup(false);
     } catch (error) {
       console.log(error);
       setIsLoading(false);

@@ -111,6 +111,9 @@ const AuthenticationPopUp = ({ popup, setPopup }) => {
                 <LogInPopup
                   onBack={handleCloseLoginPopup}
                   loginEmail={loginEmail}
+                  setDefaultPopup={setDefaultPopup}
+                  setShowLoginPopup={setShowLoginPopup}
+                  setPopup={setPopup}
                 />
               )}
               {!showCreateUserPopup ? null : (
