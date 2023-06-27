@@ -11,7 +11,7 @@ import { toast } from "react-hot-toast";
 import errorIcon from "../../assets/basicIcon/errorIcon.png";
 
 const LogInPopup = ({ loginEmail, showLoginPopup }) => {
-  const { handleSubmit, register, reset } = useForm();
+  const { handleSubmit, register } = useForm();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);

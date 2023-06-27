@@ -27,6 +27,10 @@ const AuthenticationPopUp = ({ popup, setPopup }) => {
     const handleOutsideClick = (event) => {
       if (popUpRef.current && !popUpRef.current.contains(event.target)) {
         setPopup(false);
+        setShowCreateUserPopup(false);
+        setShowLoginPopup(false);
+        setProfilePopup(false);
+        setDefaultPopup(true);
       }
     };
     document.addEventListener("mousedown", handleOutsideClick);
@@ -122,6 +126,7 @@ const AuthenticationPopUp = ({ popup, setPopup }) => {
                 <CreateProfilePopup
                   setShowProfilePopup={setProfilePopup}
                   setPopup={setPopup}
+                  setDefaultPopup={setDefaultPopup}
                 />
               )}
             </div>
