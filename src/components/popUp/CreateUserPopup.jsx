@@ -3,10 +3,12 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 import errorIcon from "../../assets/basicIcon/errorIcon.png";
 import { API } from "../../backend";
+import { userSignUp } from "../../redux/actions/userActions";
 
 const CreateUserPopup = ({
   loginEmail,
@@ -23,6 +25,8 @@ const CreateUserPopup = ({
     reset,
     formState: { errors },
   } = useForm();
+
+  const dispatch = useDispatch();
 
   const handleDateFocus = () => {
     setInputDateFocused(true);
@@ -55,6 +59,7 @@ const CreateUserPopup = ({
 
       console.log(response);
       const responseData = response?.data;
+      dispatch(userSignUp(responseData));
       let accessToken = localStorage.getItem("accessToken");
       let refreshToken = localStorage.getItem("refreshToken");
       if (responseData?.success === 1) {

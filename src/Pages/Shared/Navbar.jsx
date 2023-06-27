@@ -4,11 +4,26 @@ import searchIcon from "../../assets/basicIcon/search.svg";
 import hamburgerMenu from "../../assets/basicIcon/hamburgerMenu.svg";
 import userProfile from "../../assets/basicIcon/user-profile.png";
 import AuthenticationPopUp from "../../components/popUp/AuthenticationPopUp";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, userLogOut } from "../../redux/actions/userActions";
 
 const Navbar = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const userMenuRef = useRef(null);
   const [popup, setPopup] = useState(false);
+
+  const user = useSelector((state) => state.user.userDetails);
+  const dispatch = useDispatch();
+
+  console.log(user);
+
+  const handleLogout = () => {
+    dispatch(userLogOut());
+  };
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -50,41 +65,85 @@ const Navbar = () => {
             </p>
           </div>
           <div
-            className="border-[1px] border-[#dddddd] rounded-full py-1 px-2 flex flex-row gap-2 hover:shadow-md transition-all cursor-pointer relative"
+            className="border-[1px] border-[#dddddd] rounded-full py-1 px-2 flex flex-row gap-3 hover:shadow-md transition-all cursor-pointer relative"
             onClick={() => {
               setShowUserMenu((prevValue) => !prevValue);
             }}
           >
             <img src={hamburgerMenu} alt="Motel user menu" className="w-4" />
-            <img src={userProfile} alt="user profile icon" className="w-8" />
+            {user ? (
+              <p className=" bg-[#222222] text-[#efefef] px-3 py-2 rounded-full text-xs">
+                {user.name?.firstName?.slice(0, 1)}
+              </p>
+            ) : (
+              <img src={userProfile} alt="user profile icon" className="w-8" />
+            )}
           </div>
           {showUserMenu ? (
             <>
-              <div
-                ref={userMenuRef}
-                className="shadow-md absolute right-9 top-[74px] bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
-              >
-                <Link
-                  className="font-medium"
-                  onClick={() => {
-                    setShowUserMenu(false);
-                    setPopup(true);
-                  }}
+              {!user ? (
+                <div
+                  ref={userMenuRef}
+                  className="shadow-md absolute right-9 top-[74px] bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
                 >
-                  Sign up
-                </Link>
-                <Link
-                  onClick={() => {
-                    setShowUserMenu(false);
-                    setPopup(true);
-                  }}
+                  <Link
+                    className="font-medium"
+                    onClick={() => {
+                      setShowUserMenu(false);
+                      setPopup(true);
+                    }}
+                  >
+                    Sign up
+                  </Link>
+                  <Link
+                    onClick={() => {
+                      setShowUserMenu(false);
+                      setPopup(true);
+                    }}
+                  >
+                    Login
+                  </Link>
+                  <hr className="h-[1.5px] bg-[#dddddd] my-1" />
+                  <Link>Motel your home</Link>
+                  <Link>Help</Link>
+                </div>
+              ) : (
+                <div
+                  ref={userMenuRef}
+                  className="shadow-md absolute right-9 top-[70px] bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
                 >
-                  Login
-                </Link>
-                <hr className="h-[1.5px] bg-[#dddddd] my-1" />
-                <Link>Motel your home</Link>
-                <Link>Help</Link>
-              </div>
+                  <Link
+                    className="font-medium"
+                    onClick={() => {
+                      setShowUserMenu(false);
+                    }}
+                  >
+                    Notifications
+                  </Link>
+                  <Link
+                    className="font-medium"
+                    onClick={() => {
+                      setShowUserMenu(false);
+                    }}
+                  >
+                    Trips
+                  </Link>
+                  <Link
+                    className="font-medium"
+                    onClick={() => {
+                      setShowUserMenu(false);
+                    }}
+                  >
+                    Wishlists
+                  </Link>
+                  <hr className="h-[1.5px] bg-[#dddddd] my-1" />
+                  <Link>Motel your home</Link>
+                  <Link>Account</Link>
+                  <hr className="h-[1.5px] bg-[#dddddd] my-1" />
+                  <Link>Help</Link>
+                  <Link onClick={handleLogout}>Log out</Link>
+                </div>
+              )}
             </>
           ) : null}
         </div>
