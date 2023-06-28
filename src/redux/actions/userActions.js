@@ -16,12 +16,6 @@ export const userLogIn = (userData) => async (dispatch) => {
     })
 }
 
-export const userLogOut = () => async (dispatch) => {
-    const response = await api.post("/auth/logout");
-    console.log(response)
-    dispatch({ type: "USER_LOG_OUT" })
-}
-
 export const getUser = () => async (dispatch) => {
     const response = await api.post("/auth/get_user_details");
     console.log(response, "GET USER DETAILS")
@@ -34,4 +28,11 @@ export const getUser = () => async (dispatch) => {
         dispatch({ type: "USER_LOG_OUT" })
     }
 
+}
+
+
+export const userLogOut = () => async (dispatch) => {
+    const response = await api.post("/auth/logout");
+    console.log(response)
+    dispatch({ type: "USER_LOG_OUT" })
 }
