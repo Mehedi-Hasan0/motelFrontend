@@ -15,6 +15,7 @@ const AuthenticationPopUp = ({ popup, setPopup }) => {
   const [profilePopup, setProfilePopup] = useState(false);
   const [defaultPopup, setDefaultPopup] = useState(true);
   const [loginEmail, setLoginEmail] = useState(null);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
   const popUpRef = useRef(null);
 
   const handleCloseLoginPopup = () => {
@@ -46,8 +47,10 @@ const AuthenticationPopUp = ({ popup, setPopup }) => {
           <div
             ref={popUpRef}
             className={`absolute left-[27.5%] right-[27.5%] top-[12%] ${
-              showLoginPopup || profilePopup
+              (showLoginPopup || profilePopup) && !showErrorMessage
                 ? " h-[60vh] popup__container__login"
+                : (showLoginPopup || profilePopup) && showErrorMessage
+                ? "h-[80vh]"
                 : "h-[80vh] popup__container"
             } w-[45vw] bg-[#ffffff] shadow-2xl rounded-xl overflow-hidden`}
           >
@@ -111,6 +114,11 @@ const AuthenticationPopUp = ({ popup, setPopup }) => {
                 <LogInPopup
                   onBack={handleCloseLoginPopup}
                   loginEmail={loginEmail}
+                  setDefaultPopup={setDefaultPopup}
+                  setShowLoginPopup={setShowLoginPopup}
+                  setPopup={setPopup}
+                  showErrorMessage={showErrorMessage}
+                  setShowErrorMessage={setShowErrorMessage}
                 />
               )}
               {!showCreateUserPopup ? null : (
