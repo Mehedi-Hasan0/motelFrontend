@@ -8,18 +8,19 @@ import { API } from "../../backend";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogIn } from "../../redux/actions/userActions";
 import { toast } from "react-hot-toast";
-import errorIcon from "../../assets/basicIcon/errorIcon.png";
+import errorIcon from "../../assets/basicIcon/errorIcon2.png";
 
 const LogInPopup = ({
   loginEmail,
   setShowLoginPopup,
   setPopup,
   setDefaultPopup,
+  setShowErrorMessage,
+  showErrorMessage,
 }) => {
   const { handleSubmit, register } = useForm();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   const user = useSelector((state) => state.user);
   console.log(user);
@@ -46,7 +47,6 @@ const LogInPopup = ({
       console.log(userData);
 
       if (userData?.success === 0) {
-        toast.error(userData?.info);
         setShowErrorMessage(true);
       } else if (userData?.success === 1) {
         dispatch(userLogIn(userData));
@@ -89,8 +89,17 @@ const LogInPopup = ({
     <div className="flex flex-col gap-4">
       <div className="px-8 pt-1">
         {!showErrorMessage ? null : (
-          <div>
-            <img src={errorIcon} alt="Error icon" />
+          <div className=" flex flex-row items-center gap-3 px-3 py-2 border-[#dddddd] border rounded-xl mt-6 mb-2">
+            <img src={errorIcon} alt="Error icon" className=" w-14" />
+            <div className=" flex flex-col gap-[2px]">
+              <h6 className=" text-sm text-[#222222] font-semibold">
+                {/* // &apos; is basically this sign ' */}
+                Let&apos;s try that again
+              </h6>
+              <p className=" text-sm text-[#717171] opacity-80">
+                Invalid login credentials. Please try again.
+              </p>
+            </div>
           </div>
         )}
         <form onSubmit={handleSubmit(handleLogin)}>
