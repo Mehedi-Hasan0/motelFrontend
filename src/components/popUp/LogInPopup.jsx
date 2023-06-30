@@ -120,7 +120,9 @@ const LogInPopup = ({
               onChange={handleShowError}
             />
             <span
-              className="absolute top-[50%] right-3 transform -translate-y-1/2 text-[#222222] text-xs font-semibold underline cursor-pointer"
+              className={`absolute ${
+                errors.password ? "top-[35%]" : "top-[50%]"
+              }  right-3 transform -translate-y-1/2 text-[#222222] text-xs font-semibold underline cursor-pointer`}
               onClick={togglePasswordVisibility}
             >
               {passwordVisible ? "Hide" : "Show"}
