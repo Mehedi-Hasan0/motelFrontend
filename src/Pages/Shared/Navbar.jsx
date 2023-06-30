@@ -144,7 +144,6 @@ const Navbar = () => {
                   <Link
                     onClick={() => {
                       handleLogout();
-                      window.reload();
                     }}
                   >
                     Log out

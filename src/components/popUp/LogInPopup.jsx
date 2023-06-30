@@ -26,6 +26,7 @@ const LogInPopup = ({
   } = useForm();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [testEmail, setTestEmail] = useState(false);
 
   const user = useSelector((state) => state.user);
   console.log(user);
@@ -118,6 +119,7 @@ const LogInPopup = ({
                 pattern: /^.{8,}$/,
               })}
               onChange={handleShowError}
+              value={testEmail ? "guest1234" : ""}
             />
             <span
               className={`absolute ${
@@ -142,6 +144,16 @@ const LogInPopup = ({
                 </p>
               </div>
             )}
+          </div>
+          <div className=" flex flex-row items-center gap-5 mb-4 ml-[2px]">
+            <input
+              type="checkbox"
+              className="h-4 w-4"
+              onChange={() => {
+                setTestEmail((prev) => !prev);
+              }}
+            />
+            <p className=" text-xs">Add test email password</p>
           </div>
           <button
             className={`bg-[#ff385c] hover:bg-[#d90b63] transition-all duration-300 text-white font-medium rounded-lg p-3 w-full disabled:bg-[#dddddd] ${

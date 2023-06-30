@@ -20,6 +20,7 @@ const WelcomePopup = ({
   const { handleSubmit, register, reset } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [testEmail, setTestEmail] = useState(false);
 
   const handleInputFocus = () => {
     setInputFocused(true);
@@ -112,7 +113,7 @@ const WelcomePopup = ({
   return (
     <div className="flex flex-col gap-4">
       {/* welcome option */}
-      <div className="px-8 pt-1">
+      <div className="px-8 pt-4">
         <h2 className="font-medium text-[22px] text-[#222222]">
           Welcome to Motel
         </h2>
@@ -129,11 +130,22 @@ const WelcomePopup = ({
               required: true,
               onBlur: handleInputBlur,
             })}
+            value={testEmail ? "guest@email.com" : ""}
           />
           <p className=" text-xs text-[#222222] pt-3 mb-5 opacity-80 ml-[2px]">
             We’ll send a confirmation email to verify your email address. <br />{" "}
             <Link className=" font-semibold underline">Privacy Policy</Link>
           </p>
+          <div className=" flex flex-row items-center gap-5 mb-4 ml-[2px]">
+            <input
+              type="checkbox"
+              className="h-4 w-4"
+              onChange={() => {
+                setTestEmail((prev) => !prev);
+              }}
+            />
+            <p className=" text-xs">Add test email</p>
+          </div>
           <button
             className={`bg-[#ff385c] hover:bg-[#d90b63] transition-all duration-300 text-white font-medium rounded-lg p-3 w-full disabled:bg-[#dddddd] ${
               isLoading ? " cursor-not-allowed" : ""
