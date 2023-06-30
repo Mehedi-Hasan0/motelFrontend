@@ -141,7 +141,14 @@ const Navbar = () => {
                   <Link>Account</Link>
                   <hr className="h-[1.5px] bg-[#dddddd] my-1" />
                   <Link>Help</Link>
-                  <Link onClick={handleLogout}>Log out</Link>
+                  <Link
+                    onClick={() => {
+                      handleLogout();
+                      window.reload();
+                    }}
+                  >
+                    Log out
+                  </Link>
                 </div>
               )}
             </>

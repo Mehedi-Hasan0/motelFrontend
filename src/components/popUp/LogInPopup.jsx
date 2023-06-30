@@ -8,7 +8,8 @@ import { API } from "../../backend";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogIn } from "../../redux/actions/userActions";
 import { toast } from "react-hot-toast";
-import errorIcon from "../../assets/basicIcon/errorIcon2.png";
+import errorIcon from "../../assets/basicIcon/errorIcon.png";
+import errorMessageIcon from "../../assets/basicIcon/errorIcon2.png";
 
 const LogInPopup = ({
   loginEmail,
@@ -18,7 +19,11 @@ const LogInPopup = ({
   setShowErrorMessage,
   showErrorMessage,
 }) => {
-  const { handleSubmit, register } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -89,8 +94,8 @@ const LogInPopup = ({
     <div className="flex flex-col gap-4">
       <div className="px-8 pt-1">
         {!showErrorMessage ? null : (
-          <div className=" flex flex-row items-center gap-3 px-3 py-2 border-[#dddddd] border rounded-xl mt-6 mb-2">
-            <img src={errorIcon} alt="Error icon" className=" w-14" />
+          <div className=" flex flex-row items-center gap-3 px-3 py-2 border-[#dddddd] border rounded-xl mt-6 mb-3">
+            <img src={errorMessageIcon} alt="Error icon" className=" w-14" />
             <div className=" flex flex-col gap-[2px]">
               <h6 className=" text-sm text-[#222222] font-semibold">
                 {/* // &apos; is basically this sign ' */}
@@ -108,15 +113,35 @@ const LogInPopup = ({
               type={passwordVisible ? "text" : "password"}
               placeholder="Password"
               className="w-full border-[1.5px] border-[#dddddd] p-3 rounded-lg transition-all duration-300"
-              {...register("password", { required: true })}
+              {...register("password", {
+                required: true,
+                pattern: /^.{8,}$/,
+              })}
               onChange={handleShowError}
             />
             <span
-              className="absolute top-[50%] right-3 transform -translate-y-1/2 text-[#222222] text-xs font-semibold underline cursor-pointer"
+              className={`absolute ${
+                errors.password ? "top-[35%]" : "top-[50%]"
+              }  right-3 transform -translate-y-1/2 text-[#222222] text-xs font-semibold underline cursor-pointer`}
               onClick={togglePasswordVisibility}
             >
               {passwordVisible ? "Hide" : "Show"}
             </span>
+            {errors.password && (
+              <div
+                role="alert"
+                className=" flex flex-row items-center gap-2 mt-1"
+              >
+                <img
+                  src={errorIcon}
+                  alt="Last name is requires"
+                  className="w-5"
+                />
+                <p className="text-xs text-[#c13515]">
+                  At least 8 characters long
+                </p>
+              </div>
+            )}
           </div>
           <button
             className={`bg-[#ff385c] hover:bg-[#d90b63] transition-all duration-300 text-white font-medium rounded-lg p-3 w-full disabled:bg-[#dddddd] ${
