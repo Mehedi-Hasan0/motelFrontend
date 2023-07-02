@@ -166,6 +166,13 @@ const LogInPopup = ({
       <Link className=" text-[#222222] text-sm font-medium underline pt-3 px-8">
         Forgot Password?
       </Link>
+
+      <div className=" pt-4 px-8 italic pb-7">
+        <ul className=" list-disc text-xs text-[#222222] opacity-80">
+          <p>You can use below test credentials to try!</p>
+          <li>Password: guest1234</li>
+        </ul>
+      </div>
     </div>
   );
 };

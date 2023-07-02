@@ -14,7 +14,6 @@ const WelcomePopup = ({
   setShowLoginPopup,
   setShowCreateUserPopup,
   setLoginEmail,
-  signInDivRef,
 }) => {
   const [inputFocused, setInputFocused] = useState(false);
   const { handleSubmit, register, reset } = useForm();
@@ -112,7 +111,7 @@ const WelcomePopup = ({
   return (
     <div className="flex flex-col gap-4">
       {/* welcome option */}
-      <div className="px-8 pt-1">
+      <div className="px-8 pt-4">
         <h2 className="font-medium text-[22px] text-[#222222]">
           Welcome to Motel
         </h2>
@@ -171,6 +170,12 @@ const WelcomePopup = ({
             Continue with Facebook
           </p>
         </div>
+      </div>
+      <div className=" pt-4 px-8 italic pb-7">
+        <ul className=" list-disc text-xs text-[#222222] opacity-80">
+          <p>You can use below test credentials to try!</p>
+          <li>email: guest@email.com</li>
+        </ul>
       </div>
     </div>
   );
