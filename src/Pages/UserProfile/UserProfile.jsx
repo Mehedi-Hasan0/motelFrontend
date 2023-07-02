@@ -5,14 +5,14 @@ const UserProfile = () => {
   console.log(user);
 
   return (
-    <main className=" max-w-[1200px] mx-auto xl:px-10 pt-12 flex min-h-[80vh]">
+    <main className=" max-w-[1200px] mx-auto xl:px-10 py-12 flex min-h-[80vh] relative">
       <section className=" flex flex-row gap-16 items-start flex-auto">
         {user?.photoUrl ? (
           <figure>
             <img src={user?.photoUrl} alt="User image" />
           </figure>
         ) : (
-          <div className="flex flex-col gap-4 justify-center items-center w-[350px] shadow-xl rounded-3xl p-7 border">
+          <div className="flex flex-col gap-4 justify-center items-center w-[350px] shadow-xl rounded-3xl p-7 border sticky top-[128px]">
             <p className="text-4xl text-white font-semibold px-7 py-6 rounded-full bg-[#222222] flex justify-center items-center">
               {user?.name.firstName.slice(0, 1)}
             </p>
