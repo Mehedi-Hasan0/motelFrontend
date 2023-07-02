@@ -14,13 +14,11 @@ const WelcomePopup = ({
   setShowLoginPopup,
   setShowCreateUserPopup,
   setLoginEmail,
-  signInDivRef,
 }) => {
   const [inputFocused, setInputFocused] = useState(false);
   const { handleSubmit, register, reset } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [testEmail, setTestEmail] = useState(false);
 
   const handleInputFocus = () => {
     setInputFocused(true);
@@ -130,22 +128,11 @@ const WelcomePopup = ({
               required: true,
               onBlur: handleInputBlur,
             })}
-            value={testEmail ? "guest@email.com" : ""}
           />
           <p className=" text-xs text-[#222222] pt-3 mb-5 opacity-80 ml-[2px]">
             We’ll send a confirmation email to verify your email address. <br />{" "}
             <Link className=" font-semibold underline">Privacy Policy</Link>
           </p>
-          <div className=" flex flex-row items-center gap-5 mb-4 ml-[2px]">
-            <input
-              type="checkbox"
-              className="h-4 w-4"
-              onChange={() => {
-                setTestEmail((prev) => !prev);
-              }}
-            />
-            <p className=" text-xs">Add test email</p>
-          </div>
           <button
             className={`bg-[#ff385c] hover:bg-[#d90b63] transition-all duration-300 text-white font-medium rounded-lg p-3 w-full disabled:bg-[#dddddd] ${
               isLoading ? " cursor-not-allowed" : ""
@@ -183,6 +170,12 @@ const WelcomePopup = ({
             Continue with Facebook
           </p>
         </div>
+      </div>
+      <div className=" pt-4 px-8 italic pb-7">
+        <ul className=" list-disc text-xs text-[#222222] opacity-80">
+          <p>You can use below test credentials to try!</p>
+          <li>email: guest@email.com</li>
+        </ul>
       </div>
     </div>
   );
