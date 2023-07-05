@@ -6,9 +6,9 @@ import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
-import errorIcon from "../../assets/basicIcon/errorIcon.png";
-import { API } from "../../backend";
-import { userSignUp } from "../../redux/actions/userActions";
+import errorIcon from "../../../assets/basicIcon/errorIcon.png";
+import { API } from "../../../backend";
+import { userSignUp } from "../../../redux/actions/userActions";
 
 const CreateUserPopup = ({
   loginEmail,

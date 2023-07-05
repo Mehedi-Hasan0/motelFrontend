@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { API } from "../../backend";
+import { API } from "../../../backend";
 import { PulseLoader } from "react-spinners";
-import google from "../../assets/basicIcon/google.svg";
-import facebook from "../../assets/basicIcon/facebook.svg";
+// import google from "../../assets/basicIcon/google.svg";
+import facebook from "../../../assets/basicIcon/facebook.svg";
 
 const WelcomePopup = ({
   setDefaultPopup,

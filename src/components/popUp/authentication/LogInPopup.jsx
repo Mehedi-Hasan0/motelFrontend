@@ -4,12 +4,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
-import { API } from "../../backend";
+import { API } from "../../../backend";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogIn } from "../../redux/actions/userActions";
+import { userLogIn } from "../../../redux/actions/userActions";
 import { toast } from "react-hot-toast";
-import errorIcon from "../../assets/basicIcon/errorIcon.png";
-import errorMessageIcon from "../../assets/basicIcon/errorIcon2.png";
+import errorIcon from "../../../assets/basicIcon/errorIcon.png";
+import errorMessageIcon from "../../../assets/basicIcon/errorIcon2.png";
 
 const LogInPopup = ({
   loginEmail,

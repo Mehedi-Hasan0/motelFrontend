@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import searchIcon from "../../assets/basicIcon/search.svg";
 import hamburgerMenu from "../../assets/basicIcon/hamburgerMenu.svg";
 import userProfile from "../../assets/basicIcon/user-profile.png";
-import AuthenticationPopUp from "../../components/popUp/AuthenticationPopUp";
+// import AuthenticationPopUp from "../popUp/authentication/AuthenticationPopUp";
+import AuthenticationPopUp from "../popUp/authentication/AuthenticationPopUp";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, userLogOut } from "../../redux/actions/userActions";
 
@@ -26,7 +27,7 @@ const Navbar = () => {
 
   useEffect(() => {
     dispatch(getUser());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -41,7 +42,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={` border-b-[1.4px] border-[#f1f1f1]`}>
+    <nav className="border-b-[1.4px] border-[#f1f1f1] sticky top-0 z-[99] bg-white">
       <div
         className={`xl:px-10 grid grid-cols-3 py-4 xl:mx-auto ${
           inUserProfile ? " max-w-[1200px]" : " max-w-screen-2xl"

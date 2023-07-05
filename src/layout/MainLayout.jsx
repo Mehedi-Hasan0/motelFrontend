@@ -1,14 +1,13 @@
-import { Outlet, useLocation } from "react-router-dom";
-import Navbar from "../Pages/Shared/Navbar";
+import { Outlet } from "react-router-dom";
+import Footer from "../components/Shared/Footer";
+import Navbar from "../components/Shared/Navbar";
 
 const MainLayout = () => {
-  const location = useLocation();
-  const pathName = location.pathname;
-
   return (
     <div>
       <Navbar />
       <Outlet />
+      <Footer />
     </div>
   );
 };
