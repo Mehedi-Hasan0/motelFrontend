@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import searchIcon from "../../assets/basicIcon/search.svg";
 import hamburgerMenu from "../../assets/basicIcon/hamburgerMenu.svg";
 import userProfile from "../../assets/basicIcon/user-profile.png";
-import AuthenticationPopUp from "../popUp/AuthenticationPopUp";
+// import AuthenticationPopUp from "../popUp/authentication/AuthenticationPopUp";
+import AuthenticationPopUp from "../popUp/authentication/AuthenticationPopUp";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, userLogOut } from "../../redux/actions/userActions";
 
@@ -26,7 +27,7 @@ const Navbar = () => {
 
   useEffect(() => {
     dispatch(getUser());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {

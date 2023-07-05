@@ -16,19 +16,42 @@ export const userLogIn = (userData) => async (dispatch) => {
     })
 }
 
-export const getUser = () => async (dispatch) => {
-    const response = await api.post("/auth/get_user_details");
-    console.log(response.data, "GET USER DETAILS")
-    if (response.data.status === 200) {
-        dispatch({
-            type: "GET_USER_DETAILS",
-            payload: response.data.user_details
-        })
-    } else {
-        dispatch({ type: "USER_LOG_OUT" })
+// export const getUser = () => async (dispatch) => {
+//     const response = await api.post("/auth/get_user_details");
+//     console.log(response.data, "GET USER DETAILS")
+//     if (response.data.status === 200) {
+//         dispatch({
+//             type: "GET_USER_DETAILS",
+//             payload: response.data.user_details
+//         })
+//     } else {
+//         dispatch({ type: "USER_LOG_OUT" })
+//     }
+
+// }
+
+export const getUser = () => async (dispatch, getState) => {
+    const { user } = getState().user;
+
+    if (user) {
+        return;
     }
 
-}
+    try {
+        const response = await api.post("/auth/get_user_details");
+        console.log(response.data, "GET USER DETAILS");
+        if (response.data.status === 200) {
+            dispatch({
+                type: "GET_USER_DETAILS",
+                payload: response.data.user_details,
+            });
+        } else {
+            dispatch({ type: "USER_LOG_OUT" });
+        }
+    } catch (error) {
+        // Handle error
+    }
+};
 
 
 export const userLogOut = () => async (dispatch) => {

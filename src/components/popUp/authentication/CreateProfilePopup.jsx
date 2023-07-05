@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import motelLogo from "../../assets/basicIcon/motel-logo.png";
+import motelLogo from "../../../assets/basicIcon/motel-logo.png";
 const CreateProfilePopup = ({
   setShowProfilePopup,
   setPopup,
   setDefaultPopup,
 }) => {
+  const userId = useSelector((state) => state.user.userDetails._id);
   return (
     <div className="flex flex-col gap-4">
       <div className="px-8 pt-1 bg-[#fafafa] h-[60vh]">
@@ -18,6 +20,7 @@ const CreateProfilePopup = ({
         </div>
         <div className=" px-5 mt-5 w-full flex justify-center">
           <Link
+            to={`/users/show/${userId}`}
             className=" bg-[#282828] text-[#ffffff] text-center font-medium block w-full py-2 rounded-md hover:bg-[#000000] transition-colors duration-300"
             onClick={() => {
               setShowProfilePopup(false);

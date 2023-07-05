@@ -1,7 +1,7 @@
 // import PropTypes from "prop-types";
 import { useState, useEffect, useRef } from "react";
-import closeIcon from "../../assets/basicIcon/closeIcon.svg";
-import backIcon from "../../assets/basicIcon/backIcon.png";
+import closeIcon from "../../../assets/basicIcon/closeIcon.svg";
+import backIcon from "../../../assets/basicIcon/backIcon.png";
 
 import LogInPopup from "./LogInPopup";
 import CreateUserPopup from "./CreateUserPopup";
@@ -56,16 +56,7 @@ const AuthenticationPopUp = ({ popup, setPopup }) => {
           >
             {/* pop-up navbar */}
             <div className=" flex items-center w-full py-4 border-b-[1px] px-8 sticky top-0 bg-[#ffffff]">
-              {defaultPopup ? (
-                <img
-                  src={closeIcon}
-                  alt="close icon"
-                  className="w-8 hover:bg-[#f1f1f1] transition-colors rounded-full p-2 cursor-pointer"
-                  onClick={() => {
-                    setPopup(false);
-                  }}
-                />
-              ) : profilePopup ? (
+              {defaultPopup || profilePopup ? (
                 <img
                   src={closeIcon}
                   alt="close icon"
