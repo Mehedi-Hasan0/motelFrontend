@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import cameraIcon from "../../assets/basicIcon/cameraIcon.png";
 import UserProfilePopup from "../../components/popUp/userProfilePopup/userProfilePopup";
-import UserProfile from "../../components/userProfile/UserProfile";
+import UserAbout from "../../components/userProfile/UserAbout";
+import UserProfileOptions from "../../components/userProfile/UserProfileOptions";
 
 const EditProfile = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -31,10 +32,11 @@ const EditProfile = () => {
             </div>
           )}
           <section className="xl:min-h-[400px] flex flex-col flex-1 profile__container">
-            <UserProfile
+            <UserProfileOptions
               setShowPopup={setShowPopup}
               setSelectedOption={setSelectedOption}
             />
+            <UserAbout setShowPopup={setShowPopup} />
           </section>
         </section>
       </main>

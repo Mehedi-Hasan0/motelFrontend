@@ -1,7 +1,7 @@
 const initialState = {
     userDetails: null,
     loginResponse: Number,
-    responseMessage: ''
+    responseMessage: '',
 }
 
 const userReducer = (state = initialState, { type, payload }) => {

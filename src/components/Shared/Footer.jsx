@@ -3,7 +3,7 @@ import linkedinIcon from "../../assets/basicIcon/linkedinIcon.svg";
 
 const Footer = () => {
   return (
-    <footer className=" px-16 py-12 bg-[#f7f7f7] border-t border-[#dddddd] text-sm text-[#222222]">
+    <footer className=" px-16 py-12 bg-[#f7f7f7] border-t border-[#dddddd] text-sm text-[#222222] relative bottom-0 z-[20]">
       <section className=" flex flex-row gap-8 justify-between">
         <div className="flex flex-col gap-4 opacity-80">
           <h6 className="font-semibold">Support</h6>
