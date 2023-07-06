@@ -13,16 +13,18 @@ export const profileOptions = [
         img: schoolIcon,
         popUpContent: {
             header: "Where did you go to school?",
-            subHead: "Whether it`s home school, high school, or trade school, name the school that made you who you are."
-        }
+            subHead: "Whether it's home school, high school, or trade school, name the school that made you who you are."
+        },
+        fieldName: "school"
     },
     {
         name: "My work",
         img: workIcon,
         popUpContent: {
             header: "What do you do for work?",
-            subHead: "Tell us what your profession is. If you don`t have a traditional job, tell us your life`s calling. Example: Nurse, parent to four kids, or retired surfer."
-        }
+            subHead: "Tell us what your profession is. If you don't have a traditional job, tell us your life's calling. Example: Nurse, parent to four kids, or retired surfer."
+        },
+        fieldName: "profession"
     },
     {
         name: "Where I live",
@@ -30,7 +32,8 @@ export const profileOptions = [
         popUpContent: {
             header: "Where you live?",
             subHead: "Tell us where you live so we can share best apartments to you and share best and affordable prices houses."
-        }
+        },
+        fieldName: "presentAddress"
     },
     {
         name: "My favourite song in high school",
@@ -38,7 +41,8 @@ export const profileOptions = [
         popUpContent: {
             header: "What was your favorite song in high school?",
             subHead: "However embarrassing, share the tune you listened to on repeat as a teenager."
-        }
+        },
+        fieldName: "favoriteSong"
     },
     {
         name: "I'm obsessed with",
@@ -46,7 +50,8 @@ export const profileOptions = [
         popUpContent: {
             header: "What are you obsessed with?",
             subHead: "Share whatever you can’t get enough of—in a good way. Example: Baking rosemary focaccia."
-        }
+        },
+        fieldName: "obsessedWith"
     },
     {
         name: "My fun fact",
@@ -54,7 +59,8 @@ export const profileOptions = [
         popUpContent: {
             header: "What’s a fun fact about you?",
             subHead: "Share something unique or unexpected about you. Example: I was in a music video or I’m a juggler."
-        }
+        },
+        fieldName: "funFact"
     },
     {
         name: "I spend too much time",
@@ -62,7 +68,8 @@ export const profileOptions = [
         popUpContent: {
             header: "What do you spend too much time doing?",
             subHead: "Share an activity or hobby you spend lots of free time on. Example: Watching cat videos or playing chess."
-        }
+        },
+        fieldName: "spendTime"
     },
     {
         name: "Pets",
@@ -70,6 +77,7 @@ export const profileOptions = [
         popUpContent: {
             header: "Do you have any pets in your life?",
             subHead: "Share any pets you have and their names. Example: My calico cat Whiskers, or Leonardo my speedy turtle."
-        }
+        },
+        fieldName: "pets"
     },
 ];

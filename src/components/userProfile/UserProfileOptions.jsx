@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
+import { useSelector } from "react-redux";
 import { profileOptions } from "./userProfileApi";
 
-const UserProfile = ({ setShowPopup, setSelectedOption }) => {
-  console.log(profileOptions);
+const UserProfileOptions = ({ setShowPopup, setSelectedOption }) => {
+  const userProfile = useSelector(
+    (state) => state.user.userDetails?.profileDetails.profile
+  );
   return (
     <>
       <div className=" flex flex-col">
@@ -17,18 +20,36 @@ const UserProfile = ({ setShowPopup, setSelectedOption }) => {
         </div>
         <section className=" grid grid-cols-2 gap-x-16 mt-4">
           {profileOptions.map((option, i) => {
+            let savedProfileData;
+            for (const keys in option) {
+              let fieldName = option[keys];
+              for (const profileKeys in userProfile) {
+                if (fieldName === profileKeys) {
+                  savedProfileData = userProfile[profileKeys];
+                }
+              }
+            }
             return (
               <div
                 key={i}
                 className="border-b border-[#dedede] cursor-pointer"
                 onClick={() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
                   setSelectedOption(option);
                   setShowPopup((prev) => !prev);
                 }}
               >
                 <div className=" flex flex-row gap-3 items-center py-6 px-2 hover:bg-[#f7f7f7] rounded-xl">
                   <img src={option.img} alt="Options" className=" w-7" />
-                  <p className=" text-base text-[#717171]">{option.name}</p>
+                  {savedProfileData ? (
+                    <div className="text-base text-[#717171]">
+                      <p>
+                        {savedProfileData.name} : {savedProfileData.value}
+                      </p>
+                    </div>
+                  ) : (
+                    <p className=" text-base text-[#717171]">{option.name}</p>
+                  )}
                 </div>
               </div>
             );
@@ -39,4 +60,4 @@ const UserProfile = ({ setShowPopup, setSelectedOption }) => {
   );
 };
 
-export default UserProfile;
+export default UserProfileOptions;

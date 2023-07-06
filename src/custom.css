@@ -100,3 +100,9 @@ input[type="checkbox"] {
     opacity: 1;
   }
 }
+.profile__container {
+  flex: 0 0 350px;
+}
+.profile__container__div {
+  flex: 0 0 auto;
+}
