@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import cameraIcon from "../../assets/basicIcon/cameraIcon.png";
 import UserProfilePopup from "../../components/popUp/userProfilePopup/userProfilePopup";
 import UserAbout from "../../components/userProfile/UserAbout";
@@ -14,9 +15,9 @@ const EditProfile = () => {
     <>
       <main className=" max-w-[1200px] mx-auto xl:px-10 py-12 flex min-h-[80vh] relative">
         <section className=" flex flex-row gap-16 items-start flex-auto">
-          {user?.photoUrl ? (
+          {user?.userImage ? (
             <figure>
-              <img src={user?.photoUrl} alt="User image" />
+              <img src={user?.userImage?.profile_Url} alt="User image" />
             </figure>
           ) : (
             <div className="flex flex-col gap-4 justify-center items-center w-[350px] h-[220px] p-7 sticky top-[128px]">
@@ -40,6 +41,17 @@ const EditProfile = () => {
           </section>
         </section>
       </main>
+      <div className=" border-t border-[#dddddd] py-5 fixed bottom-0 bg-[#ffffff] w-full z-10 flex flex-row-reverse">
+        <Link
+          to={`/users/show/${user?._id}`}
+          className="px-7 py-3 bg-[#282828] hover:bg-[#000000] text-white rounded-lg mx-6 font-medium"
+          onClick={() => {
+            window.reload();
+          }}
+        >
+          Done
+        </Link>
+      </div>
 
       {showPopup && (
         <UserProfilePopup

@@ -45,11 +45,11 @@ export const profileOptions = [
         fieldName: "favoriteSong"
     },
     {
-        name: "I'm obsessed with",
+        name: "I am obsessed with",
         img: loveIcon,
         popUpContent: {
             header: "What are you obsessed with?",
-            subHead: "Share whatever you can’t get enough of—in a good way. Example: Baking rosemary focaccia."
+            subHead: "Share whatever you can`t get enough of in a good way. Example: Baking rosemary focaccia."
         },
         fieldName: "obsessedWith"
     },
