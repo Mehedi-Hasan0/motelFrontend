@@ -1,19 +1,20 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import searchIcon from "../../assets/basicIcon/search.svg";
 import hamburgerMenu from "../../assets/basicIcon/hamburgerMenu.svg";
 import userProfile from "../../assets/basicIcon/user-profile.png";
 import AuthenticationPopUp from "../popUp/authentication/AuthenticationPopUp";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, userLogOut } from "../../redux/actions/userActions";
+import motelLogo from "../../assets/Travel_Logo.png";
 
 const Navbar = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const userMenuRef = useRef(null);
-  const [popup, setPopup] = useState(false);
   const location = useLocation();
   const pathName = location.pathname;
   const inUserProfile = pathName.includes("/users/show/");
+
+  const [popup, setPopup] = useState(false);
 
   const user = useSelector((state) => state.user.userDetails);
 
@@ -49,26 +50,12 @@ const Navbar = () => {
         }`}
       >
         {/* logo */}
-        <div className="flex flex-row gap-2 items-center">
-          <Link className="text-xl text-[#ff385c] font-bold">motel</Link>
-        </div>
-        {/* search bar */}
-        {!inUserProfile ? (
-          <div className="mx-auto max-w-sm">
-            <div className="border-[1px] border-[#dddddd] rounded-full px-3 py-2 flex items-center shadow hover:shadow-md transition-all cursor-pointer">
-              <div className="flex flex-row items-center nav__search__button">
-                <p>Anywhere</p>
-                <p>Any week</p>
-                <p className=" text-[#717171]">Add guests</p>
-                <div className="bg-[#ff385c] rounded-full p-2">
-                  <img src={searchIcon} alt="Search hotel" className="w-4" />
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className=" w-8"></div>
-        )}
+        <Link to="/" className="flex flex-row gap-2 items-center">
+          <img src={motelLogo} alt="Logo" className=" w-10" />
+          <p className="text-xl text-[#ff385c] font-bold">motel</p>
+        </Link>
+
+        <div> </div>
 
         {/* user bar */}
         <div className="flex justify-end items-center">
