@@ -7,6 +7,7 @@ import closeIcon from "../../../assets/basicIcon/closeIcon.svg";
 import api from "../../../backend";
 
 const UserProfilePopup = ({ showPopup, setShowPopup, popupData }) => {
+  console.log(popupData);
   const [characterCount, setCharacterCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const { handleSubmit, register, watch } = useForm();
@@ -14,7 +15,7 @@ const UserProfilePopup = ({ showPopup, setShowPopup, popupData }) => {
   const inputFieldName = popupData?.name;
   const inputValue = watch(inputFieldName);
 
-  const fieldName = popupData.fieldName;
+  const fieldName = popupData?.fieldName;
 
   const handleProfileValue = async (data) => {
     const valueName = Object.keys(data);
