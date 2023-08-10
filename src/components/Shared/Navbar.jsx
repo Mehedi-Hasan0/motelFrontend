@@ -1,22 +1,24 @@
 import { useState, useRef, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import hamburgerMenu from "../../assets/basicIcon/hamburgerMenu.svg";
-import userProfile from "../../assets/basicIcon/user-profile.png";
-import AuthenticationPopUp from "../popUp/authentication/AuthenticationPopUp";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import AuthenticationPopUp from "../popUp/authentication/AuthenticationPopUp";
+import MiniNavbar from "../dashboard/DashboardMenu";
 import { getUser, userLogOut } from "../../redux/actions/userActions";
+import hamburgerMenu from "../../assets/basicIcon/hamburgerMenu.svg";
 import motelLogo from "../../assets/Travel_Logo.png";
+import userProfile from "../../assets/basicIcon/user-profile.png";
+import searchIcon from "../../assets/basicIcon/search.svg";
 
 const Navbar = () => {
+  const user = useSelector((state) => state.user.userDetails);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const userMenuRef = useRef(null);
   const location = useLocation();
   const pathName = location.pathname;
   const inUserProfile = pathName.includes("/users/show/");
+  const inUserDashboard = pathName.includes("/users/dashboard/");
 
   const [popup, setPopup] = useState(false);
-
-  const user = useSelector((state) => state.user.userDetails);
 
   const dispatch = useDispatch();
 
@@ -45,17 +47,43 @@ const Navbar = () => {
   return (
     <nav className="border-b-[1.4px] border-[#f1f1f1] sticky top-0 z-[99] bg-white">
       <div
-        className={`xl:px-10 grid grid-cols-3 py-4 xl:mx-auto ${
+        className={`xl:px-10 py-4 xl:mx-auto items-center ${
           inUserProfile ? " max-w-[1200px]" : " max-w-screen-2xl"
-        }`}
+        }
+        ${
+          inUserDashboard ? "flex flex-row justify-between" : "grid grid-cols-3"
+        }
+        `}
       >
         {/* logo */}
-        <Link to="/" className="flex flex-row gap-2 items-center">
-          <img src={motelLogo} alt="Logo" className=" w-10" />
-          <p className="text-xl text-[#ff385c] font-bold">motel</p>
-        </Link>
+        <div className=" md:w-[220px]">
+          <Link
+            to="/"
+            className="flex flex-row gap-2 items-center max-w-[120px]"
+          >
+            <img src={motelLogo} alt="Logo" className=" w-10" />
+            <p className="text-xl text-[#ff385c] font-bold">motel</p>
+          </Link>
+        </div>
 
-        <div> </div>
+        {/* searchbar */}
+        {inUserProfile || inUserDashboard ? (
+          // if user is in dahsboard
+          <div>{inUserDashboard && <MiniNavbar />}</div>
+        ) : (
+          <div className="mx-auto">
+            <div className="border-[1px] border-[#dddddd] rounded-full px-3 py-2 flex items-center shadow hover:shadow-md transition-all cursor-pointer">
+              <input
+                type="search"
+                className=" focus:outline-none pl-2"
+                placeholder="Search for places"
+              />
+              <div className="bg-[#ff385c] rounded-full p-2">
+                <img src={searchIcon} alt="Search hotel" className="w-4" />
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* user bar */}
         <div className="flex justify-end items-center">
@@ -79,6 +107,9 @@ const Navbar = () => {
               <img src={userProfile} alt="user profile icon" className="w-8" />
             )}
           </div>
+
+          {/* menu items code  */}
+
           {showUserMenu ? (
             <>
               {!user ? (
@@ -115,30 +146,18 @@ const Navbar = () => {
                     setShowUserMenu((prev) => !prev);
                   }}
                 >
-                  <Link
-                    className="font-medium"
-                    onClick={() => {
-                      setShowUserMenu(false);
-                    }}
-                  >
-                    Notifications
-                  </Link>
-                  <Link
-                    className="font-medium"
-                    onClick={() => {
-                      setShowUserMenu(false);
-                    }}
-                  >
-                    Trips
-                  </Link>
-                  <Link
-                    className="font-medium"
-                    onClick={() => {
-                      setShowUserMenu(false);
-                    }}
-                  >
-                    Wishlists
-                  </Link>
+                  {user?.role === "renter" || user?.role === "admin" ? (
+                    <Link
+                      to={`/users/dashboard/${user._id}`}
+                      className="font-medium"
+                    >
+                      Dashboard
+                    </Link>
+                  ) : (
+                    <Link className="font-medium">Notifications</Link>
+                  )}
+                  <Link className="font-medium">Trips</Link>
+                  <Link className="font-medium">Wishlists</Link>
                   <hr className="h-[1.5px] bg-[#dddddd] my-1" />
                   <Link>Motel your home</Link>
                   <Link to={`/users/show/${user._id}`}>Account</Link>

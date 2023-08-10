@@ -8,10 +8,37 @@ const UserProfile = () => {
     <main className=" max-w-[1200px] mx-auto xl:px-10 py-12 flex min-h-[80vh] relative">
       <div className=" flex flex-auto">
         <section className=" flex flex-row gap-16 items-start flex-auto">
-          {user?.photoUrl ? (
-            <figure>
-              <img src={user?.photoUrl} alt="User image" />
-            </figure>
+          {user?.profileImg ? (
+            <>
+              {/* <figure className=" max-w-[200px]">
+                <img
+                  src={user?.profileImg}
+                  alt="User image"
+                  className=" rounded-full"
+                />
+              </figure> */}
+              <div className="w-[350px] flex flex-col profile__container">
+                <div className="flex flex-col gap-4 justify-center items-center min-w-[100%] shadow-xl rounded-3xl p-7 border sticky top-[128px] profile__container__div">
+                  <div className=" min-w-[114px] min-h-[114px] bg-[#222222] rounded-full flex justify-center itmes-center">
+                    <img
+                      src={user?.profileImg}
+                      alt="User image"
+                      className=" rounded-full max-w-[140px]"
+                    />
+                  </div>
+                  <div className=" flex flex-col justify-center items-center">
+                    <p className="text-3xl text-[#222222] font-semibold">
+                      {user?.name.firstName}
+                    </p>
+                    {user?.name.lastName === "guest" ? (
+                      ""
+                    ) : (
+                      <p className="text-sm font-medium">Guest</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </>
           ) : (
             <div className="w-[350px] flex flex-col profile__container">
               <div className="flex flex-col gap-4 justify-center items-center min-w-[100%] shadow-xl rounded-3xl p-7 border sticky top-[128px] profile__container__div">

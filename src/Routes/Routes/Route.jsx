@@ -3,6 +3,7 @@ import { API } from "../../backend";
 import EditProfile from "../../Pages/UserProfile/EditProfile";
 import MainLayout from "../../layout/MainLayout";
 import UserProfile from "../../Pages/UserProfile/UserProfile";
+import Dashboard from "../../Pages/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,11 @@ const router = createBrowserRouter([
       {
         path: "/users/show/:id/editMode=true",
         element: <EditProfile />,
+        loader: ({ params }) => fetch(`${API}${params._id}`),
+      },
+      {
+        path: "/users/dashboard/:id",
+        element: <Dashboard />,
         loader: ({ params }) => fetch(`${API}${params._id}`),
       },
     ],

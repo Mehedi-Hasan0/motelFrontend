@@ -90,7 +90,7 @@ const AuthenticationPopUp = ({ popup, setPopup }) => {
             </div>
             <div
               className={`overflow-y-auto ${
-                showLoginPopup ? "h-[50vh]" : "h-[70vh]"
+                showLoginPopup ? "h-[60vh]" : "h-[70vh]"
               }`}
             >
               {!defaultPopup ? null : (
