@@ -162,7 +162,7 @@ database when the `image` state variable changes. */
                   htmlFor="imageUpload"
                   className="absolute flex flex-row gap-2 items-center bg-white shadow-md px-3 py-2 rounded-full -bottom-4 cursor-pointer"
                 >
-                  {isImageLoading ? (
+                  {!isImageLoading ? (
                     <PulseLoader
                       color="#ff3f62ff"
                       size={10}
@@ -198,7 +198,7 @@ database when the `image` state variable changes. */
           </section>
         </section>
       </main>
-      <div className=" border-t border-[#dddddd] py-5 fixed bottom-0 bg-[#ffffff] w-full z-10 flex flex-row-reverse">
+      <div className=" border-t border-[#dddddd] py-5 bg-[#ffffff] w-full flex flex-row-reverse">
         <Link
           to={`/users/show/${user?._id}`}
           className="px-7 py-3 bg-[#282828] hover:bg-[#000000] text-white rounded-lg mx-6 font-medium"
