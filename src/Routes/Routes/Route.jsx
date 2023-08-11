@@ -3,7 +3,10 @@ import { API } from "../../backend";
 import EditProfile from "../../Pages/UserProfile/EditProfile";
 import MainLayout from "../../layout/MainLayout";
 import UserProfile from "../../Pages/UserProfile/UserProfile";
-import Dashboard from "../../Pages/Dashboard/Dashboard";
+import RentAHouse from "../../Pages/Dashboard/RentAHouse";
+import Overview from "../../Pages/Dashboard/Overview";
+import Orders from "../../Pages/Dashboard/Orders";
+import AddCategories from "../../Pages/Dashboard/AddCategories";
 
 const router = createBrowserRouter([
   {
@@ -20,9 +23,25 @@ const router = createBrowserRouter([
         element: <EditProfile />,
         loader: ({ params }) => fetch(`${API}${params._id}`),
       },
+
       {
-        path: "/users/dashboard/:id",
-        element: <Dashboard />,
+        path: "/users/dashboard/:id/overview=true",
+        element: <Overview />,
+        loader: ({ params }) => fetch(`${API}${params._id}`),
+      },
+      {
+        path: "/users/dashboard/:id/renthouse=true",
+        element: <RentAHouse />,
+        loader: ({ params }) => fetch(`${API}${params._id}`),
+      },
+      {
+        path: "/users/dashboard/:id/orders=true",
+        element: <Orders />,
+        loader: ({ params }) => fetch(`${API}${params._id}`),
+      },
+      {
+        path: "/users/dashboard/:id/addcategories=true",
+        element: <AddCategories />,
         loader: ({ params }) => fetch(`${API}${params._id}`),
       },
     ],

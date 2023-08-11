@@ -139,6 +139,7 @@ const Navbar = () => {
                   <Link>Help</Link>
                 </div>
               ) : (
+                // logged in user menu
                 <div
                   ref={userMenuRef}
                   className="shadow-md absolute right-9 top-[70px] bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
@@ -148,7 +149,7 @@ const Navbar = () => {
                 >
                   {user?.role === "renter" || user?.role === "admin" ? (
                     <Link
-                      to={`/users/dashboard/${user._id}`}
+                      to={`/users/dashboard/${user._id}/overview=true`}
                       className="font-medium"
                     >
                       Dashboard
