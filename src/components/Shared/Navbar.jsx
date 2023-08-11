@@ -12,6 +12,8 @@ import searchIcon from "../../assets/basicIcon/search.svg";
 const Navbar = () => {
   const user = useSelector((state) => state.user.userDetails);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  // for dashboard state
+  const [selectedItemId, setSelectedItemId] = useState(1);
   const userMenuRef = useRef(null);
   const location = useLocation();
   const pathName = location.pathname;
@@ -48,7 +50,9 @@ const Navbar = () => {
     <nav className="border-b-[1.4px] border-[#f1f1f1] sticky top-0 z-[99] bg-white">
       <div
         className={`xl:px-10 py-4 xl:mx-auto items-center ${
-          inUserProfile ? " max-w-[1200px]" : " max-w-screen-2xl"
+          inUserProfile || inUserDashboard
+            ? " max-w-[1200px]"
+            : " max-w-screen-2xl"
         }
         ${
           inUserDashboard ? "flex flex-row justify-between" : "grid grid-cols-3"
@@ -69,7 +73,14 @@ const Navbar = () => {
         {/* searchbar */}
         {inUserProfile || inUserDashboard ? (
           // if user is in dahsboard
-          <div>{inUserDashboard && <MiniNavbar />}</div>
+          <div>
+            {inUserDashboard && (
+              <MiniNavbar
+                selectedItemId={selectedItemId}
+                setSelectedItemId={setSelectedItemId}
+              />
+            )}
+          </div>
         ) : (
           <div className="mx-auto">
             <div className="border-[1px] border-[#dddddd] rounded-full px-3 py-2 flex items-center shadow hover:shadow-md transition-all cursor-pointer">
@@ -150,6 +161,9 @@ const Navbar = () => {
                   {user?.role === "renter" || user?.role === "admin" ? (
                     <Link
                       to={`/users/dashboard/${user._id}/overview=true`}
+                      onClick={() => {
+                        setSelectedItemId(1);
+                      }}
                       className="font-medium"
                     >
                       Dashboard
