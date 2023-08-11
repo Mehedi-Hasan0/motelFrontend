@@ -12,8 +12,6 @@ import searchIcon from "../../assets/basicIcon/search.svg";
 const Navbar = () => {
   const user = useSelector((state) => state.user.userDetails);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  // for dashboard state
-  const [selectedItemId, setSelectedItemId] = useState(1);
   const userMenuRef = useRef(null);
   const location = useLocation();
   const pathName = location.pathname;
@@ -73,14 +71,7 @@ const Navbar = () => {
         {/* searchbar */}
         {inUserProfile || inUserDashboard ? (
           // if user is in dahsboard
-          <div>
-            {inUserDashboard && (
-              <MiniNavbar
-                selectedItemId={selectedItemId}
-                setSelectedItemId={setSelectedItemId}
-              />
-            )}
-          </div>
+          <div>{inUserDashboard && <MiniNavbar />}</div>
         ) : (
           <div className="mx-auto">
             <div className="border-[1px] border-[#dddddd] rounded-full px-3 py-2 flex items-center shadow hover:shadow-md transition-all cursor-pointer">
@@ -162,7 +153,7 @@ const Navbar = () => {
                     <Link
                       to={`/users/dashboard/${user._id}/overview=true`}
                       onClick={() => {
-                        setSelectedItemId(1);
+                        JSON.stringify(sessionStorage.setItem("activePage", 1));
                       }}
                       className="font-medium"
                     >
