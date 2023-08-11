@@ -1,17 +1,16 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const navItem = [
   { name: "Overview", id: 1, to: "/overview=true" },
-  { name: "Rent a house", id: 2, to: "/renthouse=true" },
+  { name: "Host house", id: 2, to: "/renthouse=true" },
   { name: "Orders", id: 3, to: "/orders=true" },
   { name: "Add categories", id: 4, to: "/addcategories=true" },
 ];
 
-const DashboardMenu = () => {
+const DashboardMenu = ({ selectedItemId, setSelectedItemId }) => {
   const user = useSelector((state) => state.user.userDetails);
-  const [selectedItemId, setSelectedItemId] = useState(1);
 
   const handleItemClick = (id) => {
     setSelectedItemId(id);
@@ -24,7 +23,7 @@ const DashboardMenu = () => {
             <p
               className={` cursor-pointer p-2 text-sm whitespace-nowrap ${
                 selectedItemId === item.id
-                  ? "rounded-full bg-[#f0f0f0] font-medium"
+                  ? "rounded-full bg-[#f0f0f0] font-medium transition duration-200"
                   : " opacity-80"
               }`}
               onClick={() => handleItemClick(item.id)}
