@@ -5,21 +5,22 @@ import {
   YAxis,
   CartesianGrid,
   ResponsiveContainer,
+  Tooltip,
 } from "recharts";
 
 const data = [
-  { name: "Jan", value: 200 },
-  { name: "Feb", value: 147 },
-  { name: "Mar", value: 130 },
-  { name: "Apr", value: 90 },
-  { name: "May", value: 30 },
-  { name: "Jun", value: 120 },
-  { name: "Jul", value: 190 },
-  { name: "Aug", value: 60 },
-  { name: "Sep", value: 52 },
-  { name: "Oct", value: 87 },
-  { name: "Nov", value: 91 },
-  { name: "Dec", value: 65 },
+  { name: "Jan", earned: 200 },
+  { name: "Feb", earned: 147 },
+  { name: "Mar", earned: 130 },
+  { name: "Apr", earned: 90 },
+  { name: "May", earned: 30 },
+  { name: "Jun", earned: 120 },
+  { name: "Jul", earned: 190 },
+  { name: "Aug", earned: 60 },
+  { name: "Sep", earned: 52 },
+  { name: "Oct", earned: 87 },
+  { name: "Nov", earned: 91 },
+  { name: "Dec", earned: 65 },
 ];
 
 const yAxisData = (value) => `$${value}`;
@@ -36,7 +37,8 @@ const Charts = () => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis tickFormatter={yAxisData} />
-        <Bar dataKey="value" fill="#ff3f62ff" />
+        <Tooltip />
+        <Bar dataKey="earned" fill="#ff3f62ff" />
       </BarChart>
     </ResponsiveContainer>
   );

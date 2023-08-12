@@ -1,29 +1,26 @@
 /* eslint-disable react/prop-types */
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { navItem } from "./NavItem";
 
-const navItem = [
-  { name: "Overview", id: 1, to: "/overview=true" },
-  { name: "Active booking", id: 3, to: "/orders=true" },
-  { name: "Host house", id: 2, to: "/renthouse=true" },
-  { name: "Add categories", id: 4, to: "/addcategories=true" },
-];
-
-const DashboardMenu = ({ selectedItemId, setSelectedItemId }) => {
+const DashboardMenu = () => {
   const user = useSelector((state) => state.user.userDetails);
 
+  const activePage = JSON.parse(sessionStorage.getItem("activePage"));
+
   const handleItemClick = (id) => {
-    setSelectedItemId(id);
+    JSON.stringify(sessionStorage.setItem("activePage", id));
   };
+
   return (
     <section className=" flex flex-row gap-4 md:gap-8 items-center justify-between">
       {navItem.map((item, i) => (
         <div key={i}>
           <Link to={`/users/dashboard/${user?._id}${item.to}`}>
             <p
-              className={` cursor-pointer p-2 text-sm whitespace-nowrap ${
-                selectedItemId === item.id
-                  ? "rounded-full bg-[#f0f0f0] font-medium transition duration-200"
+              className={` cursor-pointer p-2 text-sm whitespace-nowrap rounded-full hover:bg-[#f0f0f0] transition duration-300 ${
+                activePage === item.id
+                  ? "font-medium pb-1 border-b-2 border-[#141414] rounded-none hover:bg-white transition duration-200 mb-1"
                   : " opacity-80"
               }`}
               onClick={() => handleItemClick(item.id)}

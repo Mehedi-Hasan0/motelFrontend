@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import AuthenticationPopUp from "../popUp/authentication/AuthenticationPopUp";
-import MiniNavbar from "../dashboard/DashboardMenu";
+import MiniNavbar from "./DashboardMenu";
 import { getUser, userLogOut } from "../../redux/actions/userActions";
 import hamburgerMenu from "../../assets/basicIcon/hamburgerMenu.svg";
 import motelLogo from "../../assets/Travel_Logo.png";
@@ -12,8 +12,6 @@ import searchIcon from "../../assets/basicIcon/search.svg";
 const Navbar = () => {
   const user = useSelector((state) => state.user.userDetails);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  // for dashboard state
-  const [selectedItemId, setSelectedItemId] = useState(1);
   const userMenuRef = useRef(null);
   const location = useLocation();
   const pathName = location.pathname;
@@ -60,7 +58,7 @@ const Navbar = () => {
         `}
       >
         {/* logo */}
-        <div className=" md:w-[220px]">
+        <div className=" md:w-[160px]">
           <Link
             to="/"
             className="flex flex-row gap-2 items-center max-w-[120px]"
@@ -73,14 +71,7 @@ const Navbar = () => {
         {/* searchbar */}
         {inUserProfile || inUserDashboard ? (
           // if user is in dahsboard
-          <div>
-            {inUserDashboard && (
-              <MiniNavbar
-                selectedItemId={selectedItemId}
-                setSelectedItemId={setSelectedItemId}
-              />
-            )}
-          </div>
+          <div>{inUserDashboard && <MiniNavbar />}</div>
         ) : (
           <div className="mx-auto">
             <div className="border-[1px] border-[#dddddd] rounded-full px-3 py-2 flex items-center shadow hover:shadow-md transition-all cursor-pointer">
@@ -98,11 +89,14 @@ const Navbar = () => {
 
         {/* user bar */}
         <div className="flex justify-end items-center">
-          <div className=" bg-[#ffffff] hover:bg-[#f0f0f0] transition-all rounded-full p-3 cursor-pointer mr-3">
-            <p className="text-sm font-medium text-[#222222]">
-              Motel your home
-            </p>
-          </div>
+          {!inUserDashboard && (
+            <div className=" bg-[#ffffff] hover:bg-[#f0f0f0] transition-all rounded-full p-3 cursor-pointer mr-3">
+              <p className="text-sm font-medium text-[#222222]">
+                Motel your home
+              </p>
+            </div>
+          )}
+
           <div
             className="border-[1px] border-[#dddddd] rounded-full py-1 px-2 flex flex-row gap-3 hover:shadow-md transition-all cursor-pointer relative"
             onClick={() => {
@@ -162,7 +156,7 @@ const Navbar = () => {
                     <Link
                       to={`/users/dashboard/${user._id}/overview=true`}
                       onClick={() => {
-                        setSelectedItemId(1);
+                        JSON.stringify(sessionStorage.setItem("activePage", 1));
                       }}
                       className="font-medium"
                     >
