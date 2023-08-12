@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import AuthenticationPopUp from "../popUp/authentication/AuthenticationPopUp";
-import MiniNavbar from "../dashboard/DashboardMenu";
+import MiniNavbar from "./DashboardMenu";
 import { getUser, userLogOut } from "../../redux/actions/userActions";
 import hamburgerMenu from "../../assets/basicIcon/hamburgerMenu.svg";
 import motelLogo from "../../assets/Travel_Logo.png";
@@ -58,7 +58,7 @@ const Navbar = () => {
         `}
       >
         {/* logo */}
-        <div className=" md:w-[220px]">
+        <div className=" md:w-[160px]">
           <Link
             to="/"
             className="flex flex-row gap-2 items-center max-w-[120px]"
@@ -89,11 +89,14 @@ const Navbar = () => {
 
         {/* user bar */}
         <div className="flex justify-end items-center">
-          <div className=" bg-[#ffffff] hover:bg-[#f0f0f0] transition-all rounded-full p-3 cursor-pointer mr-3">
-            <p className="text-sm font-medium text-[#222222]">
-              Motel your home
-            </p>
-          </div>
+          {!inUserDashboard && (
+            <div className=" bg-[#ffffff] hover:bg-[#f0f0f0] transition-all rounded-full p-3 cursor-pointer mr-3">
+              <p className="text-sm font-medium text-[#222222]">
+                Motel your home
+              </p>
+            </div>
+          )}
+
           <div
             className="border-[1px] border-[#dddddd] rounded-full py-1 px-2 flex flex-row gap-3 hover:shadow-md transition-all cursor-pointer relative"
             onClick={() => {

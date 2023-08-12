@@ -8,8 +8,6 @@ const DashboardMenu = () => {
 
   const activePage = JSON.parse(sessionStorage.getItem("activePage"));
 
-  console.log(activePage);
-
   const handleItemClick = (id) => {
     JSON.stringify(sessionStorage.setItem("activePage", id));
   };
@@ -20,9 +18,9 @@ const DashboardMenu = () => {
         <div key={i}>
           <Link to={`/users/dashboard/${user?._id}${item.to}`}>
             <p
-              className={` cursor-pointer p-2 text-sm whitespace-nowrap ${
+              className={` cursor-pointer p-2 text-sm whitespace-nowrap rounded-full hover:bg-[#f0f0f0] transition duration-300 ${
                 activePage === item.id
-                  ? "rounded-full bg-[#f0f0f0] font-medium transition duration-200"
+                  ? "font-medium pb-1 border-b-2 border-[#141414] rounded-none hover:bg-white transition duration-200 mb-1"
                   : " opacity-80"
               }`}
               onClick={() => handleItemClick(item.id)}
