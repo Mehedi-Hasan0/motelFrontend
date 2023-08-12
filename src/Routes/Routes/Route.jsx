@@ -4,11 +4,10 @@ import EditProfile from "../../Pages/UserProfile/EditProfile";
 import MainLayout from "../../layout/MainLayout";
 import UserProfile from "../../Pages/UserProfile/UserProfile";
 import Overview from "../../Pages/Dashboard/Overview";
-import Orders from "../../Pages/Dashboard/Orders";
 import AddCategories from "../../Pages/Dashboard/AddCategories";
-import Listing from "../../components/dashboard/Listing";
-import Reservations from "../../components/dashboard/Reservations";
 import CreateNewListing from "../../Pages/CreateNewListing";
+import Reservations from "../../Pages/Dashboard/Reservations";
+import Listing from "../../Pages/Dashboard/Listing";
 
 const router = createBrowserRouter([
   {
