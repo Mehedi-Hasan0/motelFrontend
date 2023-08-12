@@ -6,6 +6,9 @@ import UserProfile from "../../Pages/UserProfile/UserProfile";
 import Overview from "../../Pages/Dashboard/Overview";
 import Orders from "../../Pages/Dashboard/Orders";
 import AddCategories from "../../Pages/Dashboard/AddCategories";
+import Listing from "../../components/dashboard/Listing";
+import Reservations from "../../components/dashboard/Reservations";
+import CreateNewListing from "../../Pages/CreateNewListing";
 
 const router = createBrowserRouter([
   {
@@ -26,17 +29,22 @@ const router = createBrowserRouter([
       {
         path: "/users/dashboard/:id/overview=true",
         element: <Overview />,
-        loader: ({ params }) => fetch(`${API}${params._id}`),
       },
       {
-        path: "/users/dashboard/:id/orders=true",
-        element: <Orders />,
-        loader: ({ params }) => fetch(`${API}${params._id}`),
+        path: "/users/dashboard/:id/reservations",
+        element: <Reservations />,
       },
       {
-        path: "/users/dashboard/:id/addcategories=true",
+        path: "/users/dashboard/:id/listing=true",
+        element: <Listing />,
+      },
+      {
+        path: "/users/dashboard/:id/newlisting=true",
+        element: <CreateNewListing />,
+      },
+      {
+        path: "/users/dashboard/:id/admin/addcategories=true",
         element: <AddCategories />,
-        loader: ({ params }) => fetch(`${API}${params._id}`),
       },
     ],
   },
