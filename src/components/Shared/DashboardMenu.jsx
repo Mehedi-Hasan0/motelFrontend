@@ -20,10 +20,12 @@ const DashboardMenu = () => {
             <p
               className={` cursor-pointer p-2 text-sm whitespace-nowrap rounded-full hover:bg-[#f0f0f0] transition duration-300 ${
                 activePage === item.id
-                  ? "font-medium pb-1 border-b-2 border-[#141414] rounded-none hover:bg-white transition duration-200 mb-1"
+                  ? "font-medium text-[#ff3f62ff] hover:bg-white transition duration-200"
                   : " opacity-80"
               }`}
-              onClick={() => handleItemClick(item.id)}
+              onClick={() => {
+                handleItemClick(item.id, i);
+              }}
             >
               {item.name}
             </p>
