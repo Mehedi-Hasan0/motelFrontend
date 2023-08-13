@@ -10,6 +10,11 @@ const DashboardMenu = () => {
 
   const handleItemClick = (id) => {
     JSON.stringify(sessionStorage.setItem("activePage", id));
+
+    // for reservations initial active sub menu is 1
+    if (id === 2) {
+      JSON.stringify(sessionStorage.setItem("reservationsPage", 1));
+    }
   };
 
   return (
@@ -24,7 +29,7 @@ const DashboardMenu = () => {
                   : " opacity-80"
               }`}
               onClick={() => {
-                handleItemClick(item.id, i);
+                handleItemClick(item.id);
               }}
             >
               {item.name}

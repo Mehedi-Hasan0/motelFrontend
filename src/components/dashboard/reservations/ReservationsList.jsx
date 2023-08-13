@@ -1,21 +1,11 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
 import { reservationListItems } from "./reservationsListName";
 
-const ReservationsList = () => {
-  const [activePage, setActivePage] = useState(1);
-  const active = JSON.parse(sessionStorage.getItem("reservationsPage"));
-
+const ReservationsList = ({ active, setActivePage }) => {
   const handleActive = (id) => {
     JSON.stringify(sessionStorage.setItem("reservationsPage", id));
     setActivePage(id);
   };
-
-  useEffect(() => {
-    const activePageNumber = JSON.parse(sessionStorage.getItem("reservations"));
-    if (activePageNumber !== activePage) {
-      setActivePage(activePageNumber);
-    }
-  }, [activePage]);
 
   return (
     <section className=" mt-6">
@@ -48,7 +38,7 @@ const ReservationsList = () => {
             );
           })}
         </div>
-        <hr className=" absolute bottom-[1px] w-full h-[1.3px] bg-[#dddddd] -z-10" />
+        <hr className=" absolute bottom-[1px] w-full h-[1px] bg-[#dddddd] -z-10" />
       </div>
     </section>
   );
