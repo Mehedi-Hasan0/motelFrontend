@@ -1,7 +1,10 @@
+import ListingNavbar from "../components/Shared/ListingNavbar";
+
 const CreateNewListLayout = () => {
   return (
     <>
-      <p>Mahedi</p>
+      <ListingNavbar />
+      <div className=" h-[1000px]"></div>
     </>
   );
 };
