@@ -8,6 +8,7 @@ import AddCategories from "../../Pages/Dashboard/AddCategories";
 import CreateNewListing from "../../Pages/CreateNewListing";
 import Reservations from "../../Pages/Dashboard/Reservations";
 import Listing from "../../Pages/Dashboard/Listing";
+import CreateNewListLayout from "../../layout/CreateNewListLayout";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
         element: <AddCategories />,
       },
     ],
+  },
+  {
+    path: "/become-a-host",
+    element: <CreateNewListLayout />,
   },
 ]);
 
