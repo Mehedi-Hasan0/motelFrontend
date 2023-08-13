@@ -8,6 +8,7 @@ import hamburgerMenu from "../../assets/basicIcon/hamburgerMenu.svg";
 import motelLogo from "../../assets/Travel_Logo.png";
 import userProfile from "../../assets/basicIcon/user-profile.png";
 import searchIcon from "../../assets/basicIcon/search.svg";
+import house from "../../assets/basicIcon/houseWhite.png";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user.userDetails);
@@ -17,6 +18,7 @@ const Navbar = () => {
   const pathName = location.pathname;
   const inUserProfile = pathName.includes("/users/show/");
   const inUserDashboard = pathName.includes("/users/dashboard/");
+  const inHostHomesLandingPage = pathName.includes("/host/homes");
 
   const [popup, setPopup] = useState(false);
 
@@ -53,8 +55,11 @@ const Navbar = () => {
             : " max-w-screen-2xl"
         }
         ${
-          inUserDashboard ? "flex flex-row justify-between" : "grid grid-cols-3"
+          inUserDashboard || inHostHomesLandingPage
+            ? "flex flex-row justify-between"
+            : "grid grid-cols-3"
         }
+        ${inHostHomesLandingPage ? " xl:px-20" : ""}
         `}
       >
         {/* logo */}
@@ -64,14 +69,16 @@ const Navbar = () => {
             className="flex flex-row gap-2 items-center max-w-[120px]"
           >
             <img src={motelLogo} alt="Logo" className=" w-10" />
-            <p className="text-xl text-[#ff385c] font-bold">motel</p>
+            {/* if user is in hosting homes page we want only logo */}
+            {inHostHomesLandingPage ? null : (
+              <p className="text-xl text-[#ff385c] font-bold">motel</p>
+            )}
           </Link>
         </div>
-
         {/* searchbar */}
-        {inUserProfile || inUserDashboard ? (
+        {inUserProfile || inUserDashboard || inHostHomesLandingPage ? (
           // if user is in dahsboard
-          <div>{inUserDashboard && <MiniNavbar />}</div>
+          <div>{inUserDashboard && <MiniNavbar />} </div>
         ) : (
           <div className="mx-auto">
             <div className="border-[1px] border-[#dddddd] rounded-full px-3 py-2 flex items-center shadow hover:shadow-md transition-all cursor-pointer">
@@ -86,104 +93,135 @@ const Navbar = () => {
             </div>
           </div>
         )}
+        {/* if user is is in the hosting house landing page we want to show different button */}
 
-        {/* user bar */}
-        <div className="flex justify-end items-center">
-          {!inUserDashboard && (
-            <div className=" bg-[#ffffff] hover:bg-[#f0f0f0] transition-all rounded-full p-3 cursor-pointer mr-3">
-              <p className="text-sm font-medium text-[#222222]">
-                Motel your home
-              </p>
-            </div>
-          )}
-
-          <div
-            className="border-[1px] border-[#dddddd] rounded-full py-1 px-2 flex flex-row gap-3 hover:shadow-md transition-all cursor-pointer relative"
-            onClick={() => {
-              setShowUserMenu((prevValue) => !prevValue);
-            }}
-          >
-            <img src={hamburgerMenu} alt="Motel user menu" className="w-4" />
-            {user ? (
-              <p className=" bg-[#222222] text-[#efefef] px-3 py-2 rounded-full text-xs">
-                {user.name?.firstName?.slice(0, 1)}
-              </p>
-            ) : (
-              <img src={userProfile} alt="user profile icon" className="w-8" />
-            )}
+        {inHostHomesLandingPage ? (
+          <div className=" flex flex-row items-center justify-between gap-4">
+            <p className=" text-[#222222] text-sm font-medium">
+              Ready to Motel it?
+            </p>
+            <Link
+              to="/become-a-host"
+              className=" flex flex-row justify-between items-center gap-2 bg-[#ff385c] hover:bg-[#d90b63] transition-all duration-300 px-3 py-2 rounded-lg"
+            >
+              <img src={house} alt="House setup" className="w-5" />
+              <p className=" font-semibold text-base text-white">Motel setup</p>
+            </Link>
           </div>
-
-          {/* menu items code  */}
-
-          {showUserMenu ? (
-            <>
-              {!user ? (
-                <div
-                  ref={userMenuRef}
-                  className="shadow-md absolute right-9 top-[74px] bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
+        ) : (
+          <>
+            {/* user bar */}
+            <div className="flex justify-end items-center">
+              {!inUserDashboard && (
+                <Link
+                  to="/host/homes"
+                  className=" bg-[#ffffff] hover:bg-[#f0f0f0] transition-all rounded-full p-3 cursor-pointer mr-3"
                 >
-                  <Link
-                    className="font-medium"
-                    onClick={() => {
-                      setShowUserMenu(false);
-                      setPopup(true);
-                    }}
-                  >
-                    Sign up
-                  </Link>
-                  <Link
-                    onClick={() => {
-                      setShowUserMenu(false);
-                      setPopup(true);
-                    }}
-                  >
-                    Login
-                  </Link>
-                  <hr className="h-[1.5px] bg-[#dddddd] my-1" />
-                  <Link>Motel your home</Link>
-                  <Link>Help</Link>
-                </div>
-              ) : (
-                // logged in user menu
-                <div
-                  ref={userMenuRef}
-                  className="shadow-md absolute right-9 top-[70px] bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
-                  onClick={() => {
-                    setShowUserMenu((prev) => !prev);
-                  }}
-                >
-                  {user?.role === "renter" || user?.role === "admin" ? (
-                    <Link
-                      to={`/users/dashboard/${user._id}/overview=true`}
-                      onClick={() => {
-                        JSON.stringify(sessionStorage.setItem("activePage", 1));
-                      }}
-                      className="font-medium"
-                    >
-                      Dashboard
-                    </Link>
-                  ) : (
-                    <Link className="font-medium">Notifications</Link>
-                  )}
-                  <Link className="font-medium">Trips</Link>
-                  <Link className="font-medium">Wishlists</Link>
-                  <hr className="h-[1.5px] bg-[#dddddd] my-1" />
-                  <Link>Motel your home</Link>
-                  <Link to={`/users/show/${user._id}`}>Account</Link>
-                  <hr className="h-[1.5px] bg-[#dddddd] my-1" />
-                  <Link>Help</Link>
-                  <Link
-                    onClick={() => {
-                      handleLogout();
-                    }}
-                  >
-                    Log out
-                  </Link>
-                </div>
+                  <p className="text-sm font-medium text-[#222222]">
+                    Motel your home
+                  </p>
+                </Link>
               )}
-            </>
-          ) : null}
-        </div>
+
+              <div
+                className="border-[1px] border-[#dddddd] rounded-full py-1 px-2 flex flex-row gap-3 hover:shadow-md transition-all cursor-pointer relative"
+                onClick={() => {
+                  setShowUserMenu((prevValue) => !prevValue);
+                }}
+              >
+                <img
+                  src={hamburgerMenu}
+                  alt="Motel user menu"
+                  className="w-4"
+                />
+                {user ? (
+                  <p className=" bg-[#222222] text-[#efefef] px-3 py-2 rounded-full text-xs">
+                    {user.name?.firstName?.slice(0, 1)}
+                  </p>
+                ) : (
+                  <img
+                    src={userProfile}
+                    alt="user profile icon"
+                    className="w-8"
+                  />
+                )}
+              </div>
+
+              {/* menu items code  */}
+
+              {showUserMenu ? (
+                <>
+                  {!user ? (
+                    <div
+                      ref={userMenuRef}
+                      className="shadow-md absolute right-9 top-[74px] bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
+                    >
+                      <Link
+                        className="font-medium"
+                        onClick={() => {
+                          setShowUserMenu(false);
+                          setPopup(true);
+                        }}
+                      >
+                        Sign up
+                      </Link>
+                      <Link
+                        onClick={() => {
+                          setShowUserMenu(false);
+                          setPopup(true);
+                        }}
+                      >
+                        Login
+                      </Link>
+                      <hr className="h-[1.5px] bg-[#dddddd] my-1" />
+                      <Link>Motel your home</Link>
+                      <Link>Help</Link>
+                    </div>
+                  ) : (
+                    // logged in user menu
+                    <div
+                      ref={userMenuRef}
+                      className="shadow-md absolute right-9 top-[70px] bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
+                      onClick={() => {
+                        setShowUserMenu((prev) => !prev);
+                      }}
+                    >
+                      {user?.role === "renter" || user?.role === "admin" ? (
+                        <Link
+                          to={`/users/dashboard/${user._id}/overview=true`}
+                          onClick={() => {
+                            JSON.stringify(
+                              sessionStorage.setItem("activePage", 1)
+                            );
+                          }}
+                          className="font-medium"
+                        >
+                          Dashboard
+                        </Link>
+                      ) : (
+                        <Link className="font-medium">Notifications</Link>
+                      )}
+                      <Link className="font-medium">Trips</Link>
+                      <Link className="font-medium">Wishlists</Link>
+                      <hr className="h-[1.5px] bg-[#dddddd] my-1" />
+                      <Link>Motel your home</Link>
+                      <Link to={`/users/show/${user._id}`}>Account</Link>
+                      <hr className="h-[1.5px] bg-[#dddddd] my-1" />
+                      <Link>Help</Link>
+                      <Link
+                        onClick={() => {
+                          handleLogout();
+                        }}
+                      >
+                        Log out
+                      </Link>
+                    </div>
+                  )}
+                </>
+              ) : null}
+            </div>
+          </>
+        )}
       </div>
       <AuthenticationPopUp popup={popup} setPopup={setPopup} />
     </nav>

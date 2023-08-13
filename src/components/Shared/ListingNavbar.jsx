@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import logo from "../../assets/motelLogoBlack.png";
 import { Link } from "react-router-dom";
+import logo from "../../assets/motelLogoBlack.png";
 
 const ListingNavbar = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -23,7 +23,7 @@ const ListingNavbar = () => {
 
   return (
     <nav
-      className={` top-0 z-[99] bg-white transition-all duration-300 ${
+      className={` top-0 z-10 bg-white transition-all duration-300 ${
         isSticky ? " border-b-[1.4px] border-[#f1f1f1] sticky bottom-0" : ""
       }`}
     >

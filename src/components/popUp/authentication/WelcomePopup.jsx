@@ -129,6 +129,12 @@ const WelcomePopup = ({
               onBlur: handleInputBlur,
             })}
           />
+          <div className=" pt-4 px-8 italic">
+            <ul className=" list-disc text-xs text-[#222222] opacity-80">
+              <p>You can use below test credentials to try!</p>
+              <li>email: guest@email.com</li>
+            </ul>
+          </div>
           <p className=" text-xs text-[#222222] pt-3 mb-5 opacity-80 ml-[2px]">
             We’ll send a confirmation email to verify your email address. <br />{" "}
             <Link className=" font-semibold underline">Privacy Policy</Link>
@@ -160,7 +166,7 @@ const WelcomePopup = ({
         <div className="h-[1.2px] w-full inline-block bg-[#dddddd]"></div>
       </div>
       {/* continue with google/facebook */}
-      <div className=" flex flex-col gap-4 px-8">
+      <div className=" flex flex-col gap-4 px-8 pb-7">
         <div
           className=" w-full flex flex-row items-center border border-[#222222] rounded-lg py-[10px] bg-[#ffffff] hover:bg-[#f7f7f7] transition-colors cursor-pointer"
           onClick={handleFacebookLogin}
@@ -170,12 +176,6 @@ const WelcomePopup = ({
             Continue with Facebook
           </p>
         </div>
-      </div>
-      <div className=" pt-4 px-8 italic pb-7">
-        <ul className=" list-disc text-xs text-[#222222] opacity-80">
-          <p>You can use below test credentials to try!</p>
-          <li>email: guest@email.com</li>
-        </ul>
       </div>
     </div>
   );
