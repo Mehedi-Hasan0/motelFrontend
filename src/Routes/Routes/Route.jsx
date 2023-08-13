@@ -5,7 +5,7 @@ import MainLayout from "../../layout/MainLayout";
 import UserProfile from "../../Pages/UserProfile/UserProfile";
 import Overview from "../../Pages/Dashboard/Overview";
 import AddCategories from "../../Pages/Dashboard/AddCategories";
-import CreateNewListing from "../../Pages/CreateNewListing";
+import MotelYourHome from "../../Pages/MotelYourHome";
 import Reservations from "../../Pages/Dashboard/Reservations";
 import Listing from "../../Pages/Dashboard/Listing";
 import CreateNewListLayout from "../../layout/CreateNewListLayout";
@@ -39,8 +39,8 @@ const router = createBrowserRouter([
         element: <Listing />,
       },
       {
-        path: "/users/dashboard/:id/newlisting=true",
-        element: <CreateNewListing />,
+        path: "/host/homes",
+        element: <MotelYourHome />,
       },
       {
         path: "/users/dashboard/:id/admin/addcategories=true",

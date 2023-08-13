@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import logo from "../../assets/motelLogoBlack.png";
 import { Link } from "react-router-dom";
+import logo from "../../assets/motelLogoBlack.png";
 
 const ListingNavbar = () => {
   const [isSticky, setIsSticky] = useState(false);
