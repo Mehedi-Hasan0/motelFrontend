@@ -11,7 +11,7 @@ const ReservationsList = ({ active, setActivePage }) => {
     <section className=" mt-6">
       <h1 className=" text-[#222222] text-3xl font-semibold">Reservations</h1>
       <div className=" relative">
-        <div className=" pt-10 flex flex-row gap-6 relative">
+        <div className=" pt-10 flex flex-row gap-6 relative z-10">
           {reservationListItems.map((list, i) => {
             return (
               <div
@@ -38,7 +38,7 @@ const ReservationsList = ({ active, setActivePage }) => {
             );
           })}
         </div>
-        <hr className=" absolute bottom-[1px] w-full h-[1px] bg-[#dddddd] -z-10" />
+        <hr className=" absolute bottom-[1px] w-full h-[1px] bg-[#dddddd] z-0" />
       </div>
     </section>
   );

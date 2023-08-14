@@ -13,8 +13,8 @@ const MotelYourHome = () => {
         <HouseHostingDetails setLatAndLong={setLatAndLong} />
         {/* map section */}
         <Map latAndLong={latAndLong} />
-        {/* setup guidelines */}
       </section>
+      {/* setup guidelines */}
       <HouseListingGuide />
       <Apartments />
       <Faq />
