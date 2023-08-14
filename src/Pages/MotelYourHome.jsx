@@ -2,6 +2,7 @@ import { useState } from "react";
 import Map from "../components/Map";
 import HouseHostingDetails from "../components/hostingHouse/HouseHostingDetails";
 import HouseListingGuide from "../components/hostingHouse/HouseListingGuide";
+import Apartments from "../components/hostingHouse/Apartments";
 
 const MotelYourHome = () => {
   const [latAndLong, setLatAndLong] = useState([]);
@@ -14,6 +15,7 @@ const MotelYourHome = () => {
         {/* setup guidelines */}
       </section>
       <HouseListingGuide />
+      <Apartments />
     </main>
   );
 };
