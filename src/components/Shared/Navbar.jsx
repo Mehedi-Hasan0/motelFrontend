@@ -50,8 +50,8 @@ const Navbar = () => {
     <nav className="border-b-[1.4px] border-[#f1f1f1] sticky top-0 z-[99] bg-white">
       <div
         className={`xl:px-10 py-4 xl:mx-auto items-center ${
-          inUserProfile || inUserDashboard
-            ? " max-w-[1200px]"
+          inUserProfile || inUserDashboard || inHostHomesLandingPage
+            ? " max-w-screen-xl"
             : " max-w-screen-2xl"
         }
         ${
