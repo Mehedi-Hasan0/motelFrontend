@@ -1,7 +1,15 @@
 /* eslint-disable react/prop-types */
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { Icon } from "leaflet";
 
 import "leaflet/dist/leaflet.css";
+
+const customIcon = new Icon({
+  iconUrl: "../../location.png", // Provide the path to your custom icon
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32],
+});
 
 const Map = ({ latAndLong }) => {
   const mapKey = latAndLong ? `${latAndLong[0]}-${latAndLong[1]}` : "default";
@@ -19,7 +27,10 @@ const Map = ({ latAndLong }) => {
       className="w-full rounded-lg"
     >
       <TileLayer url={url} attribution={attribution} />
-      <Marker position={latAndLong.length !== 0 ? latAndLong : [24, 90]}>
+      <Marker
+        position={latAndLong.length !== 0 ? latAndLong : [24, 90]}
+        icon={customIcon}
+      >
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
