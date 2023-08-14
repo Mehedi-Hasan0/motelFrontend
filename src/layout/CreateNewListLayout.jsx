@@ -4,7 +4,6 @@ const CreateNewListLayout = () => {
   return (
     <>
       <ListingNavbar />
-      <div className=" h-[1000px]"></div>
     </>
   );
 };

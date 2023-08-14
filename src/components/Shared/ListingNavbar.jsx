@@ -23,11 +23,11 @@ const ListingNavbar = () => {
 
   return (
     <nav
-      className={` top-0 z-10 bg-white transition-all duration-300 ${
+      className={` top-0 z-10 bg-white transition-all duration-300 max-w-screen-xl xl:px-20 xl:mx-auto ${
         isSticky ? " border-b-[1.4px] border-[#f1f1f1] sticky bottom-0" : ""
       }`}
     >
-      <div className="xl:px-10 pt-6 pb-4 xl:mx-auto flex flex-row justify-between items-center max-w-screen-2xl">
+      <div className=" pt-6 pb-4 flex flex-row justify-between items-center ">
         <Link to={"/"}>
           <img src={logo} alt="Logo" className="w-10" />
         </Link>
