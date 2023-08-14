@@ -9,6 +9,7 @@ import MotelYourHome from "../../Pages/MotelYourHome";
 import Reservations from "../../Pages/Dashboard/Reservations";
 import Listing from "../../Pages/Dashboard/Listing";
 import CreateNewListLayout from "../../layout/CreateNewListLayout";
+import ListHouseOverview from "../../Pages/ListHouseOverview";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,12 @@ const router = createBrowserRouter([
   {
     path: "/become-a-host",
     element: <CreateNewListLayout />,
+    children: [
+      {
+        path: "/become-a-host",
+        element: <ListHouseOverview />,
+      },
+    ],
   },
 ]);
 

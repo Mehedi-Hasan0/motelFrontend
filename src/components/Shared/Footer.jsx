@@ -40,7 +40,7 @@ const Footer = () => {
         </div>
       </section>
       <hr className="bg-[#f7f7f7] mt-10 mb-6" />
-      <section className=" flex flex-row justify-between gap-10">
+      <section className=" flex flex-row justify-between gap-10 px-20">
         <div className=" flex flex-row items-center">
           <p>© 2023 Motel, Inc.</p>
           <span className=" p-3">·</span>
