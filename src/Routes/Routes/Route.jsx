@@ -10,6 +10,7 @@ import Reservations from "../../Pages/Dashboard/Reservations";
 import Listing from "../../Pages/Dashboard/Listing";
 import CreateNewListLayout from "../../layout/CreateNewListLayout";
 import ListHouseOverview from "../../Pages/ListHouseOverview";
+import ListHouseStepOne from "../../Pages/ListHouseStepOne";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: "/become-a-host",
         element: <ListHouseOverview />,
+      },
+      {
+        path: "/become-a-host/:id/about-your-place",
+        element: <ListHouseStepOne />,
       },
     ],
   },
