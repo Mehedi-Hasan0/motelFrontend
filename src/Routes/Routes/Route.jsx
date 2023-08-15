@@ -13,6 +13,7 @@ import ListHouseOverview from "../../Pages/ListHouseOverview";
 import ListHouseStepOne from "../../Pages/ListHouseStepOne";
 import ListHouseStepOneStructure from "../../Pages/ListHouseStepOneStructure";
 import ListHouseStepOnePlacetype from "../../Pages/ListHouseStepOnePlacetype";
+import ListingHouseStepOneAddress from "../../Pages/ListingHouseStepOneAddress";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
       {
         path: "/become-a-host/:id/privacy-type",
         element: <ListHouseStepOnePlacetype />,
+      },
+      {
+        path: "/become-a-host/:id/location",
+        element: <ListingHouseStepOneAddress />,
       },
     ],
   },

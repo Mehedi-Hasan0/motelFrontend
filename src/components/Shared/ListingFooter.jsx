@@ -4,12 +4,14 @@ import { useNavigate } from "react-router-dom";
 
 const ListingFooter = () => {
   const user = useSelector((state) => state.user.userDetails);
+  const createHouseData = useSelector((state) => state.house?.newHouse);
   const [loading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
 
   const url = window.location.pathname;
   const navigate = useNavigate();
 
+  console.log(createHouseData);
   /**
    * The function `handleNext` navigates to different URLs based on the current URL.
    */
@@ -22,6 +24,9 @@ const ListingFooter = () => {
     }
     if (url.includes("/structure")) {
       navigate(`/become-a-host/${user?._id}/privacy-type`);
+    }
+    if (url.includes("/privacy-type")) {
+      navigate(`/become-a-host/${user?._id}/location`);
     }
   };
 
@@ -36,6 +41,9 @@ URL. */
     }
     if (url.includes("/privacy-type")) {
       setProgress(20);
+    }
+    if (url.includes("/location")) {
+      setProgress(30);
     }
   }, [progress, url]);
 
@@ -60,7 +68,7 @@ URL. */
           Back
         </button>
         <button
-          className=" bg-[#222222] hover:bg-black text-white rounded-md px-4 py-2"
+          className=" text-lg bg-[#222222] hover:bg-black text-white font-medium rounded-md px-9 py-3 disabled:opacity-20 disabled:cursor-not-allowed"
           onClick={handleNext}
         >
           Next
