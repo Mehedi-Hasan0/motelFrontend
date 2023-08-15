@@ -1,9 +1,10 @@
 /* eslint-disable no-undef */
-export const createNewHouse = (structure, privacyType) => async (dispatch) => {
+export const createNewHouse = (structure, privacyType, location) => async (dispatch) => {
     console.log(structure)
     let newHouseData = {
         houseType: structure,
-        privacyType: privacyType
+        privacyType: privacyType,
+        location: location
     }
 
     dispatch({
