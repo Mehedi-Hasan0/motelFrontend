@@ -2,6 +2,7 @@ const initialState = {
     userDetails: null,
     loginResponse: Number,
     responseMessage: '',
+
 }
 
 const userReducer = (state = initialState, { type, payload }) => {
@@ -33,6 +34,7 @@ const userReducer = (state = initialState, { type, payload }) => {
             return {
                 userDetails: payload
             }
+
         default:
             return state
     }
