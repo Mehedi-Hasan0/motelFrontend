@@ -131,7 +131,7 @@ const WelcomePopup = ({
           />
           <div className=" pt-4 px-8 italic">
             <ul className=" list-disc text-xs text-[#222222] opacity-80">
-              <p>You can use below test credentials to try!</p>
+              <p>You can use below test credentials to login!</p>
               <li>email: guest@email.com</li>
             </ul>
           </div>

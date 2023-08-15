@@ -6,7 +6,9 @@ const CreateNewListLayout = () => {
   return (
     <>
       <ListingNavbar />
-      <Outlet />
+      <div className=" max-w-screen-xl mx-auto px-20">
+        <Outlet />
+      </div>
       <ListingFooter />
     </>
   );

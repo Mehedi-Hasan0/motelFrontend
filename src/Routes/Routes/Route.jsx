@@ -11,6 +11,7 @@ import Listing from "../../Pages/Dashboard/Listing";
 import CreateNewListLayout from "../../layout/CreateNewListLayout";
 import ListHouseOverview from "../../Pages/ListHouseOverview";
 import ListHouseStepOne from "../../Pages/ListHouseStepOne";
+import ListHouseStepOneStructure from "../../Pages/ListHouseStepOneStructure";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "/become-a-host/:id/about-your-place",
         element: <ListHouseStepOne />,
+      },
+      {
+        path: "/become-a-host/:id/structure",
+        element: <ListHouseStepOneStructure />,
       },
     ],
   },

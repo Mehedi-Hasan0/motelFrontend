@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/motelLogoBlack.png";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../redux/actions/userActions";
 
 const ListingNavbar = () => {
+  const user = useSelector((state) => state.user.userDetails);
   const [isSticky, setIsSticky] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleSticky = () => {
     if (window.scrollY > 0) {
@@ -12,6 +17,10 @@ const ListingNavbar = () => {
       setIsSticky(false);
     }
   };
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleSticky);
@@ -32,10 +41,16 @@ const ListingNavbar = () => {
           <img src={logo} alt="Logo" className="w-10" />
         </Link>
         <div className=" flex flex-row items-center gap-5 text-sm text-[#222222] font-medium">
-          <Link className=" border-[1.3px] border-[#dddddd] px-4 py-2 rounded-full hover:border-[#222222]">
+          <Link
+            to={`/users/dashboard/${user?._id}/overview=true`}
+            className=" border-[1.3px] border-[#dddddd] px-4 py-2 rounded-full hover:border-[#222222]"
+          >
             Dashboard
           </Link>
-          <Link className=" border-[1.3px] border-[#dddddd] px-4 py-2 rounded-full hover:border-[#222222]">
+          <Link
+            to={"/"}
+            className=" border-[1.3px] border-[#dddddd] px-4 py-2 rounded-full hover:border-[#222222]"
+          >
             Exit
           </Link>
         </div>
