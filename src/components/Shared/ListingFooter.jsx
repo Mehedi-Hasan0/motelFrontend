@@ -10,6 +10,9 @@ const ListingFooter = () => {
   const url = window.location.pathname;
   const navigate = useNavigate();
 
+  /**
+   * The function `handleNext` navigates to different URLs based on the current URL.
+   */
   const handleNext = () => {
     if (url.includes("/become-a-host")) {
       navigate(`/become-a-host/${user?._id}/about-your-place`);
@@ -17,14 +20,22 @@ const ListingFooter = () => {
     if (url.includes("/about-your-place")) {
       navigate(`/become-a-host/${user?._id}/structure`);
     }
+    if (url.includes("/structure")) {
+      navigate(`/become-a-host/${user?._id}/privacy-type`);
+    }
   };
 
+  /* The `useEffect` hook in the code snippet is used to update the `progress` state based on the current
+URL. */
   useEffect(() => {
     if (url.includes("/about-your-place")) {
       setProgress(0);
     }
     if (url.includes("/structure")) {
       setProgress(10);
+    }
+    if (url.includes("/privacy-type")) {
+      setProgress(20);
     }
   }, [progress, url]);
 

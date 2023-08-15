@@ -12,6 +12,7 @@ import CreateNewListLayout from "../../layout/CreateNewListLayout";
 import ListHouseOverview from "../../Pages/ListHouseOverview";
 import ListHouseStepOne from "../../Pages/ListHouseStepOne";
 import ListHouseStepOneStructure from "../../Pages/ListHouseStepOneStructure";
+import ListHouseStepOnePlacetype from "../../Pages/ListHouseStepOnePlacetype";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "/become-a-host/:id/structure",
         element: <ListHouseStepOneStructure />,
+      },
+      {
+        path: "/become-a-host/:id/privacy-type",
+        element: <ListHouseStepOnePlacetype />,
       },
     ],
   },
