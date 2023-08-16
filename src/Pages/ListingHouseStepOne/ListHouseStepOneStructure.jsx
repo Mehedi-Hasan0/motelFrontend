@@ -14,10 +14,10 @@ import {
 import { GoContainer } from "react-icons/go";
 import { RiEarthquakeLine } from "react-icons/ri";
 import { LiaHotelSolid } from "react-icons/lia";
-import StructureCard from "../components/listingHouse/StructureCard";
+import StructureCard from "../../components/listingHouse/StructureCard";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createNewHouse } from "../redux/actions/houseActions";
+import { createNewHouse } from "../../redux/actions/houseActions";
 
 const ListHouseStepOneStructure = () => {
   const [storedCardData, setStoredCardData] = useState("");

@@ -10,10 +10,10 @@ import Reservations from "../../Pages/Dashboard/Reservations";
 import Listing from "../../Pages/Dashboard/Listing";
 import CreateNewListLayout from "../../layout/CreateNewListLayout";
 import ListHouseOverview from "../../Pages/ListHouseOverview";
-import ListHouseStepOne from "../../Pages/ListHouseStepOne";
-import ListHouseStepOneStructure from "../../Pages/ListHouseStepOneStructure";
-import ListHouseStepOnePlacetype from "../../Pages/ListHouseStepOnePlacetype";
-import ListingHouseStepOneAddress from "../../Pages/ListingHouseStepOneAddress";
+import ListHouseStepOne from "../../Pages/ListingHouseStepOne/ListHouseStepOne";
+import ListHouseStepOneStructure from "../../Pages/ListingHouseStepOne/ListHouseStepOneStructure";
+import ListHouseStepOnePlacetype from "../../Pages/ListingHouseStepOne/ListHouseStepOnePlacetype";
+import ListingHouseStepOneAddress from "../../Pages/ListingHouseStepOne/ListingHouseStepOneAddress";
 
 const router = createBrowserRouter([
   {

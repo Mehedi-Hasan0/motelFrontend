@@ -1,4 +1,4 @@
-import step1 from "../assets/video/step1_video.mp4";
+import step1 from "../../assets/video/step1_video.mp4";
 
 const ListHouseStepOne = () => {
   return (
