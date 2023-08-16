@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createNewHouse } from "../redux/actions/houseActions";
-import PlaceTypeCard from "../components/listingHouse/PlaceTypeCard";
+import { createNewHouse } from "../../redux/actions/houseActions";
+import PlaceTypeCard from "../../components/listingHouse/PlaceTypeCard";
 import { PiHouseLine } from "react-icons/pi";
 import { BsDoorOpen } from "react-icons/bs";
 import { BsHouseAdd } from "react-icons/bs";

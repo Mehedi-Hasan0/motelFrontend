@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createNewHouse } from "../redux/actions/houseActions";
+import { createNewHouse } from "../../redux/actions/houseActions";
 import { Country } from "country-state-city";
 import Select from "react-select";
 
