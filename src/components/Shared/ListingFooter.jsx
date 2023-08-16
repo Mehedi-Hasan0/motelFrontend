@@ -28,6 +28,9 @@ const ListingFooter = () => {
     if (url.includes("/privacy-type")) {
       navigate(`/become-a-host/${user?._id}/location`);
     }
+    if (url.includes("/location")) {
+      navigate(`/become-a-host/${user?._id}/floor-plan`);
+    }
   };
 
   /* The `useEffect` hook in the code snippet is used to update the `progress` state based on the current
@@ -44,6 +47,9 @@ URL. */
     }
     if (url.includes("/location")) {
       setProgress(30);
+    }
+    if (url.includes("/floor-plan")) {
+      setProgress(40);
     }
   }, [progress, url]);
 
