@@ -51,7 +51,7 @@ const ListingHouseStepOneAddress = () => {
   };
 
   return (
-    <section className=" flex flex-col gap-10 max-w-screen-md mx-auto my-6">
+    <section className=" flex flex-col gap-10 max-w-screen-md mx-auto my-6 2xl:h-[80vh]">
       <div className=" flex flex-col gap-2">
         <h1 className=" text-[#222222] text-[32px] font-medium">
           Confirm your address
