@@ -37,6 +37,9 @@ const ListingFooter = () => {
     if (url?.includes("/stand-out")) {
       navigate(`/become-a-host/${user?._id}/amenities`);
     }
+    if (url?.includes("/amenities")) {
+      navigate(`/become-a-host/${user?._id}/photos`);
+    }
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -63,6 +66,9 @@ URL. */
     }
     if (url?.includes("/amenities")) {
       setProgress(50);
+    }
+    if (url?.includes("/photos")) {
+      setProgress(60);
     }
   }, [progress, url]);
 
