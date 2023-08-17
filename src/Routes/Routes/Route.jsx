@@ -15,6 +15,8 @@ import ListHouseStepOneStructure from "../../Pages/ListingHouseStepOne/ListHouse
 import ListHouseStepOnePlacetype from "../../Pages/ListingHouseStepOne/ListHouseStepOnePlacetype";
 import ListingHouseStepOneAddress from "../../Pages/ListingHouseStepOne/ListingHouseStepOneAddress";
 import ListingHouseStepOneFloorPlan from "../../Pages/ListingHouseStepOne/ListingHouseStepOneFloorPlan";
+import StepTwoOverview from "../../Pages/ListingHouseStepTwo/StepTwoOverview";
+import Amenities from "../../Pages/ListingHouseStepTwo/Amenities";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +83,14 @@ const router = createBrowserRouter([
       {
         path: "/become-a-host/:id/floor-plan",
         element: <ListingHouseStepOneFloorPlan />,
+      },
+      {
+        path: "/become-a-host/:id/stand-out",
+        element: <StepTwoOverview />,
+      },
+      {
+        path: "/become-a-host/:id/amenities",
+        element: <Amenities />,
       },
     ],
   },

@@ -7,7 +7,7 @@ const ListingHouseStepOneFloorPlan = () => {
   const newHouseData = useSelector((state) => state.house.newHouse);
   const [guestNumber, setGuestNumber] = useState(0);
   const [bedroomsNumber, setBedroomsNumber] = useState(0);
-  const [bedsNumber, setBedsNumber] = useState(0);
+  const [bedsNumber, setBedsNumber] = useState(1);
   const [bathroomsNumber, setBathroomsNumber] = useState(0);
   const dispatch = useDispatch();
 
@@ -28,9 +28,9 @@ const ListingHouseStepOneFloorPlan = () => {
     ) {
       dispatch(
         createNewHouse(
-          newHouseData.houseType,
-          newHouseData.privacyType,
-          newHouseData.location,
+          newHouseData?.houseType,
+          newHouseData?.privacyType,
+          newHouseData?.location,
           floorPlan
         )
       );
@@ -41,9 +41,9 @@ const ListingHouseStepOneFloorPlan = () => {
     bedsNumber,
     dispatch,
     guestNumber,
-    newHouseData.houseType,
-    newHouseData.location,
-    newHouseData.privacyType,
+    newHouseData?.houseType,
+    newHouseData?.location,
+    newHouseData?.privacyType,
   ]);
   return (
     <section className=" flex flex-col gap-10 max-w-screen-md mx-auto my-6 2xl:h-[80vh]">

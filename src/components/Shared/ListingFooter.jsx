@@ -16,40 +16,53 @@ const ListingFooter = () => {
    * The function `handleNext` navigates to different URLs based on the current URL.
    */
   const handleNext = () => {
-    if (url.includes("/become-a-host")) {
+    if (url?.includes("/become-a-host")) {
       navigate(`/become-a-host/${user?._id}/about-your-place`);
     }
-    if (url.includes("/about-your-place")) {
+    if (url?.includes("/about-your-place")) {
       navigate(`/become-a-host/${user?._id}/structure`);
     }
-    if (url.includes("/structure")) {
+    if (url?.includes("/structure")) {
       navigate(`/become-a-host/${user?._id}/privacy-type`);
     }
-    if (url.includes("/privacy-type")) {
+    if (url?.includes("/privacy-type")) {
       navigate(`/become-a-host/${user?._id}/location`);
     }
-    if (url.includes("/location")) {
+    if (url?.includes("/location")) {
       navigate(`/become-a-host/${user?._id}/floor-plan`);
     }
+    if (url?.includes("/floor-plan")) {
+      navigate(`/become-a-host/${user?._id}/stand-out`);
+    }
+    if (url?.includes("/stand-out")) {
+      navigate(`/become-a-host/${user?._id}/amenities`);
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   /* The `useEffect` hook in the code snippet is used to update the `progress` state based on the current
 URL. */
   useEffect(() => {
-    if (url.includes("/about-your-place")) {
+    if (url?.includes("/about-your-place")) {
       setProgress(0);
     }
-    if (url.includes("/structure")) {
+    if (url?.includes("/structure")) {
       setProgress(10);
     }
-    if (url.includes("/privacy-type")) {
+    if (url?.includes("/privacy-type")) {
       setProgress(20);
     }
-    if (url.includes("/location")) {
+    if (url?.includes("/location")) {
       setProgress(30);
     }
-    if (url.includes("/floor-plan")) {
+    if (url?.includes("/floor-plan")) {
       setProgress(40);
+    }
+    if (url?.includes("/stand-out")) {
+      setProgress(40);
+    }
+    if (url?.includes("/amenities")) {
+      setProgress(50);
     }
   }, [progress, url]);
 

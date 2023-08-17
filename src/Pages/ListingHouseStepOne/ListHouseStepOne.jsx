@@ -19,7 +19,7 @@ const ListHouseStepOne = () => {
         autoPlay={true}
         muted
         type="video/mp4"
-        className=" max-w-sm"
+        className=" max-w-md"
       />
     </section>
   );

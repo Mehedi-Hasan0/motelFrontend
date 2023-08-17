@@ -26,8 +26,8 @@ const ListingHouseStepOneAddress = () => {
       };
       dispatch(
         createNewHouse(
-          houseData.newHouse.houseType,
-          houseData.newHouse.privacyType,
+          houseData.newHouse?.houseType,
+          houseData.newHouse?.privacyType,
           locationData
         )
       );
