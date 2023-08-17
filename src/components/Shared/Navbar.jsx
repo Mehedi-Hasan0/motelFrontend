@@ -16,9 +16,9 @@ const Navbar = () => {
   const userMenuRef = useRef(null);
   const location = useLocation();
   const pathName = location.pathname;
-  const inUserProfile = pathName.includes("/users/show/");
-  const inUserDashboard = pathName.includes("/users/dashboard/");
-  const inHostHomesLandingPage = pathName.includes("/host/homes");
+  const inUserProfile = pathName?.includes("/users/show/");
+  const inUserDashboard = pathName?.includes("/users/dashboard/");
+  const inHostHomesLandingPage = pathName?.includes("/host/homes");
 
   const [popup, setPopup] = useState(false);
 

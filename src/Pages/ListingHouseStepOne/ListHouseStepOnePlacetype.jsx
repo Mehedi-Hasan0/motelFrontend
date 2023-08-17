@@ -13,7 +13,7 @@ const ListHouseStepOnePlacetype = () => {
 
   const handleStoreCardData = (name) => {
     setStoredCardData(name);
-    dispatch(createNewHouse(houseData.newHouse.houseType, name));
+    dispatch(createNewHouse(houseData.newHouse?.houseType, name));
   };
 
   return (

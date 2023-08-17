@@ -8,9 +8,15 @@ const FloorPlanCard = ({ name, number, setNumber }) => {
       <p className=" text-lg ">{name}</p>
       <div className=" flex flex-row gap-2 items-center text-base">
         <div
-          className=" p-2 rounded-full border border-[#dddddd] hover:border-[#717171] cursor-pointer transition duration-200"
+          className={` p-2 rounded-full border border-[#dddddd] hover:border-[#717171] transition duration-200
+          ${
+            name === "Beds" && number < 2
+              ? " opacity-40 cursor-not-allowed"
+              : "cursor-pointer"
+          }
+          `}
           onClick={() => {
-            if (number === 0) return;
+            if (number === 0 || (name === "Beds" && number < 2)) return;
             if (number > 0) {
               setNumber((prev) => prev - 1);
             }

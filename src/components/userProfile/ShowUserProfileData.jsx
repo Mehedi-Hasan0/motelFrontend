@@ -7,7 +7,7 @@ const ShowUserProfileData = () => {
 
   const userProfile = user?.profileDetails?.profile;
   const filteredNewOptions = profileOptions?.filter((option) => {
-    return userProfile && Object.keys(userProfile).includes(option.fieldName);
+    return userProfile && Object.keys(userProfile)?.includes(option.fieldName);
   });
 
   const values =
