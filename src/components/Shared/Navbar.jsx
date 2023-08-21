@@ -186,7 +186,7 @@ const Navbar = () => {
                         setShowUserMenu((prev) => !prev);
                       }}
                     >
-                      {user?.role === "renter" || user?.role === "admin" ? (
+                      {user?.role === "host" || user?.role === "admin" ? (
                         <Link
                           to={`/users/dashboard/${user._id}/overview=true`}
                           onClick={() => {

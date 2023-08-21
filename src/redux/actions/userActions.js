@@ -16,24 +16,11 @@ export const userLogIn = (userData) => async (dispatch) => {
     })
 }
 
-// export const getUser = () => async (dispatch) => {
-//     const response = await api.post("/auth/get_user_details");
-//     console.log(response.data, "GET USER DETAILS")
-//     if (response.data.status === 200) {
-//         dispatch({
-//             type: "GET_USER_DETAILS",
-//             payload: response.data.user_details
-//         })
-//     } else {
-//         dispatch({ type: "USER_LOG_OUT" })
-//     }
-
-// }
 
 export const getUser = () => async (dispatch, getState) => {
-    const { user } = getState().user;
+    const { userDetails } = getState().user;
 
-    if (user) {
+    if (userDetails) {
         return;
     }
 
@@ -50,8 +37,30 @@ export const getUser = () => async (dispatch, getState) => {
         }
     } catch (error) {
         // Handle error
+        console.log(error)
     }
 };
+
+export const userRole = () => async (dispatch, getState) => {
+    const { userDetails } = getState().user;
+
+    if (userDetails?.role === "host") {
+        console.log("already a hoast")
+    }
+
+    try {
+        const response = await api.post("/auth/become_a_host", { role: "host" });
+        console.log(response)
+        if (response.data.succeed === 1) {
+            dispatch({
+                type: "CHANGE_USER_ROLE",
+                payload: response.data.updatedUserDetails
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 export const userLogOut = () => async (dispatch) => {
