@@ -1,3 +1,5 @@
+import api from "../../backend"
+
 /* eslint-disable no-undef */
 export const createNewHouse = (structure, privacyType, location, floorPlan, amenitiesData) => async (dispatch) => {
     console.log(structure)
@@ -14,3 +16,16 @@ export const createNewHouse = (structure, privacyType, location, floorPlan, amen
         payload: newHouseData
     })
 }
+
+export const saveStructure = (houseStructure) => async (duspatch) => {
+    try {
+        const res = await api.post("/house/save_structure", houseStructure, {
+            headers: { "Content-Type": "application/json" }
+        })
+        console.log(res)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// export const saveStructure = ()
