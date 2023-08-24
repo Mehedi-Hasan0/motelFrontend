@@ -34,4 +34,19 @@ export const saveStructure = (houseStructure) => async (dispatch) => {
     }
 }
 
-// export const saveStructure = ()
+export const savePrivacyType = (privacyType) => async (dispatch) => {
+    try {
+        const res = await api.post("/house/save_privacy_type", privacyType, {
+            headers: { "Content-Type": "application/json" }
+        })
+        if (res.status === 200) {
+            dispatch({
+                type: "CURRENT_NEW_HOUSE",
+                payload: res.data?.houseDetails
+            })
+        }
+        console.log(res, "line 42")
+    } catch (error) {
+        console.log(error)
+    }
+}
