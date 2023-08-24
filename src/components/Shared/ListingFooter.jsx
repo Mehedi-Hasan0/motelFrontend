@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userRole } from "../../redux/actions/userActions";
 import { PulseLoader } from "react-spinners";
-import { saveStructure } from "../../redux/actions/houseActions";
+import {
+  savePrivacyType,
+  saveStructure,
+} from "../../redux/actions/houseActions";
 
 const ListingFooter = () => {
   const user = useSelector((state) => state.user.userDetails);
@@ -33,6 +36,7 @@ const ListingFooter = () => {
   ];
 
   const currentStepIndex = steps.indexOf(url);
+  const currentListingHouseId = createHouseData?.currentListingHouse?._id;
 
   const handleNext = async () => {
     if (currentStepIndex < steps.length - 1) {
@@ -44,10 +48,17 @@ const ListingFooter = () => {
       } else if (currentStepIndex === 2) {
         const houseData = {
           houseType: createHouseData?.newHouse?.houseType,
-          houseId: createHouseData?.currentListingHouse?._id,
+          houseId: currentListingHouseId,
         };
         // Handle data saving for the "structure" step
         await dispatch(saveStructure(houseData));
+      } else if (currentStepIndex === 3) {
+        const houseData = {
+          privacyType: createHouseData?.newHouse?.privacyType,
+          houseId: currentListingHouseId,
+        };
+        // data saving for privacy type in db
+        await dispatch(savePrivacyType(houseData));
       }
 
       setIsLoading(false);
