@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { userRole } from "../../redux/actions/userActions";
 import { PulseLoader } from "react-spinners";
 import {
+  saveAmenities,
+  saveFloorPlan,
+  saveLocation,
   savePrivacyType,
   saveStructure,
 } from "../../redux/actions/houseActions";
@@ -59,6 +62,27 @@ const ListingFooter = () => {
         };
         // data saving for privacy type in db
         await dispatch(savePrivacyType(houseData));
+      } else if (currentStepIndex === 4) {
+        const locationData = {
+          location: createHouseData?.newHouse?.location,
+          houseId: currentListingHouseId,
+        };
+        // data saving for location in db
+        await dispatch(saveLocation(locationData));
+      } else if (currentStepIndex === 5) {
+        const floorPlanData = {
+          floorPlan: createHouseData?.newHouse?.floorPlan,
+          houseId: currentListingHouseId,
+        };
+        // data saving for floor plan in db
+        await dispatch(saveFloorPlan(floorPlanData));
+      } else if (currentStepIndex === 7) {
+        const amenitiesData = {
+          amenities: createHouseData?.newHouse?.amenities,
+          houseId: currentListingHouseId,
+        };
+        // data saving for amenites plan in db
+        await dispatch(saveAmenities(amenitiesData));
       }
 
       setIsLoading(false);
