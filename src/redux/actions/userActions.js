@@ -28,10 +28,16 @@ export const getUser = () => async (dispatch, getState) => {
         const response = await api.post("/auth/get_user_details");
         console.log(response.data, "GET USER DETAILS");
         if (response.data.status === 200) {
+            // saving user details from db
             dispatch({
                 type: "GET_USER_DETAILS",
                 payload: response.data.user_details,
             });
+            // saving houses data from db
+            dispatch({
+                type: "SAVE_HOUSE_DATA",
+                payload: response.data.house_data
+            })
         } else {
             dispatch({ type: "USER_LOG_OUT" });
         }
@@ -48,13 +54,27 @@ export const userRole = () => async (dispatch, getState) => {
         console.log("already a hoast")
     }
 
+
     try {
         const response = await api.post("/auth/become_a_host", { role: "host" });
         console.log(response)
+        const currentHouseId = response.data?.house?._id;
+        /* The code `if (currentHouseId) {
+                    JSON.stringify(localStorage.setItem("currentHouseId", currentHouseId))
+                }` is checking if the `currentHouseId` variable has a value. If it does, it is
+        converting the value to a JSON string using `JSON.stringify()` and then storing it in the
+        `localStorage` with the key "currentHouseId". */
+        if (currentHouseId) {
+            JSON.stringify(localStorage.setItem("currentHouseId", currentHouseId))
+        }
         if (response.data.succeed === 1) {
             dispatch({
                 type: "CHANGE_USER_ROLE",
-                payload: response.data.updatedUserDetails
+                payload: response.data
+            })
+            dispatch({
+                type: "CURRENT_NEW_HOUSE",
+                payload: response.data.house
             })
         }
     } catch (error) {
