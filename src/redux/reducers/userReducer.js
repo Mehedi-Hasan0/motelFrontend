@@ -37,7 +37,8 @@ const userReducer = (state = initialState, { type, payload }) => {
 
         case "CHANGE_USER_ROLE":
             return {
-                userDetails: payload
+                userDetails: payload.updatedUserDetails,
+
             }
 
         default:

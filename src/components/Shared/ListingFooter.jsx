@@ -7,7 +7,7 @@ import { saveStructure } from "../../redux/actions/houseActions";
 
 const ListingFooter = () => {
   const user = useSelector((state) => state.user.userDetails);
-  const createHouseData = useSelector((state) => state.house?.newHouse);
+  const createHouseData = useSelector((state) => state.house);
   const [loading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
 
@@ -42,8 +42,12 @@ const ListingFooter = () => {
         // Handle any actions specific to the user role
         await dispatch(userRole());
       } else if (currentStepIndex === 2) {
+        const houseData = {
+          houseType: createHouseData?.newHouse?.houseType,
+          houseId: createHouseData?.currentListingHouse?._id,
+        };
         // Handle data saving for the "structure" step
-        await dispatch(saveStructure(createHouseData.houseType));
+        await dispatch(saveStructure(houseData));
       }
 
       setIsLoading(false);
