@@ -13,7 +13,7 @@ const ShowUserProfileData = () => {
   const values =
     userProfile &&
     Object.entries(user?.profileDetails?.profile).map(
-      ([key, value]) => value.value
+      ([, value]) => value.value
     );
 
   return (
