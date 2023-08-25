@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import ShowUserProfileData from "../../components/userProfile/showUserProfileData";
+import ShowUserProfileData from "../../components/userProfile/showUserProfileData.jsx";
 
 const UserProfile = () => {
   const user = useSelector((state) => state.user?.userDetails);
