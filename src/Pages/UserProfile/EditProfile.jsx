@@ -107,7 +107,7 @@ database when the `image` state variable changes. */
   }, [profileImageLink, user?._id]);
 
   return (
-    <>
+    <div>
       <main className=" max-w-[1200px] mx-auto xl:px-10 py-12 flex min-h-[80vh] relative">
         <section className=" flex flex-row gap-16 items-start flex-auto">
           {user?.profileImg ? (
@@ -217,7 +217,7 @@ database when the `image` state variable changes. */
           popupData={selectedOption}
         />
       )}
-    </>
+    </div>
   );
 };
 
