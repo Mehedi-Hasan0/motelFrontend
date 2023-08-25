@@ -12,9 +12,10 @@ const ShowUserProfileData = () => {
 
   const values =
     userProfile &&
-    Object.entries(user?.profileDetails?.profile).map(
-      ([, value]) => value.value
-    );
+    Object.entries(user?.profileDetails?.profile).map(([key, value]) => {
+      value.value;
+      console.log(key);
+    });
 
   return (
     <section className=" flex flex-col">
