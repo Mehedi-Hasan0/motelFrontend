@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 import cameraIcon from "../../assets/basicIcon/cameraIcon.png";
 import api from "../../backend";
-import UserProfilePopup from "../../components/popUp/userProfilePopup/userProfilePopup";
+// import UserProfilePopup from "../../components/popUp/userProfilePopup/userProfilePopup";
+import UserProfilePopup from "../../components/popUp/userProfilePopup/UserProfilePopup.jsx";
 import UserAbout from "../../components/userProfile/UserAbout";
 import UserProfileOptions from "../../components/userProfile/UserProfileOptions";
 
