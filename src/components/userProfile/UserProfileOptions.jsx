@@ -20,6 +20,7 @@ const UserProfileOptions = ({ setShowPopup, setSelectedOption }) => {
         </div>
         <section className=" grid grid-cols-2 gap-x-16 mt-4">
           {profileOptions.map((option, i) => {
+            /* The code block is iterating over the `profileOptions` array and the `userProfile` object to find a matching field name. */
             let savedProfileData;
             for (const keys in option) {
               let fieldName = option[keys];

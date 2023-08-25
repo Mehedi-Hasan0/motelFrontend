@@ -7,6 +7,7 @@ import {
   saveAmenities,
   saveFloorPlan,
   saveLocation,
+  savePhotos,
   savePrivacyType,
   saveStructure,
 } from "../../redux/actions/houseActions";
@@ -36,6 +37,7 @@ const ListingFooter = () => {
     `/become-a-host/${user?._id}/stand-out`,
     `/become-a-host/${user?._id}/amenities`,
     `/become-a-host/${user?._id}/photos`,
+    `/become-a-host/${user?._id}/title`,
   ];
 
   const currentStepIndex = steps.indexOf(url);
@@ -83,6 +85,13 @@ const ListingFooter = () => {
         };
         // data saving for amenites plan in db
         await dispatch(saveAmenities(amenitiesData));
+      } else if (currentStepIndex === 8) {
+        const photosData = {
+          photos: createHouseData?.newHouse?.photos,
+          houseId: currentListingHouseId,
+        };
+        // data saving for photos in db
+        await dispatch(savePhotos(photosData));
       }
 
       setIsLoading(false);
@@ -156,6 +165,9 @@ URL. */
     }
     if (url?.includes("/photos")) {
       setProgress(60);
+    }
+    if (url?.includes("/title")) {
+      setProgress(70);
     }
   }, [progress, url]);
 
