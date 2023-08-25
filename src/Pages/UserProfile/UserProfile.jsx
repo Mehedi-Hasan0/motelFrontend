@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import ShowUserProfileData from "../../components/userProfile/showUserProfileData";
+// import ShowUserProfileData from "../../components/userProfile/ShowUserProfileData";
+import ProfileData from "../../components/userProfile/ShowUserProfileData";
 
 const UserProfile = () => {
   const user = useSelector((state) => state.user?.userDetails);
@@ -54,7 +55,8 @@ const UserProfile = () => {
             </div>
           )}
           {user?.profileDetails?.profile ? (
-            <ShowUserProfileData />
+            // <ShowUserProfileData />
+            <ProfileData />
           ) : (
             <section
               className="xl:min-h-[400px] flex flex-col flex-1 justify-center items-center 
