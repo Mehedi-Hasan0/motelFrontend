@@ -19,6 +19,7 @@ import StepTwoOverview from "../../Pages/ListingHouseStepTwo/StepTwoOverview";
 import Amenities from "../../Pages/ListingHouseStepTwo/Amenities";
 import ListingHousePhotos from "../../Pages/ListingHouseStepTwo/ListingHousePhotos";
 import HouseTitle from "../../Pages/ListingHouseStepTwo/HouseTitle";
+import Description from "../../Pages/ListingHouseStepTwo/Description";
 
 const router = createBrowserRouter([
   {
@@ -101,6 +102,10 @@ const router = createBrowserRouter([
       {
         path: "/become-a-host/:id/title",
         element: <HouseTitle />,
+      },
+      {
+        path: "/become-a-host/:id/description",
+        element: <Description />,
       },
     ],
   },
