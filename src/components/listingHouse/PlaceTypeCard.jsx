@@ -17,7 +17,7 @@ const PlaceTypeCard = ({ head, desc, Img, onClick, storedCardData }) => {
         <h4 className=" text-[#222222] text-lg font-medium">{head}</h4>
         <p className=" text-sm text-[#717171]">{desc}</p>
       </div>
-      <Img size={40} />
+      {Img && <Img size={40} />}
     </div>
   );
 };

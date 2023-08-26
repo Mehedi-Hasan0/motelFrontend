@@ -44,6 +44,7 @@ const ListingFooter = () => {
     `/become-a-host/${user?._id}/highlight`,
     `/become-a-host/${user?._id}/description`,
     `/become-a-host/${user?._id}/finish-step`,
+    `/become-a-host/${user?._id}/visiblity`,
   ];
 
   const currentStepIndex = steps.indexOf(url);
@@ -178,28 +179,31 @@ URL. */
       setProgress(20);
     }
     if (url?.includes("/location")) {
-      setProgress(30);
+      setProgress(25);
     }
     if (url?.includes("/floor-plan")) {
-      setProgress(40);
+      setProgress(30);
     }
     if (url?.includes("/stand-out")) {
-      setProgress(40);
+      setProgress(35);
     }
     if (url?.includes("/amenities")) {
-      setProgress(50);
+      setProgress(40);
     }
     if (url?.includes("/photos")) {
-      setProgress(60);
+      setProgress(50);
     }
     if (url?.includes("/title")) {
-      setProgress(70);
+      setProgress(60);
     }
     if (url?.includes("/highlight")) {
-      setProgress(75);
+      setProgress(65);
     }
     if (url?.includes("/description")) {
-      setProgress(80);
+      setProgress(70);
+    }
+    if (url?.includes("/finish-step")) {
+      setProgress(75);
     }
   }, [progress, url]);
 
