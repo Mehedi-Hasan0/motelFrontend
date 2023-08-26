@@ -5,7 +5,9 @@ import { userRole } from "../../redux/actions/userActions";
 import { PulseLoader } from "react-spinners";
 import {
   saveAmenities,
+  saveDescription,
   saveFloorPlan,
+  saveHighlight,
   saveLocation,
   savePhotos,
   savePrivacyType,
@@ -39,12 +41,13 @@ const ListingFooter = () => {
     `/become-a-host/${user?._id}/amenities`,
     `/become-a-host/${user?._id}/photos`,
     `/become-a-host/${user?._id}/title`,
+    `/become-a-host/${user?._id}/highlight`,
     `/become-a-host/${user?._id}/description`,
+    `/become-a-host/${user?._id}/finish-step`,
   ];
 
   const currentStepIndex = steps.indexOf(url);
-  const currentListingHouseId = createHouseData?.currentListingHouse?._id;
-
+  const currentListingHouseId = localStorage.getItem("currentHouseId");
   const handleNext = async () => {
     if (currentStepIndex < steps.length - 1) {
       setIsLoading(true);
@@ -101,6 +104,20 @@ const ListingFooter = () => {
         };
         // data save title to db
         await dispatch(saveTitle(titleData));
+      } else if (currentStepIndex === 10) {
+        const highlightData = {
+          highlight: createHouseData?.newHouse?.highlights,
+          houseId: currentListingHouseId,
+        };
+        // data save title to db
+        await dispatch(saveHighlight(highlightData));
+      } else if (currentStepIndex === 11) {
+        const descriptionData = {
+          description: createHouseData?.newHouse?.description,
+          houseId: currentListingHouseId,
+        };
+        // data save title to db
+        await dispatch(saveDescription(descriptionData));
       }
 
       setIsLoading(false);
@@ -177,6 +194,12 @@ URL. */
     }
     if (url?.includes("/title")) {
       setProgress(70);
+    }
+    if (url?.includes("/highlight")) {
+      setProgress(75);
+    }
+    if (url?.includes("/description")) {
+      setProgress(80);
     }
   }, [progress, url]);
 

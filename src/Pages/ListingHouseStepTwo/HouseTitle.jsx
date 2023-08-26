@@ -47,6 +47,7 @@ const HouseTitle = () => {
             handleChange(event);
           }}
           onBlur={handleChange}
+          placeholder="Your house title"
         ></textarea>
         <div className=" mt-2 mb-3">
           <p

@@ -59,6 +59,7 @@ export const userRole = () => async (dispatch, getState) => {
         const response = await api.post("/auth/become_a_host", { role: "host" });
         console.log(response)
         const currentHouseId = response.data?.house?._id;
+
         /* The code `if (currentHouseId) {
                     JSON.stringify(localStorage.setItem("currentHouseId", currentHouseId))
                 }` is checking if the `currentHouseId` variable has a value. If it does, it is
