@@ -19,7 +19,9 @@ import StepTwoOverview from "../../Pages/ListingHouseStepTwo/StepTwoOverview";
 import Amenities from "../../Pages/ListingHouseStepTwo/Amenities";
 import ListingHousePhotos from "../../Pages/ListingHouseStepTwo/ListingHousePhotos";
 import HouseTitle from "../../Pages/ListingHouseStepTwo/HouseTitle";
+import Highlight from "../../Pages/ListingHouseStepTwo/Highlight";
 import Description from "../../Pages/ListingHouseStepTwo/Description";
+import FinalStepOverview from "../../Pages/ListingHouseFinalStep/FinalStepOverview";
 
 const router = createBrowserRouter([
   {
@@ -104,8 +106,16 @@ const router = createBrowserRouter([
         element: <HouseTitle />,
       },
       {
+        path: "/become-a-host/:id/highlight",
+        element: <Highlight />,
+      },
+      {
         path: "/become-a-host/:id/description",
         element: <Description />,
+      },
+      {
+        path: "/become-a-host/:id/finish-step",
+        element: <FinalStepOverview />,
       },
     ],
   },

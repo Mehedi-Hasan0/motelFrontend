@@ -6,6 +6,7 @@ const StructureCard = ({
   onClick,
   storedCardData,
   svgSize,
+  ptagStyle,
 }) => {
   return (
     <div
@@ -13,7 +14,7 @@ const StructureCard = ({
       ${
         storedCardData?.includes(name)
           ? " border-2 border-black bg-[#f7f7f7]"
-          : "bg-white hover:bg-[#f7f7f7] hover:border-black border-[1.3px] border-[#dddddd] hover:border-2"
+          : "bg-white hover:bg-[#f7f7f7] hover:border-black border-[1.3px] border-[#dddddd] hover:border-[1.3px]"
       }
       `}
       onClick={() => {
@@ -21,7 +22,7 @@ const StructureCard = ({
       }}
     >
       <Img size={svgSize} />
-      <p className=" text-[#222222] text-lg font-medium">{name}</p>
+      <p className={`${ptagStyle}`}>{name}</p>
     </div>
   );
 };

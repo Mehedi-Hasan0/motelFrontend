@@ -32,6 +32,7 @@ const Amenities = () => {
   const handleStoreCardData = (name) => {
     if (storedCardData.includes(name)) {
       storedCardData.pop(name);
+      setStoredCardData([...storedCardData]);
     } else {
       setStoredCardData([...storedCardData, name]);
     }
@@ -69,6 +70,7 @@ const Amenities = () => {
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
           svgSize={svgSize}
+          ptagStyle={amenitesPtagClass}
         />
         <StructureCard
           style={amenitisCardStyle}
@@ -77,6 +79,7 @@ const Amenities = () => {
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
           svgSize={svgSize}
+          ptagStyle={amenitesPtagClass}
         />
         <StructureCard
           style={amenitisCardStyle}
@@ -85,6 +88,7 @@ const Amenities = () => {
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
           svgSize={svgSize}
+          ptagStyle={amenitesPtagClass}
         />
         <StructureCard
           style={amenitisCardStyle}
@@ -93,6 +97,7 @@ const Amenities = () => {
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
           svgSize={svgSize}
+          ptagStyle={amenitesPtagClass}
         />
         <StructureCard
           style={amenitisCardStyle}
@@ -101,6 +106,7 @@ const Amenities = () => {
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
           svgSize={svgSize}
+          ptagStyle={amenitesPtagClass}
         />
         <StructureCard
           style={amenitisCardStyle}
@@ -109,6 +115,7 @@ const Amenities = () => {
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
           svgSize={svgSize}
+          ptagStyle={amenitesPtagClass}
         />
         <StructureCard
           style={amenitisCardStyle}
@@ -117,6 +124,7 @@ const Amenities = () => {
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
           svgSize={svgSize}
+          ptagStyle={amenitesPtagClass}
         />
         <StructureCard
           style={amenitisCardStyle}
@@ -125,6 +133,7 @@ const Amenities = () => {
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
           svgSize={svgSize}
+          ptagStyle={amenitesPtagClass}
         />
       </div>
       {/* 2nd section */}
@@ -140,6 +149,7 @@ const Amenities = () => {
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
             svgSize={svgSize}
+            ptagStyle={amenitesPtagClass}
           />
           <StructureCard
             style={amenitisCardStyle}
@@ -148,6 +158,7 @@ const Amenities = () => {
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
             svgSize={svgSize}
+            ptagStyle={amenitesPtagClass}
           />
           <StructureCard
             style={amenitisCardStyle}
@@ -156,6 +167,7 @@ const Amenities = () => {
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
             svgSize={svgSize}
+            ptagStyle={amenitesPtagClass}
           />
           <StructureCard
             style={amenitisCardStyle}
@@ -164,6 +176,7 @@ const Amenities = () => {
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
             svgSize={svgSize}
+            ptagStyle={amenitesPtagClass}
           />
           <StructureCard
             style={amenitisCardStyle}
@@ -172,6 +185,7 @@ const Amenities = () => {
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
             svgSize={svgSize}
+            ptagStyle={amenitesPtagClass}
           />
           <StructureCard
             style={amenitisCardStyle}
@@ -180,6 +194,7 @@ const Amenities = () => {
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
             svgSize={svgSize}
+            ptagStyle={amenitesPtagClass}
           />
           <StructureCard
             style={amenitisCardStyle}
@@ -188,6 +203,7 @@ const Amenities = () => {
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
             svgSize={svgSize}
+            ptagStyle={amenitesPtagClass}
           />
           <StructureCard
             style={amenitisCardStyle}
@@ -196,6 +212,7 @@ const Amenities = () => {
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
             svgSize={svgSize}
+            ptagStyle={amenitesPtagClass}
           />
           <StructureCard
             style={amenitisCardStyle}
@@ -204,6 +221,7 @@ const Amenities = () => {
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
             svgSize={svgSize}
+            ptagStyle={amenitesPtagClass}
           />
           <StructureCard
             style={amenitisCardStyle}
@@ -212,6 +230,7 @@ const Amenities = () => {
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
             svgSize={svgSize}
+            ptagStyle={amenitesPtagClass}
           />
         </div>
       </div>
@@ -228,6 +247,7 @@ const Amenities = () => {
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
             svgSize={svgSize}
+            ptagStyle={amenitesPtagClass}
           />
           <StructureCard
             style={amenitisCardStyle}
@@ -236,6 +256,7 @@ const Amenities = () => {
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
             svgSize={svgSize}
+            ptagStyle={amenitesPtagClass}
           />
           <StructureCard
             style={amenitisCardStyle}
@@ -244,6 +265,7 @@ const Amenities = () => {
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
             svgSize={svgSize}
+            ptagStyle={amenitesPtagClass}
           />
           <StructureCard
             style={amenitisCardStyle}
@@ -252,6 +274,7 @@ const Amenities = () => {
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
             svgSize={svgSize}
+            ptagStyle={amenitesPtagClass}
           />
         </div>
       </div>
@@ -262,5 +285,6 @@ const Amenities = () => {
 // styles for STructuredCard component
 const amenitisCardStyle =
   "flex flex-col gap-1 px-6 rounded-xl transition duration-300 h-[120px] w-[220px] cursor-pointer justify-center";
+const amenitesPtagClass = "text-[#222222] text-lg font-medium";
 
 export default Amenities;
