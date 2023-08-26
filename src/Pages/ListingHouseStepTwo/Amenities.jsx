@@ -27,6 +27,7 @@ const Amenities = () => {
   const newHouseData = useSelector((state) => state.house.newHouse);
   const [storedCardData, setStoredCardData] = useState([]);
   const dispatch = useDispatch();
+  const svgSize = 40;
 
   const handleStoreCardData = (name) => {
     if (storedCardData.includes(name)) {
@@ -62,52 +63,68 @@ const Amenities = () => {
       {/* 1st section */}
       <div className=" grid grid-cols-3 gap-5">
         <StructureCard
+          style={amenitisCardStyle}
           Img={HiOutlineWifi}
           name={"Wifi"}
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
+          svgSize={svgSize}
         />
         <StructureCard
+          style={amenitisCardStyle}
           Img={PiTelevisionSimple}
           name={"TV"}
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
+          svgSize={svgSize}
         />
         <StructureCard
+          style={amenitisCardStyle}
           Img={MdOutlineKitchen}
           name={"Kitchen"}
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
+          svgSize={svgSize}
         />
         <StructureCard
+          style={amenitisCardStyle}
           Img={BiSolidWasher}
           name={"Washer"}
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
+          svgSize={svgSize}
         />
         <StructureCard
+          style={amenitisCardStyle}
           Img={BsSpeedometer2}
           name={"Paid parking"}
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
+          svgSize={svgSize}
         />
         <StructureCard
+          style={amenitisCardStyle}
           Img={BsSnow}
           name={"Air conditioning"}
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
+          svgSize={svgSize}
         />
         <StructureCard
+          style={amenitisCardStyle}
           Img={BsPersonWorkspace}
           name={"Dedicated workspace"}
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
+          svgSize={svgSize}
         />
         <StructureCard
+          style={amenitisCardStyle}
           Img={AiOutlineCar}
           name={"Free parking"}
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
+          svgSize={svgSize}
         />
       </div>
       {/* 2nd section */}
@@ -117,64 +134,84 @@ const Amenities = () => {
         </h6>
         <div className=" grid grid-cols-3 gap-5">
           <StructureCard
+            style={amenitisCardStyle}
             Img={MdOutlinePool}
             name={"Pool"}
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
+            svgSize={svgSize}
           />
           <StructureCard
+            style={amenitisCardStyle}
             Img={GiBathtub}
             name={"Buthub"}
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
+            svgSize={svgSize}
           />
           <StructureCard
+            style={amenitisCardStyle}
             Img={MdOutlineOutdoorGrill}
             name={"Grill"}
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
+            svgSize={svgSize}
           />
           <StructureCard
+            style={amenitisCardStyle}
             Img={PiCampfireLight}
             name={"Campfire"}
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
+            svgSize={svgSize}
           />
           <StructureCard
+            style={amenitisCardStyle}
             Img={MdDinnerDining}
             name={"Outdoor dining area"}
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
+            svgSize={svgSize}
           />
           <StructureCard
+            style={amenitisCardStyle}
             Img={CgPiano}
             name={"Piano"}
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
+            svgSize={svgSize}
           />
           <StructureCard
+            style={amenitisCardStyle}
             Img={CiDumbbell}
             name={"Exercise equipment"}
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
+            svgSize={svgSize}
           />
           <StructureCard
+            style={amenitisCardStyle}
             Img={FaShower}
             name={"Outdoor Shower"}
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
+            svgSize={svgSize}
           />
           <StructureCard
+            style={amenitisCardStyle}
             Img={GiTennisCourt}
             name={"Tennis court"}
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
+            svgSize={svgSize}
           />
           <StructureCard
+            style={amenitisCardStyle}
             Img={GiSkier}
             name={"Ski in/ Ski out"}
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
+            svgSize={svgSize}
           />
         </div>
       </div>
@@ -185,33 +222,45 @@ const Amenities = () => {
         </h6>
         <div className=" grid grid-cols-3 gap-5">
           <StructureCard
+            style={amenitisCardStyle}
             Img={AiOutlineAlert}
             name={"Safety alerm"}
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
+            svgSize={svgSize}
           />
           <StructureCard
+            style={amenitisCardStyle}
             Img={BiSolidFirstAid}
             name={"First aid kit"}
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
+            svgSize={svgSize}
           />
           <StructureCard
+            style={amenitisCardStyle}
             Img={PiFireExtinguisher}
             name={"Fire extinguisher"}
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
+            svgSize={svgSize}
           />
           <StructureCard
+            style={amenitisCardStyle}
             Img={TbBrandCarbon}
             name={"Carbon monoxide alerm"}
             onClick={handleStoreCardData}
             storedCardData={storedCardData}
+            svgSize={svgSize}
           />
         </div>
       </div>
     </div>
   );
 };
+
+// styles for STructuredCard component
+const amenitisCardStyle =
+  "flex flex-col gap-1 px-6 rounded-xl transition duration-300 h-[120px] w-[220px] cursor-pointer justify-center";
 
 export default Amenities;
