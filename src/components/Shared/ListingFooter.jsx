@@ -13,6 +13,7 @@ import {
   savePhotos,
   savePrices,
   savePrivacyType,
+  saveSecurity,
   saveStructure,
   saveTitle,
 } from "../../redux/actions/houseActions";
@@ -49,6 +50,7 @@ const ListingFooter = () => {
     `/become-a-host/${user?._id}/visiblity`,
     `/become-a-host/${user?._id}/price`,
     `/become-a-host/${user?._id}/legal`,
+    `/become-a-host/${user?._id}/receipt`,
   ];
 
   const currentStepIndex = steps.indexOf(url);
@@ -138,6 +140,13 @@ const ListingFooter = () => {
         };
         // data save title to db
         await dispatch(savePrices(PriceData));
+      } else if (currentStepIndex === 15) {
+        const securityData = {
+          security: createHouseData?.newHouse?.security,
+          houseId: currentListingHouseId,
+        };
+        // data save title to db
+        await dispatch(saveSecurity(securityData));
       }
 
       setIsLoading(false);
@@ -194,6 +203,9 @@ URL. */
     }
     if (url?.includes("/legal")) {
       setProgress(90);
+    }
+    if (url?.includes("/receipt")) {
+      setProgress(95);
     }
   }, [progress, url]);
 

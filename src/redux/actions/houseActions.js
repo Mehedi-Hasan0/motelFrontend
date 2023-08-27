@@ -1,7 +1,7 @@
 import api from "../../backend"
 
 /* eslint-disable no-undef */
-export const createNewHouse = (structure, privacyType, location, floorPlan, amenitiesData, housePhoto, houseTitle, houseHighlights, description, gustType, priceBeforeTaxes, authorEarnedPrice) => async (dispatch) => {
+export const createNewHouse = (structure, privacyType, location, floorPlan, amenitiesData, housePhoto, houseTitle, houseHighlights, description, gustType, priceBeforeTaxes, authorEarnedPrice, security) => async (dispatch) => {
     let newHouseData = {
         houseType: structure,
         privacyType: privacyType,
@@ -14,7 +14,8 @@ export const createNewHouse = (structure, privacyType, location, floorPlan, amen
         description: description,
         guestType: gustType,
         priceBeforeTaxes: priceBeforeTaxes,
-        authorEarnedPrice: authorEarnedPrice
+        authorEarnedPrice: authorEarnedPrice,
+        security: security
     }
 
     dispatch({
@@ -196,6 +197,23 @@ export const saveGuestType = (guestTypeData) => async (dispatch) => {
 export const savePrices = (priceData) => async (dispatch) => {
     try {
         const res = await api.post("/house/save_prices", priceData, {
+            headers: { "Content-Type": "application/json" }
+        })
+        if (res.status === 200) {
+            dispatch({
+                type: "CURRENT_NEW_HOUSE",
+                payload: res.data?.houseDetails
+            })
+        }
+        console.log(res)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const saveSecurity = (securityData) => async (dispatch) => {
+    try {
+        const res = await api.post("/house/save_security", securityData, {
             headers: { "Content-Type": "application/json" }
         })
         if (res.status === 200) {
