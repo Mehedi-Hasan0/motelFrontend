@@ -9,7 +9,7 @@ const PreviewCard = () => {
   return (
     <>
       <div
-        className=" flex flex-col gap-3 rounded-2xl shadow-lg bg-white border-[#f1f1f1] border max-w-sm px-3 py-4 cursor-pointer"
+        className=" flex flex-col gap-3 rounded-2xl shadow-lg bg-white border-[#f1f1f1] border max-w-sm p-4 cursor-pointer"
         onClick={() => window.my_modal_4.showModal()}
       >
         <div className=" relative ">
@@ -20,7 +20,7 @@ const PreviewCard = () => {
               className=" aspect-square object-cover rounded-xl"
             />
           ) : (
-            <div className=" bg-amber-200 blur-md opacity-30 aspect-square rounded-xl">
+            <div className=" bg-gray-500 blur-md opacity-30 aspect-square rounded-xl">
               {" "}
             </div>
           )}
@@ -28,14 +28,16 @@ const PreviewCard = () => {
             Show preview
           </p>
         </div>
-        <div className=" flex flex-row justify-between relative">
-          <span className=" text-sm text-[#222222]">
-            <p className=" font-medium">{currentHouseData?.title}</p>
+        <div className=" grid grid-cols-2 justify-between relative px-1">
+          <div className=" text-sm text-[#222222]">
+            <p className=" font-medium truncate w-[200px]">
+              {currentHouseData?.title}
+            </p>
             <span className=" flex flex-row gap-1">
               <p className=" font-bold">${currentHouseData?.basePrice}</p>
               <span>night</span>
             </span>
-          </span>
+          </div>
           <span className=" flex flex-row items-center gap-1 text-sm text-[#222222] absolute top-0 right-0">
             New
             <AiFillStar size={16} />
