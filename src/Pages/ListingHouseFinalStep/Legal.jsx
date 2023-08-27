@@ -36,6 +36,7 @@ const Legal = () => {
         newHouseData?.guestType,
         newHouseData?.priceBeforeTaxes,
         newHouseData?.authorEarnedPrice,
+        newHouseData?.basePrice,
         labelValue
       )
     );
