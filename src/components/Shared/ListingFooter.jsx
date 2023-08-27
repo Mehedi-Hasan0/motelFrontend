@@ -11,6 +11,7 @@ import {
   saveHighlight,
   saveLocation,
   savePhotos,
+  savePrices,
   savePrivacyType,
   saveStructure,
   saveTitle,
@@ -47,6 +48,7 @@ const ListingFooter = () => {
     `/become-a-host/${user?._id}/finish-step`,
     `/become-a-host/${user?._id}/visiblity`,
     `/become-a-host/${user?._id}/price`,
+    `/become-a-host/${user?._id}/legal`,
   ];
 
   const currentStepIndex = steps.indexOf(url);
@@ -128,6 +130,14 @@ const ListingFooter = () => {
         };
         // data save title to db
         await dispatch(saveGuestType(visibilityData));
+      } else if (currentStepIndex === 14) {
+        const PriceData = {
+          priceBeforeTaxes: createHouseData?.newHouse?.priceBeforeTaxes,
+          authorEarnedPrice: createHouseData?.newHouse?.authorEarnedPrice,
+          houseId: currentListingHouseId,
+        };
+        // data save title to db
+        await dispatch(savePrices(PriceData));
       }
 
       setIsLoading(false);
@@ -181,6 +191,9 @@ URL. */
     }
     if (url?.includes("/price")) {
       setProgress(85);
+    }
+    if (url?.includes("/legal")) {
+      setProgress(90);
     }
   }, [progress, url]);
 
