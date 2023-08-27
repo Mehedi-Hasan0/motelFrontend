@@ -3,12 +3,12 @@ import PreviewCardsDescription from "../../components/listingHouse/PreviewCardsD
 
 const Reciept = () => {
   return (
-    <div className=" flex flex-col gap-14 max-w-screen-md mx-auto my-6 min-h-[70vh]">
+    <div className=" flex flex-col gap-10 max-w-[900px] mx-auto my-6 min-h-[70vh]">
       <div>
-        <h1 className=" text-[#222222] text-[32px] font-medium">
+        <h1 className=" text-[#222222] text-5xl font-medium">
           Review your listing
         </h1>
-        <p className="text-lg text-[#717171]">
+        <p className="text-lg text-[#717171] mt-5">
           Here&apos;s what we&apos;ll show to guests. Make sure everything looks
           good.
         </p>
