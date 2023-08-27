@@ -7,6 +7,7 @@ import {
   saveAmenities,
   saveDescription,
   saveFloorPlan,
+  saveGuestType,
   saveHighlight,
   saveLocation,
   savePhotos,
@@ -45,6 +46,7 @@ const ListingFooter = () => {
     `/become-a-host/${user?._id}/description`,
     `/become-a-host/${user?._id}/finish-step`,
     `/become-a-host/${user?._id}/visiblity`,
+    `/become-a-host/${user?._id}/price`,
   ];
 
   const currentStepIndex = steps.indexOf(url);
@@ -119,6 +121,13 @@ const ListingFooter = () => {
         };
         // data save title to db
         await dispatch(saveDescription(descriptionData));
+      } else if (currentStepIndex === 13) {
+        const visibilityData = {
+          guestType: createHouseData?.newHouse?.guestType,
+          houseId: currentListingHouseId,
+        };
+        // data save title to db
+        await dispatch(saveGuestType(visibilityData));
       }
 
       setIsLoading(false);
@@ -128,44 +137,6 @@ const ListingFooter = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
-
-  // const handleNext = async () => {
-  //   if (url?.includes("/become-a-host")) {
-  //     setIsLoading(true);
-  //     // do data saving actions
-  //     await dispatch(userRole());
-  //     setIsLoading(false);
-  //     // navigate to the next url
-  //     navigate(`/become-a-host/${user?._id}/about-your-place`);
-  //   }
-  //   if (url?.includes("/about-your-place")) {
-  //     navigate(`/become-a-host/${user?._id}/structure`);
-  //   }
-  //   if (url?.includes("/structure")) {
-  //     // do data saving action
-  //     await dispatch(updateNewHouseData(createHouseData));
-
-  //     // navigate to next url
-  //     navigate(`/become-a-host/${user?._id}/privacy-type`);
-  //   }
-  //   if (url?.includes("/privacy-type")) {
-  //     navigate(`/become-a-host/${user?._id}/location`);
-  //   }
-  //   if (url?.includes("/location")) {
-  //     navigate(`/become-a-host/${user?._id}/floor-plan`);
-  //   }
-  //   if (url?.includes("/floor-plan")) {
-  //     navigate(`/become-a-host/${user?._id}/stand-out`);
-  //   }
-  //   if (url?.includes("/stand-out")) {
-  //     navigate(`/become-a-host/${user?._id}/amenities`);
-  //   }
-  //   if (url?.includes("/amenities")) {
-  //     navigate(`/become-a-host/${user?._id}/photos`);
-  //   }
-  //   window.scrollTo({ top: 0, behavior: "smooth" });
-  // };
-
   /* The `useEffect` hook in the code snippet is used to update the `progress` state based on the current
 URL. */
   useEffect(() => {
@@ -204,6 +175,12 @@ URL. */
     }
     if (url?.includes("/finish-step")) {
       setProgress(75);
+    }
+    if (url?.includes("/visibility")) {
+      setProgress(80);
+    }
+    if (url?.includes("/price")) {
+      setProgress(85);
     }
   }, [progress, url]);
 
