@@ -1,7 +1,25 @@
 import api from "../../backend"
 
 /* eslint-disable no-undef */
-export const createNewHouse = (structure, privacyType, location, floorPlan, amenitiesData, housePhoto, houseTitle, houseHighlights, description, gustType, priceBeforeTaxes, authorEarnedPrice, security) => async (dispatch) => {
+
+export const getHouseDetails = (id) => async (dispatch) => {
+    try {
+        let houseId = { houseId: id }
+        const res = await api.post("/house/get_house_details", houseId, {
+            headers: { "Content-Type": "application/json" }
+        })
+        if (res.status === 200) {
+            dispatch({
+                type: "CURRENT_NEW_HOUSE",
+                payload: res.data?.houseDetails
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const createNewHouse = (structure, privacyType, location, floorPlan, amenitiesData, housePhoto, houseTitle, houseHighlights, description, gustType, priceBeforeTaxes, authorEarnedPrice, basePrice, security) => async (dispatch) => {
     let newHouseData = {
         houseType: structure,
         privacyType: privacyType,
@@ -15,6 +33,7 @@ export const createNewHouse = (structure, privacyType, location, floorPlan, amen
         guestType: gustType,
         priceBeforeTaxes: priceBeforeTaxes,
         authorEarnedPrice: authorEarnedPrice,
+        basePrice: basePrice,
         security: security
     }
 

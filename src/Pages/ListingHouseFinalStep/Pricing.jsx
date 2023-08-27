@@ -52,7 +52,8 @@ const Pricing = () => {
         newHouseData?.description,
         newHouseData?.guestType,
         totalPriceBeforeTax,
-        totalAuthorEarned
+        totalAuthorEarned,
+        basePrice
       )
     );
   }, [inputValue]);

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { userRole } from "../../redux/actions/userActions";
 import { PulseLoader } from "react-spinners";
 import {
+  getHouseDetails,
   saveAmenities,
   saveDescription,
   saveFloorPlan,
@@ -27,8 +28,14 @@ const ListingFooter = () => {
   const url = window.location.pathname;
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const currentHouseId = localStorage.getItem("currentHouseId");
 
   console.log(createHouseData);
+
+  useEffect(() => {
+    dispatch(getHouseDetails(currentHouseId));
+  }, [currentHouseId, dispatch]);
+
   /**
    * The function `handleNext` navigates to different URLs based on the current URL.
    */
@@ -136,6 +143,7 @@ const ListingFooter = () => {
         const PriceData = {
           priceBeforeTaxes: createHouseData?.newHouse?.priceBeforeTaxes,
           authorEarnedPrice: createHouseData?.newHouse?.authorEarnedPrice,
+          basePrice: createHouseData?.newHouse?.basePrice,
           houseId: currentListingHouseId,
         };
         // data save title to db
