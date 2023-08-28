@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { HiPlus } from "react-icons/hi";
 import RoomFilterCard from "../../components/dashboard/listing/RoomFilterCard";
 import AmenitiesFilterCard from "../../components/dashboard/listing/AmenitiesFilterCard";
+import ListingStatus from "../../components/dashboard/listing/ListingStatus";
 
 const Listing = () => {
   const allListingsData = useSelector((state) => state.house.housesData);
@@ -28,6 +29,7 @@ const Listing = () => {
         <div className=" flex flex-row gap-5">
           <RoomFilterCard />
           <AmenitiesFilterCard />
+          <ListingStatus />
         </div>
       </section>
     </main>
