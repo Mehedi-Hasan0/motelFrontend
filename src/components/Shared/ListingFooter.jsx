@@ -230,13 +230,16 @@ URL. */
   return (
     <footer className=" sticky bottom-0 bg-white">
       {/* progressbar */}
-      <div>
-        <progress
-          className="progress w-full shadow-sm transition-all duration-700"
-          value={progress}
-          max="100"
-        ></progress>
-      </div>
+      {!url.includes("/published") && (
+        <div>
+          <progress
+            className="progress w-full shadow-sm transition-all duration-700"
+            value={progress}
+            max="100"
+          ></progress>
+        </div>
+      )}
+
       {/* button */}
       <div className=" flex justify-between py-4 px-20 top-0 z-10 bg-white max-w-screen-xl xl:px-20 xl:mx-auto">
         {/* if in the success/last page don't show the back button */}
