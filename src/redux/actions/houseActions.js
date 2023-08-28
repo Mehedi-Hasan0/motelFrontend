@@ -246,3 +246,20 @@ export const saveSecurity = (securityData) => async (dispatch) => {
         console.log(error)
     }
 }
+
+export const publishListing = (publishList) => async (dispatch) => {
+    try {
+        const res = await api.post("/house/publish_list", publishList, {
+            headers: { "Content-Type": "application/json" }
+        })
+        if (res.status === 200) {
+            dispatch({
+                type: "CURRENT_NEW_HOUSE",
+                payload: res.data?.houseDetails
+            })
+        }
+        console.log(res)
+    } catch (error) {
+        console.log(error)
+    }
+}
