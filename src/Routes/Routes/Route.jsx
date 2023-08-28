@@ -26,6 +26,7 @@ import Visibility from "../../Pages/ListingHouseFinalStep/Visibility";
 import Pricing from "../../Pages/ListingHouseFinalStep/Pricing";
 import Legal from "../../Pages/ListingHouseFinalStep/Legal";
 import Receipt from "../../Pages/ListingHouseFinalStep/Receipt";
+import Thankyou from "../../Pages/ListingHouseFinalStep/Thankyou";
 
 const router = createBrowserRouter([
   {
@@ -136,6 +137,10 @@ const router = createBrowserRouter([
       {
         path: "/become-a-host/:id/receipt",
         element: <Receipt />,
+      },
+      {
+        path: "/become-a-host/:id/published",
+        element: <Thankyou />,
       },
     ],
   },

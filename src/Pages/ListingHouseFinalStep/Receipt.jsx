@@ -1,5 +1,6 @@
 import PreviewCard from "../../components/listingHouse/PreviewCard";
 import PreviewCardsDescription from "../../components/listingHouse/PreviewCardsDescription";
+import SuccessPupup from "../../components/popUp/houseListing/SuccessPupup";
 
 const Reciept = () => {
   return (
@@ -19,6 +20,7 @@ const Reciept = () => {
         {/* card details */}
         <PreviewCardsDescription />
       </div>
+      <SuccessPupup />
     </div>
   );
 };

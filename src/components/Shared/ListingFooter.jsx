@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userRole } from "../../redux/actions/userActions";
 import { PulseLoader } from "react-spinners";
 import {
   getHouseDetails,
+  publishListing,
   saveAmenities,
   saveDescription,
   saveFloorPlan,
@@ -58,6 +59,7 @@ const ListingFooter = () => {
     `/become-a-host/${user?._id}/price`,
     `/become-a-host/${user?._id}/legal`,
     `/become-a-host/${user?._id}/receipt`,
+    `/become-a-host/${user?._id}/published`,
   ];
 
   const currentStepIndex = steps.indexOf(url);
@@ -155,6 +157,12 @@ const ListingFooter = () => {
         };
         // data save title to db
         await dispatch(saveSecurity(securityData));
+      } else if (currentStepIndex === 16) {
+        const publishList = {
+          houseId: currentListingHouseId,
+        };
+        // data save title to db
+        await dispatch(publishListing(publishList));
       }
 
       setIsLoading(false);
@@ -163,6 +171,8 @@ const ListingFooter = () => {
       navigate(steps[currentStepIndex + 1]);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+    // // show modal on last page
+    // window.thankyou_modal.showModal();
   };
   /* The `useEffect` hook in the code snippet is used to update the `progress` state based on the current
 URL. */
@@ -229,32 +239,54 @@ URL. */
       </div>
       {/* button */}
       <div className=" flex justify-between py-4 px-20 top-0 z-10 bg-white max-w-screen-xl xl:px-20 xl:mx-auto">
-        <button
-          className=" hover:bg-[#f1f1f1] text-black rounded-md px-4 py-2 underline"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          Back
-        </button>
-        <button
-          className=" text-lg bg-[#222222] hover:bg-black text-white font-medium rounded-md px-9 py-3 disabled:bg-[#dddddd] disabled:cursor-not-allowed"
-          onClick={handleNext}
-          disabled={loading}
-        >
-          {loading ? (
-            <>
-              <PulseLoader
-                color="#f7f7f7"
-                size={7}
-                margin={4}
-                speedMultiplier={0.6}
-              />
-            </>
-          ) : (
-            "Next"
-          )}
-        </button>
+        {/* if in the success/last page don't show the back button */}
+        {!url.includes("/published") ? (
+          <button
+            className=" hover:bg-[#f1f1f1] text-black rounded-md px-4 py-2 underline"
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            Back
+          </button>
+        ) : (
+          <div> </div>
+        )}
+
+        {url.includes("/published") ? (
+          <Link
+            to={`/users/dashboard/${user?._id}/listing=true`}
+            className="text-lg text-white font-medium rounded-md px-9 py-3 disabled:bg-[#dddddd] disabled:cursor-not-allowed transition durtion-300 ease-in bg-[#222222] hover:bg-black"
+          >
+            See listing
+          </Link>
+        ) : (
+          <>
+            {/* on publish page showing a colored button */}
+            <button
+              className={`text-lg text-white font-medium rounded-md px-9 py-3 disabled:bg-[#dddddd] disabled:cursor-not-allowed transition durtion-300 ease-in ${
+                url?.includes("/receipt")
+                  ? "bg-[#ff385c] hover:bg-[#d90b63]"
+                  : "bg-[#222222] hover:bg-black"
+              }`}
+              onClick={handleNext}
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <PulseLoader
+                    color="#f7f7f7"
+                    size={7}
+                    margin={4}
+                    speedMultiplier={0.6}
+                  />
+                </>
+              ) : (
+                <>{url?.includes("/receipt") ? "Publish" : "Next"}</>
+              )}
+            </button>
+          </>
+        )}
       </div>
     </footer>
   );
