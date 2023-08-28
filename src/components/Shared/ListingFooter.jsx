@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { userRole } from "../../redux/actions/userActions";
 import { PulseLoader } from "react-spinners";
 import {
@@ -230,13 +230,16 @@ URL. */
   return (
     <footer className=" sticky bottom-0 bg-white">
       {/* progressbar */}
-      <div>
-        <progress
-          className="progress w-full shadow-sm transition-all duration-700"
-          value={progress}
-          max="100"
-        ></progress>
-      </div>
+      {!url.includes("/published") && (
+        <div>
+          <progress
+            className="progress w-full shadow-sm transition-all duration-700"
+            value={progress}
+            max="100"
+          ></progress>
+        </div>
+      )}
+
       {/* button */}
       <div className=" flex justify-between py-4 px-20 top-0 z-10 bg-white max-w-screen-xl xl:px-20 xl:mx-auto">
         {/* if in the success/last page don't show the back button */}
@@ -254,12 +257,12 @@ URL. */
         )}
 
         {url.includes("/published") ? (
-          <Link
-            to={`/users/dashboard/${user?._id}/listing=true`}
+          <a
+            href={`/users/dashboard/${user?._id}/listing=true`}
             className="text-lg text-white font-medium rounded-md px-9 py-3 disabled:bg-[#dddddd] disabled:cursor-not-allowed transition durtion-300 ease-in bg-[#222222] hover:bg-black"
           >
             See listing
-          </Link>
+          </a>
         ) : (
           <>
             {/* on publish page showing a colored button */}
