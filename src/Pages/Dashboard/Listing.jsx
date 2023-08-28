@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { HiPlus } from "react-icons/hi";
 import RoomFilterCard from "../../components/dashboard/listing/RoomFilterCard";
+import AmenitiesFilterCard from "../../components/dashboard/listing/AmenitiesFilterCard";
 
 const Listing = () => {
   const allListingsData = useSelector((state) => state.house.housesData);
@@ -26,6 +27,7 @@ const Listing = () => {
         {/* filtering options */}
         <div className=" flex flex-row gap-5">
           <RoomFilterCard />
+          <AmenitiesFilterCard />
         </div>
       </section>
     </main>
