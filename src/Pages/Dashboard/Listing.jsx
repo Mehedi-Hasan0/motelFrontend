@@ -5,11 +5,12 @@ import { HiPlus } from "react-icons/hi";
 import RoomFilterCard from "../../components/dashboard/listing/RoomFilterCard";
 import AmenitiesFilterCard from "../../components/dashboard/listing/AmenitiesFilterCard";
 import ListingStatus from "../../components/dashboard/listing/ListingStatus";
+import ListingTable from "../../components/dashboard/listing/ListingTable";
 
 const Listing = () => {
   const allListingsData = useSelector((state) => state.house.housesData);
   return (
-    <main className=" max-w-screen-xl xl:px-20 xl:mx-auto pb-10">
+    <main className=" max-w-screen-xl xl:px-14 xl:mx-auto pb-10">
       <section className=" pt-8 flex flex-col gap-5">
         {/* about listings */}
         <div className=" flex flex-row justify-between items-center">
@@ -31,6 +32,8 @@ const Listing = () => {
           <AmenitiesFilterCard />
           <ListingStatus />
         </div>
+        {/* table contents */}
+        <ListingTable />
       </section>
     </main>
   );
