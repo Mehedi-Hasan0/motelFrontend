@@ -41,7 +41,7 @@ const Description = () => {
           className=" w-full p-3 border-[#b0b0b0] border-[1.3px] rounded-md"
           rows="9"
           autoComplete="off"
-          {...register("profileDetailsAbout", { maxLength: 500 })}
+          {...register("profileDetailsAbout", { maxLength: 1600 })}
           onChange={(event) => {
             setDescription(event.target.value);
             setCharacterCount(event.target.value.replace(/\s/g, " ").length);
@@ -53,10 +53,10 @@ const Description = () => {
         <div className=" mt-2 mb-3">
           <p
             className={` text-xs font-semibold mt-1 flex flex-row-reverse ${
-              characterCount > 500 ? " text-red-400" : "text-[#717171]"
+              characterCount > 1600 ? " text-red-400" : "text-[#717171]"
             }`}
           >
-            {characterCount}/500 characters
+            {characterCount}/1600 characters
           </p>
         </div>
       </div>
