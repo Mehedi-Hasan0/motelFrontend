@@ -4,12 +4,12 @@ import {
   MdOutlineCabin,
   MdOutlineCastle,
 } from "react-icons/md";
-import { CiCoffeeCup } from "react-icons/ci";
 import { TbSailboat2, TbCamper } from "react-icons/tb";
 import {
   GiMountainCave,
   GiLightningDome,
   GiControlTower,
+  GiTreehouse,
 } from "react-icons/gi";
 import { GoContainer } from "react-icons/go";
 import { RiEarthquakeLine } from "react-icons/ri";
@@ -55,8 +55,8 @@ const ListHouseStepOneStructure = () => {
         />
         <StructureCard
           style={structureCardStyle}
-          Img={CiCoffeeCup}
-          name={"Coffee"}
+          Img={GiTreehouse}
+          name={"Tree house"}
           onClick={handleStoreCardData}
           storedCardData={storedCardData}
           svgSize={svgSize}

@@ -40,7 +40,7 @@ const HouseTitle = () => {
           className=" w-full p-3 border-[#b0b0b0] border-[1.3px] rounded-md"
           rows="6"
           autoComplete="off"
-          {...register("profileDetailsAbout", { maxLength: 32 })}
+          {...register("profileDetailsAbout", { maxLength: 40 })}
           onChange={(event) => {
             setTitle(event.target.value);
             setCharacterCount(event.target.value.replace(/\s/g, " ").length);
@@ -52,10 +52,10 @@ const HouseTitle = () => {
         <div className=" mt-2 mb-3">
           <p
             className={` text-xs font-semibold mt-1 flex flex-row-reverse ${
-              characterCount > 32 ? " text-red-400" : "text-[#717171]"
+              characterCount > 40 ? " text-red-400" : "text-[#717171]"
             }`}
           >
-            {characterCount}/32 characters
+            {characterCount}/40 characters
           </p>
         </div>
       </div>
