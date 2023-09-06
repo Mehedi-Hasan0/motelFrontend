@@ -27,12 +27,17 @@ import Pricing from "../../Pages/ListingHouseFinalStep/Pricing";
 import Legal from "../../Pages/ListingHouseFinalStep/Legal";
 import Receipt from "../../Pages/ListingHouseFinalStep/Receipt";
 import Thankyou from "../../Pages/ListingHouseFinalStep/Thankyou";
+import Home from "../../Pages/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
       {
         path: "/users/show/:id",
         element: <UserProfile />,
@@ -43,7 +48,6 @@ const router = createBrowserRouter([
         element: <EditProfile />,
         loader: ({ params }) => fetch(`${API}${params._id}`),
       },
-
       {
         path: "/users/dashboard/:id/overview=true",
         element: <Overview />,
