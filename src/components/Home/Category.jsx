@@ -1,11 +1,14 @@
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import { categoryApi } from "./categoryApi";
 import Carousel from "react-elastic-carousel";
 import { consts } from "react-elastic-carousel";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
-const Category = () => {
-  // custom arrow for carousel
+const Category = ({ styleGrid }) => {
+  const [selectedCategory, setSelectedCategory] = useState("House");
 
+  // custom arrow for carousel
   const myArrow = ({ type, onClick, isEdge }) => {
     const pointer =
       type === consts.PREV ? (
@@ -15,7 +18,7 @@ const Category = () => {
       );
     return (
       <button
-        className=" p-1 rounded-full border-neutral-400 border bg-white flex items-center max-h-[32px] my-auto hover:shadow-lg"
+        className=" p-1 rounded-full border-neutral-400 border bg-white flex items-center max-h-[32px] my-auto hover:shadow-lg mb-6"
         onClick={onClick}
         disabled={isEdge}
       >
@@ -25,7 +28,7 @@ const Category = () => {
   };
 
   return (
-    <div className=" flex flex-row gap-2">
+    <div className={` flex flex-row gap-2 ${styleGrid}`}>
       <Carousel
         itemsToShow={8}
         pagination={false}
@@ -37,13 +40,30 @@ const Category = () => {
       >
         {categoryApi.map((cat) => {
           return (
-            <div
-              key={cat._id}
-              className=" flex flex-col-reverse items-center gap-1"
-            >
-              <p className=" text-xs">{cat?.name}</p>
-              <cat.svg size={24} />
-            </div>
+            <>
+              <div
+                key={cat.id}
+                onClick={() => {
+                  setSelectedCategory(cat.name);
+                }}
+                className={` flex flex-col-reverse items-center gap-1 cursor-pointer relative pb-4 transition duration-200 ease-in ${
+                  selectedCategory === cat.name
+                    ? "opacity-100"
+                    : "opacity-70 hover:opacity-100"
+                }
+                `}
+              >
+                <p className=" text-xs font-medium">{cat?.name}</p>
+                <cat.svg size={28} />
+              </div>
+              <div
+                className={` w-9 absolute bg-[#222222] h-[2px] bottom-0 ${
+                  selectedCategory === cat.name ? "block" : "hidden"
+                }`}
+              >
+                {" "}
+              </div>
+            </>
           );
         })}
       </Carousel>
