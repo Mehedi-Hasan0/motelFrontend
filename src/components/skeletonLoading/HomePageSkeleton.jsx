@@ -1,4 +1,4 @@
-import SkeletonLoading from "./Home/SkeletonLoading";
+import SkeletonLoading from "./SkeletonLoading";
 
 const HomePageSkeleton = () => {
   // Determine the number of cards to render based on device size
