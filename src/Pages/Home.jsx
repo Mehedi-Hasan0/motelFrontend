@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { API } from "../backend";
 import axios from "axios";
 import HomePageSkeleton from "../components/HomePageSkeleton";
+import ListingPreviewCard from "../components/Home/ListingPreviewCard";
 
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("House");
@@ -81,8 +82,12 @@ const Home = () => {
           allListingData.data.length !== 0 &&
           allListingData.data.map((listing) => {
             return (
-              <div key={listing._id}>
-                <p>{listing?.title}</p>
+              // this will be link to see full details of the listing
+              <div
+                key={listing._id}
+                className=" flex flex-col gap-3 rounded-xl w-[264px] "
+              >
+                <ListingPreviewCard listingData={listing} />
               </div>
             );
           })}
