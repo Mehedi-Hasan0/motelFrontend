@@ -1,13 +1,22 @@
 /* eslint-disable react/prop-types */
-
 import { categoryApi } from "./categoryApi";
 import Carousel from "react-elastic-carousel";
 import { consts } from "react-elastic-carousel";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-const Category = ({ styleGrid, selectedCategory, setSelectedCategory }) => {
+const Category = ({ styleGrid }) => {
+  const category = localStorage.getItem("category");
   const navigate = useNavigate();
+
+  const handleSelectedCat = (cat) => {
+    // setSelectedCategory(cat.name);
+    JSON.stringify(localStorage.setItem("category", cat?.name));
+    // setting query to the url for category search
+    navigate(`/?category=${cat.name}`);
+
+    // refetching listing based on category
+  };
 
   return (
     <div className={` flex flex-row gap-2 ${styleGrid}`}>
@@ -25,12 +34,10 @@ const Category = ({ styleGrid, selectedCategory, setSelectedCategory }) => {
             <div key={i}>
               <div
                 onClick={() => {
-                  setSelectedCategory(cat.name);
-                  // setting query to the url for category search
-                  navigate(`/?category=${cat.name}`);
+                  handleSelectedCat(cat);
                 }}
                 className={` flex flex-col-reverse items-center gap-1 cursor-pointer relative pb-4 transition duration-200 ease-in ${
-                  selectedCategory === cat.name
+                  category === cat.name
                     ? "opacity-100"
                     : "opacity-70 hover:opacity-100"
                 }
@@ -41,7 +48,7 @@ const Category = ({ styleGrid, selectedCategory, setSelectedCategory }) => {
               </div>
               <div
                 className={` w-9 absolute bg-[#222222] h-[2px] bottom-0 ${
-                  selectedCategory === cat.name ? "block" : "hidden"
+                  category === cat.name ? "block" : "hidden"
                 }`}
               >
                 {" "}

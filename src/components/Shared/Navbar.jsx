@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthenticationPopUp from "../popUp/authentication/AuthenticationPopUp";
 import MiniNavbar from "./DashboardMenu";
 import { getUser, userLogOut } from "../../redux/actions/userActions";
@@ -13,6 +13,7 @@ import house from "../../assets/basicIcon/houseWhite.png";
 const Navbar = () => {
   const user = useSelector((state) => state.user.userDetails);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const navigate = useNavigate();
   const userMenuRef = useRef(null);
   const location = useLocation();
   const pathName = location.pathname;
@@ -23,8 +24,6 @@ const Navbar = () => {
   const [popup, setPopup] = useState(false);
 
   const dispatch = useDispatch();
-
-  console.log(user);
 
   const handleLogout = () => {
     dispatch(userLogOut());
@@ -64,16 +63,23 @@ const Navbar = () => {
       >
         {/* logo */}
         <div className=" md:w-[160px]">
-          <Link
-            to="/"
-            className="flex flex-row gap-2 items-center max-w-[120px]"
-          >
-            <img src={motelLogo} alt="Logo" className=" w-10" />
+          <span className="flex flex-row gap-2 items-center max-w-[120px]">
+            <img
+              src={motelLogo}
+              alt="Logo"
+              className=" w-10 cursor-pointer"
+              onClick={() => {
+                // setting cat to house for listing data fetching
+                JSON.stringify(localStorage.setItem("category", "House"));
+                // manually navigating bcz of avoiding asyncrounous nature and on click show default listing data
+                navigate("/");
+              }}
+            />
             {/* if user is in hosting homes page we want only logo */}
             {inHostHomesLandingPage ? null : (
               <p className="text-xl text-[#ff385c] font-bold">motel</p>
             )}
-          </Link>
+          </span>
         </div>
         {/* searchbar */}
         {inUserProfile || inUserDashboard || inHostHomesLandingPage ? (

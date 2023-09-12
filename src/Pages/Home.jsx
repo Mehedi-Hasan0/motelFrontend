@@ -4,12 +4,19 @@ import PriceWithTaxCard from "../components/Home/PriceWithTaxCard";
 import { useQuery } from "@tanstack/react-query";
 import { API } from "../backend";
 import axios from "axios";
-import HomePageSkeleton from "../components/HomePageSkeleton";
+import HomePageSkeleton from "../components/skeletonLoading/HomePageSkeleton";
 import ListingPreviewCard from "../components/Home/ListingPreviewCard";
+import { useLocation } from "react-router-dom";
+import { useGetSubCatListing } from "../hooks/useGetSubCatListing";
+import SkeletonLoadingCards from "../components/skeletonLoading/SkeletonLoadingCards";
 
 const Home = () => {
-  const [selectedCategory, setSelectedCategory] = useState("House");
   const [hasScroll, setHasScroll] = useState(false);
+  const category = localStorage.getItem("category");
+  // get listing data based on cat
+  const { isLoading, data } = useGetSubCatListing(category);
+
+  const location = useLocation();
 
   // fetching all listing data
   const allListingData = useQuery({
@@ -17,19 +24,6 @@ const Home = () => {
     queryFn: async () => {
       const res = await axios.get(`${API}house/get_all_listing`);
       return res.data.allListingData;
-    },
-  });
-
-  // fetching listing data with cat
-  const { data: catListing } = useQuery({
-    queryKey: ["catListing"],
-    queryFn: async () => {
-      const res = await axios.get(`${API}house/get_listing_with_cat`, {
-        category: selectedCategory,
-      });
-      console.log(res, "catListing");
-
-      return res;
     },
   });
 
@@ -52,6 +46,23 @@ const Home = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // saving category to local storage if the url has the category then save that otherwise default  will be house
+    if (location.search.includes("category")) {
+      const catValue = location.search.split("=");
+      if (catValue[1].includes("%20")) {
+        const removeSpaceValue = location.search
+          .split("=")[1]
+          .replace(/%20/g, " ");
+        JSON.stringify(localStorage.setItem("category", removeSpaceValue));
+      } else {
+        JSON.stringify(localStorage.setItem("category", catValue[1]));
+      }
+    } else {
+      JSON.stringify(localStorage.setItem("category", "House"));
+    }
+  }, [location.search]);
+
   if (allListingData.isLoading) {
     return <HomePageSkeleton />;
   }
@@ -64,11 +75,7 @@ const Home = () => {
         }`}
       >
         {/* categories */}
-        <Category
-          styleGrid={"col-span-9"}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
+        <Category styleGrid={"col-span-9"} />
         {/* taxes toggle card */}
         <PriceWithTaxCard
           style={
@@ -77,21 +84,51 @@ const Home = () => {
         />
       </section>
       {/* house listing data section */}
-      <section className=" py-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 mx-auto gap-5">
-        {allListingData.data &&
-          allListingData.data.length !== 0 &&
-          allListingData.data.map((listing) => {
-            return (
-              // this will be link to see full details of the listing
-              <div
-                key={listing._id}
-                className=" flex flex-col gap-3 rounded-xl w-[264px] "
-              >
-                <ListingPreviewCard listingData={listing} />
-              </div>
-            );
-          })}
-      </section>
+      {/* if sub cat listing data is loading else */}
+      {isLoading ? (
+        <div>
+          <SkeletonLoadingCards />
+        </div>
+      ) : (
+        <>
+          <section className=" py-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 mx-auto gap-5">
+            {location?.search?.split("=")[1]?.includes("House") ||
+            (location?.pathname === "/" &&
+              !location?.search?.split("?")[1]?.includes("category")) ? (
+              <>
+                {allListingData.data &&
+                  allListingData.data.length !== 0 &&
+                  allListingData.data.map((listing) => {
+                    return (
+                      // this will be link to see full details of the listing
+                      <div
+                        key={listing._id}
+                        className=" flex flex-col gap-3 rounded-xl w-[264px] "
+                      >
+                        <ListingPreviewCard listingData={listing} />
+                      </div>
+                    );
+                  })}
+              </>
+            ) : (
+              <>
+                {data.length !== 0 &&
+                  data?.map((listing) => {
+                    return (
+                      // this will be link to see full details of the listing
+                      <div
+                        key={listing._id}
+                        className=" flex flex-col gap-3 rounded-xl w-[264px] "
+                      >
+                        <ListingPreviewCard listingData={listing} />
+                      </div>
+                    );
+                  })}
+              </>
+            )}
+          </section>
+        </>
+      )}
     </main>
   );
 };
