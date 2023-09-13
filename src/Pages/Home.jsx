@@ -6,7 +6,7 @@ import { API } from "../backend";
 import axios from "axios";
 import HomePageSkeleton from "../components/skeletonLoading/HomePageSkeleton";
 import ListingPreviewCard from "../components/Home/ListingPreviewCard";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useGetSubCatListing } from "../hooks/useGetSubCatListing";
 import SkeletonLoadingCards from "../components/skeletonLoading/SkeletonLoadingCards";
 
@@ -94,6 +94,7 @@ const Home = () => {
         </div>
       ) : (
         <>
+          {/* all listing data fetching */}
           <section className=" py-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 mx-auto gap-5">
             {location?.search?.split("=")[1]?.includes("House") ||
             (location?.pathname === "/" &&
@@ -104,7 +105,8 @@ const Home = () => {
                   allListingData.data.map((listing) => {
                     return (
                       // this will be link to see full details of the listing
-                      <div
+                      <Link
+                        to={`/listing/${listing?._id}`}
                         key={listing._id}
                         className=" flex flex-col gap-3 rounded-xl w-[264px] "
                       >
@@ -112,17 +114,18 @@ const Home = () => {
                           listingData={listing}
                           showBeforeTaxPrice={showBeforeTaxPrice}
                         />
-                      </div>
+                      </Link>
                     );
                   })}
               </>
             ) : (
               <>
+                {/* only cat based listing data fetching */}
                 {data.length !== 0 &&
                   data?.map((listing) => {
                     return (
                       // this will be link to see full details of the listing
-                      <div
+                      <Link
                         key={listing._id}
                         className=" flex flex-col gap-3 rounded-xl w-[264px] "
                       >
@@ -130,7 +133,7 @@ const Home = () => {
                           listingData={listing}
                           showBeforeTaxPrice={showBeforeTaxPrice}
                         />
-                      </div>
+                      </Link>
                     );
                   })}
               </>

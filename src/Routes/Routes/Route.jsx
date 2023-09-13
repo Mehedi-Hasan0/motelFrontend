@@ -28,6 +28,7 @@ import Legal from "../../Pages/ListingHouseFinalStep/Legal";
 import Receipt from "../../Pages/ListingHouseFinalStep/Receipt";
 import Thankyou from "../../Pages/ListingHouseFinalStep/Thankyou";
 import Home from "../../Pages/Home";
+import ListingDetails from "../../Pages/ListingDetails";
 
 const router = createBrowserRouter([
   {
@@ -39,14 +40,17 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/listing/:id",
+        element: <ListingDetails />,
+        loader: ({ params }) => fetch(`${API}house/listing/${params.id}`),
+      },
+      {
         path: "/users/show/:id",
         element: <UserProfile />,
-        loader: ({ params }) => fetch(`${API}${params._id}`),
       },
       {
         path: "/users/show/:id/editMode=true",
         element: <EditProfile />,
-        loader: ({ params }) => fetch(`${API}${params._id}`),
       },
       {
         path: "/users/dashboard/:id/overview=true",
