@@ -20,6 +20,7 @@ const Navbar = () => {
   const inUserProfile = pathName?.includes("/users/show/");
   const inUserDashboard = pathName?.includes("/users/dashboard/");
   const inHostHomesLandingPage = pathName?.includes("/host/homes");
+  const inListingDetailsPage = pathName?.includes("/listing");
 
   const [popup, setPopup] = useState(false);
 
@@ -49,7 +50,10 @@ const Navbar = () => {
     <nav className="border-b-[1.4px] border-[#f1f1f1] sticky top-0 z-[99] bg-white">
       <div
         className={`xl:px-10 py-4 xl:mx-auto items-center ${
-          inUserProfile || inUserDashboard || inHostHomesLandingPage
+          inUserProfile ||
+          inUserDashboard ||
+          inHostHomesLandingPage ||
+          inListingDetailsPage
             ? " max-w-screen-xl"
             : " max-w-screen-2xl"
         }
