@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { AiFillStar } from "react-icons/ai";
 
-const ListingPreviewCard = ({ listingData }) => {
+const ListingPreviewCard = ({ listingData, showBeforeTaxPrice }) => {
   return (
     <>
       <div className=" h-[277px] overflow-hidden rounded-xl">
@@ -18,6 +18,12 @@ const ListingPreviewCard = ({ listingData }) => {
             {listingData?.location?.city},{" "}
             {listingData?.location?.country?.name}
           </p>
+          {showBeforeTaxPrice && (
+            <p className="text-sm text-[#717171]">
+              Before tax ${listingData?.priceBeforeTaxes}{" "}
+              <span className=" font-normal">night</span>
+            </p>
+          )}
           <p className="text-sm text-[#222222] font-semibold">
             ${listingData?.basePrice}{" "}
             <span className=" font-normal">night</span>

@@ -12,6 +12,8 @@ import SkeletonLoadingCards from "../components/skeletonLoading/SkeletonLoadingC
 
 const Home = () => {
   const [hasScroll, setHasScroll] = useState(false);
+  //  before tax price state
+  const [showBeforeTaxPrice, setShowBeforeTaxPrice] = useState(false);
   const category = localStorage.getItem("category");
   // get listing data based on cat
   const { isLoading, data } = useGetSubCatListing(category);
@@ -81,6 +83,7 @@ const Home = () => {
           style={
             " col-span-3 border-[#e2e2e2] border rounded-xl h-14 flex justify-around items-center"
           }
+          setShowBeforeTaxPrice={setShowBeforeTaxPrice}
         />
       </section>
       {/* house listing data section */}
@@ -105,7 +108,10 @@ const Home = () => {
                         key={listing._id}
                         className=" flex flex-col gap-3 rounded-xl w-[264px] "
                       >
-                        <ListingPreviewCard listingData={listing} />
+                        <ListingPreviewCard
+                          listingData={listing}
+                          showBeforeTaxPrice={showBeforeTaxPrice}
+                        />
                       </div>
                     );
                   })}
@@ -120,7 +126,10 @@ const Home = () => {
                         key={listing._id}
                         className=" flex flex-col gap-3 rounded-xl w-[264px] "
                       >
-                        <ListingPreviewCard listingData={listing} />
+                        <ListingPreviewCard
+                          listingData={listing}
+                          showBeforeTaxPrice={showBeforeTaxPrice}
+                        />
                       </div>
                     );
                   })}
