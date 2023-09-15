@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import ListingTitle from "../components/ListingDetails/ListingTitle";
 import ListingsPhotos from "../components/ListingDetails/ListingsPhotos";
 import ListingDescriptions from "../components/ListingDetails/ListingDescriptions";
+import ReservationCard from "../components/ListingDetails/ReservationCard";
 
 const ListingDetails = () => {
   const data = useLoaderData();
@@ -16,16 +17,18 @@ const ListingDetails = () => {
         {/* listing photos */}
         <ListingsPhotos listingData={listingData} />
       </section>
-      <section className=" grid grid-cols-5 gap-5 pt-16">
+      <section className=" grid grid-cols-6 gap-x-20 pt-16">
         {/* listings description and details */}
-        <div className=" col-span-3 flex flex-col">
+        <div className=" col-span-4 flex flex-col">
           <ListingDescriptions
             listingData={listingData}
             author={listedAuthor}
           />
         </div>
         {/* reservations of the listing */}
-        <div className=" col-span-2"> </div>
+        <div className=" col-span-2 min-h-[600px]">
+          <ReservationCard listingData={listingData} />
+        </div>
       </section>
     </main>
   );
