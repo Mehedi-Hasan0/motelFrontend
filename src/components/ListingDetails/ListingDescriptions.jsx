@@ -43,7 +43,7 @@ const ListingDescriptions = ({ listingData, author }) => {
       </div>
       {/* modal button */}
       <button
-        className=" flex pt-7 underline text-black font-medium items-center gap-1"
+        className=" flex pt-7 underline text-black font-medium items-center gap-1 max-w-[120px]"
         onClick={() => document.getElementById("listing_modal").showModal()}
       >
         Show more
