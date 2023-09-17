@@ -37,7 +37,6 @@ const ListingDescriptions = ({ listingData, author }) => {
               </p>
             </div>
           )}
-          <Map latAndLong={[24, 77]} />
         </div>
       </div>
       <hr className=" h-[1.2px] w-full bg-[#dddddd] my-8" />
@@ -86,7 +85,7 @@ const ListingDescriptions = ({ listingData, author }) => {
         </h2>
         {/* map */}
         <div className=" w-full min-h-[400px]">
-          <Map latAndLong={latLong} key="listingMap" />
+          <Map latAndLong={latLong} zoom={6} key="listingMap" />
         </div>
       </div>
 

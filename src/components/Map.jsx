@@ -11,7 +11,7 @@ const customIcon = new Icon({
   popupAnchor: [0, -32],
 });
 
-const Map = ({ latAndLong }) => {
+const Map = ({ latAndLong, zoom }) => {
   const mapKey = latAndLong ? `${latAndLong[0]}-${latAndLong[1]}` : "default";
 
   const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -22,7 +22,7 @@ const Map = ({ latAndLong }) => {
     <MapContainer
       key={mapKey}
       center={latAndLong.length !== 0 ? latAndLong : [24, 90]}
-      zoom={4}
+      zoom={zoom ? zoom : 4}
       scrollWheelZoom={false}
       className="w-full rounded-lg h-full"
     >
