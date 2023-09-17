@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiFillStar, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { DateRange } from "react-date-range";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
@@ -23,6 +23,7 @@ const ReservationCard = ({ listingData }) => {
   // guests number is calculated here
   const [guestsNumber, setGuestsNumber] = useState(1);
   const [childrenNumber, setChildrenNumber] = useState(0);
+  const [totalGuest, setTotalGuest] = useState(guestsNumber + childrenNumber);
   // const [showDropdown, setShowDropdown] = useState(false);
 
   // dates saving and showing to the dateRange calendar calculation here
@@ -33,6 +34,11 @@ const ReservationCard = ({ listingData }) => {
       key: "selection",
     },
   ]);
+
+  // calculating how many nights guest is staying
+  const [nightsStaying, setNightStaying] = useState(1);
+
+  console.log(nightsStaying, typeof nightsStaying, "nights");
 
   // formatted dates to save in the db
   const formattedStartDate = selectedDates[0]?.startDate?.toISOString();
@@ -53,13 +59,25 @@ const ReservationCard = ({ listingData }) => {
     setSelectedDates([ranges.selection]);
   };
 
+  // side effects and logic
+  useEffect(() => {
+    const daysInMiliSec = Math.ceil(
+      selectedDates[0]?.endDate - selectedDates[0]?.startDate
+    );
+    setNightStaying(daysInMiliSec / (1000 * 60 * 60 * 24));
+  }, [selectedDates]);
+
+  useEffect(() => {
+    setTotalGuest(guestsNumber + childrenNumber);
+  }, [guestsNumber, childrenNumber]);
+
   return (
     <>
       <div className=" w-full min-h-[315px] rounded-xl border border-[#dddddd] sticky top-32 shadow-customShadow p-6">
         <div className=" flex felx-row justify-between items-start">
           <div className=" flex flex-col">
             <h3 className=" text-[22px] text-[#222222] font-semibold">
-              ${listingData?.priceBeforeTaxes}
+              ${listingData?.basePrice}
             </h3>
             <p className=" text-[#313131] text-sm">Total before taxes</p>
           </div>
@@ -120,7 +138,7 @@ const ReservationCard = ({ listingData }) => {
                     guests
                   </p>
                   <p className=" text-sm text-[#222222]">
-                    {guestsNumber} {guestsNumber === 1 ? "guest" : "guests"}
+                    {totalGuest} {totalGuest === 1 ? "guest" : "guests"}
                   </p>
                 </div>
                 <div>
@@ -155,7 +173,8 @@ const ReservationCard = ({ listingData }) => {
                     onClick={() => {
                       setGuestsNumber((prev) => prev + 1);
                     }}
-                    className={` p-2 rounded-full border border-[#c0c0c0] opacity-90`}
+                    disabled={listingData?.floorPlan?.guests === totalGuest}
+                    className={` p-2 rounded-full border border-[#c0c0c0] opacity-90 disabled:cursor-not-allowed disabled:opacity-20`}
                   >
                     <AiOutlinePlus size={16} />
                   </button>
@@ -188,7 +207,8 @@ const ReservationCard = ({ listingData }) => {
                     onClick={() => {
                       setChildrenNumber((prev) => prev + 1);
                     }}
-                    className=" p-2 rounded-full border border-[#c0c0c0] opacity-90"
+                    disabled={listingData?.floorPlan?.guests === totalGuest}
+                    className=" p-2 rounded-full border border-[#c0c0c0] opacity-90 disabled:cursor-not-allowed disabled:opacity-20"
                   >
                     <AiOutlinePlus size={16} />
                   </button>
