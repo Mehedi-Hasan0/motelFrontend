@@ -1,5 +1,6 @@
-import { AiOutlineRight } from "react-icons/ai";
 import ListingDescriptionPopup from "../popUp/ListingDescriptionPopup";
+import { amenities } from "./amenitiesApi";
+import { AiOutlineRight } from "react-icons/ai";
 
 /* eslint-disable react/prop-types */
 const ListingDescriptions = ({ listingData, author }) => {
@@ -49,6 +50,32 @@ const ListingDescriptions = ({ listingData, author }) => {
         Show more
         <AiOutlineRight size={18} />
       </button>
+
+      <hr className=" h-[1.2px] w-full bg-[#dddddd] my-8" />
+
+      {/* amenities / what's this place is offering */}
+      <div className=" flex flex-col gap-6">
+        <h2 className="text-[22px] text-[#222222] font-medium">
+          What this place offers
+        </h2>
+        <div className=" grid grid-cols-2 gap-y-4">
+          {amenities.map((item, i) => {
+            if (listingData?.amenities?.includes(item?.name)) {
+              return (
+                <div key={i} className=" flex flex-row gap-4 items-center">
+                  <item.svg size={26} opacity={0.8} />
+                  <p className="text-base text-[#222222]">{item?.name}</p>
+                </div>
+              );
+            }
+          })}
+        </div>
+      </div>
+
+      <hr className=" h-[1.2px] w-full bg-[#dddddd] my-8" />
+
+      {/* reviews section */}
+      {listingData?.review ? <></> : <></>}
 
       {/* full description modal */}
       <ListingDescriptionPopup description={listingData?.description} />

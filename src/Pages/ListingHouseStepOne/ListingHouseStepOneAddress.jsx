@@ -1,53 +1,41 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewHouse } from "../../redux/actions/houseActions";
-import { Country } from "country-state-city";
+import { City, Country, State } from "country-state-city";
 import Select from "react-select";
 
 const ListingHouseStepOneAddress = () => {
   const houseData = useSelector((state) => state.house);
-  const [country, setCountry] = useState(null);
-  const [address1, setAddress1] = useState(null);
-  const [address2, setAddress2] = useState(null);
-  const [city, setCity] = useState(null);
-  const [state, setState] = useState(null);
-  const [postCode, setPostCode] = useState(null);
   const dispatch = useDispatch();
 
+  // State to manage form data
+  const [formData, setFormData] = useState({
+    country: "",
+    addressLineOne: "",
+    addressLineTwo: "",
+    city: "",
+    state: "",
+    postCode: "",
+  });
+
   const handleStoreCardData = () => {
-    if (address1) {
-      let locationData = {
-        country: country,
-        addressLineOne: address1,
-        addressLineTwo: address2,
-        city: city,
-        state: state,
-        postCode: postCode,
-      };
+    if (formData.country) {
       dispatch(
         createNewHouse(
           houseData.newHouse?.houseType,
           houseData.newHouse?.privacyType,
-          locationData
+          formData
         )
       );
     }
   };
 
-  const handleAddress1 = (e) => {
-    setAddress1(e.target.value);
-  };
-  const handleAddress2 = (e) => {
-    setAddress2(e.target.value);
-  };
-  const handleCity = (e) => {
-    setCity(e.target.value);
-  };
-  const handleState = (e) => {
-    setState(e.target.value);
-  };
-  const hanldePostCode = (e) => {
-    setPostCode(e.target.value);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   return (
@@ -63,16 +51,13 @@ const ListingHouseStepOneAddress = () => {
         <div className=" flex flex-col gap-5 mt-5">
           <Select
             options={Country.getAllCountries()}
-            getOptionLabel={(options) => {
-              return options["name"];
-            }}
-            getOptionValue={(options) => {
-              return options["name"];
-            }}
-            value={country}
+            getOptionLabel={(options) => options["name"]}
+            getOptionValue={(options) => options["name"]}
+            value={formData.country}
             onChange={(item) => {
-              setCountry(item);
+              setFormData({ ...formData, country: item });
             }}
+            onBlur={handleStoreCardData}
             className=" "
             placeholder=" Country / Region?"
             styles={{
@@ -83,39 +68,72 @@ const ListingHouseStepOneAddress = () => {
               }),
             }}
           />
+          <Select
+            options={State.getStatesOfCountry(formData?.country?.isoCode)}
+            getOptionLabel={(options) => options["name"]}
+            getOptionValue={(options) => options["name"]}
+            value={formData.state}
+            onChange={(item) => {
+              setFormData({ ...formData, state: item });
+            }}
+            onBlur={handleStoreCardData}
+            className=" "
+            placeholder="State / province / territory (if applicable)"
+            styles={{
+              control: (provided) => ({
+                ...provided,
+                padding: "8px", // Custom styling for react select
+                borderRadius: "8px",
+              }),
+            }}
+          />
+          <Select
+            options={City.getCitiesOfState(
+              formData?.state?.countryCode,
+              formData?.state?.isoCode
+            )}
+            getOptionLabel={(options) => options["name"]}
+            getOptionValue={(options) => options["name"]}
+            value={formData.city}
+            onChange={(item) => {
+              setFormData({ ...formData, city: item });
+            }}
+            onBlur={handleStoreCardData}
+            className=" "
+            placeholder="City / village (if applicable)"
+            styles={{
+              control: (provided) => ({
+                ...provided,
+                padding: "8px", // Custom styling for react select
+                borderRadius: "8px",
+              }),
+            }}
+          />
           <input
             type="text"
+            name="addressLineOne"
             placeholder="Address line 1"
             className="input input-bordered w-full p-3"
-            onChange={handleAddress1}
+            value={formData.addressLineOne}
+            onChange={handleInputChange}
             onBlur={handleStoreCardData}
           />
           <input
             type="text"
+            name="addressLineTwo"
             placeholder="Address line 2 (if applicable)"
             className="input input-bordered w-full p-3"
-            onChange={handleAddress2}
-            onBlur={handleStoreCardData}
-          />
-          <input
-            type="text"
-            placeholder="City / village (if applicable)"
-            className="input input-bordered w-full p-3"
-            onChange={handleCity}
-            onBlur={handleStoreCardData}
-          />
-          <input
-            type="text"
-            placeholder="State / province / territory (if applicable)"
-            className="input input-bordered w-full p-3"
-            onChange={handleState}
+            value={formData.addressLineTwo}
+            onChange={handleInputChange}
             onBlur={handleStoreCardData}
           />
           <input
             type="number"
+            name="postCode"
             placeholder="Postal code (if applicable)"
             className="input input-bordered w-full p-3"
-            onChange={hanldePostCode}
+            value={formData.postCode}
+            onChange={handleInputChange}
             onBlur={handleStoreCardData}
           />
         </div>
