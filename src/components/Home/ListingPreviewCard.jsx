@@ -15,7 +15,7 @@ const ListingPreviewCard = ({ listingData, showBeforeTaxPrice }) => {
         {/* listings details */}
         <div className=" flex flex-col gap-1">
           <p className="text-sm text-[#222222] font-medium">
-            {listingData?.location?.city},{" "}
+            {listingData?.location?.city?.name},{" "}
             {listingData?.location?.country?.name}
           </p>
           {showBeforeTaxPrice && (

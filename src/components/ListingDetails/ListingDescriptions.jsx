@@ -1,9 +1,13 @@
 import ListingDescriptionPopup from "../popUp/ListingDescriptionPopup";
+import Map from "../../components/Map";
 import { amenities } from "./amenitiesApi";
 import { AiOutlineRight } from "react-icons/ai";
 
 /* eslint-disable react/prop-types */
 const ListingDescriptions = ({ listingData, author }) => {
+  const latitude = Number(listingData?.location?.city?.latitude);
+  const longitude = Number(listingData?.location?.city?.longitude);
+  const latLong = [latitude, longitude];
   return (
     <>
       <div className=" flex flex-row justify-between items-center max-h-16">
@@ -33,6 +37,7 @@ const ListingDescriptions = ({ listingData, author }) => {
               </p>
             </div>
           )}
+          <Map latAndLong={[24, 77]} />
         </div>
       </div>
       <hr className=" h-[1.2px] w-full bg-[#dddddd] my-8" />
@@ -74,8 +79,19 @@ const ListingDescriptions = ({ listingData, author }) => {
 
       <hr className=" h-[1.2px] w-full bg-[#dddddd] my-8" />
 
+      {/* location of the listing */}
+      <div className=" flex flex-col gap-6">
+        <h2 className="text-[22px] text-[#222222] font-medium">
+          Where you&apos;ll be
+        </h2>
+        {/* map */}
+        <div className=" w-full min-h-[400px]">
+          <Map latAndLong={latLong} key="listingMap" />
+        </div>
+      </div>
+
       {/* reviews section */}
-      {listingData?.review ? <></> : <></>}
+      {/* {listingData?.review ? <></> : <></>} */}
 
       {/* full description modal */}
       <ListingDescriptionPopup description={listingData?.description} />

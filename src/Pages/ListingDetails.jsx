@@ -26,7 +26,7 @@ const ListingDetails = () => {
           />
         </div>
         {/* reservations of the listing */}
-        <div className=" col-span-2 max-h-[700px]">
+        <div className=" col-span-2 max-h-[900px]">
           <ReservationCard listingData={listingData} />
         </div>
       </section>
