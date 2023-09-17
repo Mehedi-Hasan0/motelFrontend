@@ -24,7 +24,7 @@ const Map = ({ latAndLong }) => {
       center={latAndLong.length !== 0 ? latAndLong : [24, 90]}
       zoom={4}
       scrollWheelZoom={false}
-      className="w-full rounded-lg"
+      className="w-full rounded-lg h-full"
     >
       <TileLayer url={url} attribution={attribution} />
       <Marker

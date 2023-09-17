@@ -12,7 +12,7 @@ const MotelYourHome = () => {
       <section className=" grid grid-cols-2 gap-7 pb-10">
         <HouseHostingDetails setLatAndLong={setLatAndLong} />
         {/* map section */}
-        <Map latAndLong={latAndLong} />
+        <Map latAndLong={latAndLong} key="motelMap" />
       </section>
       {/* setup guidelines */}
       <HouseListingGuide />
