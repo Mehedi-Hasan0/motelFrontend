@@ -19,14 +19,14 @@ const ListingDetails = () => {
       </section>
       <section className=" grid grid-cols-6 gap-x-20 pt-16">
         {/* listings description and details */}
-        <div className=" col-span-4 flex flex-col">
+        <div className=" col-span-4 flex flex-col min-h-[800px]">
           <ListingDescriptions
             listingData={listingData}
             author={listedAuthor}
           />
         </div>
         {/* reservations of the listing */}
-        <div className=" col-span-2 min-h-[600px]">
+        <div className=" col-span-2 max-h-[700px]">
           <ReservationCard listingData={listingData} />
         </div>
       </section>
