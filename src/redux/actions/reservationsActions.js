@@ -5,7 +5,8 @@ export const newReservation = (data) => async (dispatch) => {
         checkOut: "",
         nightStaying: "",
         guestNumber: "",
-        price: "",
+        basePrice: "",
+        taxes: ""
     }
     dispatch({
         type: "NEW_RESERVATIONS_DATA",

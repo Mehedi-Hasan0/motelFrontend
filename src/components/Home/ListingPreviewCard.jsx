@@ -20,7 +20,7 @@ const ListingPreviewCard = ({ listingData, showBeforeTaxPrice }) => {
           </p>
           {showBeforeTaxPrice && (
             <p className="text-sm text-[#717171]">
-              Before tax ${listingData?.priceBeforeTaxes}{" "}
+              After tax ${listingData?.priceAfterTaxes}{" "}
               <span className=" font-normal">night</span>
             </p>
           )}
