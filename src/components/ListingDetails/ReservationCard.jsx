@@ -7,6 +7,8 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 // date range selector css
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css";
+import { useDispatch } from "react-redux";
+import { newReservation } from "../../redux/actions/reservationsActions";
 
 /* eslint-disable react/prop-types */
 const ReservationCard = ({ listingData }) => {
@@ -14,17 +16,30 @@ const ReservationCard = ({ listingData }) => {
   const calendarRef = useRef();
   const dropdownRef = useRef();
 
+  const dispatch = useDispatch();
+
   // handling outside click
   const { state: calendarState, setState: setCalendarState } =
     useOutsideClick(calendarRef);
   const { state: showDropdown, setState: setShowDropdown } =
     useOutsideClick(dropdownRef);
 
-  // guests number is calculated here
+  // guests state is here
   const [guestsNumber, setGuestsNumber] = useState(1);
   const [childrenNumber, setChildrenNumber] = useState(0);
   const [totalGuest, setTotalGuest] = useState(guestsNumber + childrenNumber);
   // const [showDropdown, setShowDropdown] = useState(false);
+
+  // pricing state
+  const [reservationBasePrice, setReservationBasePrice] = useState(
+    listingData?.basePrice
+  );
+  const [tax, setTax] = useState(
+    listingData?.priceAfterTaxes - listingData?.basePrice
+  );
+  const [authorEarned, setAuthorEarned] = useState(
+    listingData?.authorEarnedPrice
+  );
 
   // dates saving and showing to the dateRange calendar calculation here
   const [selectedDates, setSelectedDates] = useState([
@@ -59,17 +74,57 @@ const ReservationCard = ({ listingData }) => {
     setSelectedDates([ranges.selection]);
   };
 
+  // calculation of price for reservations
   // side effects and logic
   useEffect(() => {
     const daysInMiliSec = Math.ceil(
       selectedDates[0]?.endDate - selectedDates[0]?.startDate
     );
-    setNightStaying(daysInMiliSec / (1000 * 60 * 60 * 24));
-  }, [selectedDates]);
+    // turning miliseconds into days
+    const calculatedNights = daysInMiliSec / (1000 * 60 * 60 * 24);
+    const finalNights = calculatedNights === 0 ? 1 : calculatedNights;
+    const calculatedBasePrice = listingData?.basePrice * finalNights;
+    // tax is 14%
+    const calculatingTaxes = Math.round((calculatedBasePrice * 14) / 100);
+    // motel service charge is 3%
+    const calculateAuthorEarned =
+      calculatedBasePrice - Math.round((calculatedBasePrice * 3) / 100);
+
+    // setting states
+    setReservationBasePrice(calculatedBasePrice);
+    setTax(calculatingTaxes);
+    setAuthorEarned(calculateAuthorEarned);
+    setNightStaying(calculatedNights);
+  }, [selectedDates, listingData?.basePrice]);
 
   useEffect(() => {
     setTotalGuest(guestsNumber + childrenNumber);
   }, [guestsNumber, childrenNumber]);
+
+  // reservation data
+  useEffect(() => {
+    const data = {
+      listingData,
+      formattedStartDate,
+      formattedEndDate,
+      nightsStaying,
+      totalGuest,
+      reservationBasePrice,
+      tax,
+      authorEarned,
+    };
+    dispatch(newReservation(data));
+  }, [
+    dispatch,
+    listingData,
+    formattedStartDate,
+    formattedEndDate,
+    nightsStaying,
+    totalGuest,
+    reservationBasePrice,
+    tax,
+    authorEarned,
+  ]);
 
   return (
     <>
@@ -77,7 +132,7 @@ const ReservationCard = ({ listingData }) => {
         <div className=" flex felx-row justify-between items-start">
           <div className=" flex flex-col">
             <h3 className=" text-[22px] text-[#222222] font-semibold">
-              ${listingData?.basePrice}
+              {/* ${listingData?.basePrice} */}${reservationBasePrice}
             </h3>
             <p className=" text-[#313131] text-sm">Total before taxes</p>
           </div>
