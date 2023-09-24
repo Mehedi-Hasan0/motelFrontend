@@ -20,6 +20,10 @@ const ListingDetails = () => {
   const listedAuthor = data?.listingAuthor;
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
     async function getListingData() {
       await dispatch(getOneListingRoomsDetails(params.id));
       setIsLoading(false);
