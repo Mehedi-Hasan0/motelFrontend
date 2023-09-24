@@ -21,6 +21,7 @@ const Navbar = () => {
   const inUserDashboard = pathName?.includes("/users/dashboard/");
   const inHostHomesLandingPage = pathName?.includes("/host/homes");
   const inListingDetailsPage = pathName?.includes("/listing");
+  const inBookingPage = pathName?.includes("/book/stays");
 
   const [popup, setPopup] = useState(false);
 
@@ -85,151 +86,166 @@ const Navbar = () => {
             )}
           </span>
         </div>
-        {/* searchbar */}
-        {inUserProfile || inUserDashboard || inHostHomesLandingPage ? (
-          // if user is in dahsboard
-          <div>{inUserDashboard && <MiniNavbar />} </div>
-        ) : (
-          <div className="mx-auto">
-            <div className="border-[1px] border-[#dddddd] rounded-full px-3 py-2 flex items-center shadow hover:shadow-md transition-all cursor-pointer">
-              <input
-                type="search"
-                className=" focus:outline-none pl-2"
-                placeholder="Search for places"
-              />
-              <div className="bg-[#ff385c] rounded-full p-2">
-                <img src={searchIcon} alt="Search hotel" className="w-4" />
-              </div>
-            </div>
-          </div>
-        )}
-        {/* if user is is in the hosting house landing page we want to show different button */}
-
-        {inHostHomesLandingPage ? (
-          <div className=" flex flex-row items-center justify-between gap-4">
-            <p className=" text-[#222222] text-sm font-medium">
-              Ready to Motel it?
-            </p>
-            <Link
-              to="/become-a-host"
-              className=" flex flex-row justify-between items-center gap-2 bg-[#ff385c] hover:bg-[#d90b63] transition-all duration-300 px-3 py-2 rounded-lg"
-            >
-              <img src={house} alt="House setup" className="w-5" />
-              <p className=" font-semibold text-base text-white">Motel setup</p>
-            </Link>
-          </div>
+        {/* if not in the booking page then show the options 👇 */}
+        {inBookingPage ? (
+          <div> </div>
         ) : (
           <>
-            {/* user bar */}
-            <div className="flex justify-end items-center">
-              {!inUserDashboard && (
+            {/* searchbar */}
+            {inUserProfile || inUserDashboard || inHostHomesLandingPage ? (
+              // if user is in dahsboard
+              <div>{inUserDashboard && <MiniNavbar />} </div>
+            ) : (
+              <div className="mx-auto">
+                <div className="border-[1px] border-[#dddddd] rounded-full px-3 py-2 flex items-center shadow hover:shadow-md transition-all cursor-pointer">
+                  <input
+                    type="search"
+                    className=" focus:outline-none pl-2"
+                    placeholder="Search for places"
+                  />
+                  <div className="bg-[#ff385c] rounded-full p-2">
+                    <img src={searchIcon} alt="Search hotel" className="w-4" />
+                  </div>
+                </div>
+              </div>
+            )}
+          </>
+        )}
+        {/* if in the booking page don't show any option 👇  */}
+        {inBookingPage ? (
+          <div> </div>
+        ) : (
+          <>
+            {/* if user is in the hosting house landing page we want to show different button */}
+            {inHostHomesLandingPage ? (
+              <div className=" flex flex-row items-center justify-between gap-4">
+                <p className=" text-[#222222] text-sm font-medium">
+                  Ready to Motel it?
+                </p>
                 <Link
-                  to="/host/homes"
-                  className=" bg-[#ffffff] hover:bg-[#f0f0f0] transition-all rounded-full p-3 cursor-pointer mr-3"
+                  to="/become-a-host"
+                  className=" flex flex-row justify-between items-center gap-2 bg-[#ff385c] hover:bg-[#d90b63] transition-all duration-300 px-3 py-2 rounded-lg"
                 >
-                  <p className="text-sm font-medium text-[#222222]">
-                    Motel your home
+                  <img src={house} alt="House setup" className="w-5" />
+                  <p className=" font-semibold text-base text-white">
+                    Motel setup
                   </p>
                 </Link>
-              )}
-
-              <div
-                className="border-[1px] border-[#dddddd] rounded-full py-1 px-2 flex flex-row gap-3 hover:shadow-md transition-all cursor-pointer relative"
-                onClick={() => {
-                  setShowUserMenu((prevValue) => !prevValue);
-                }}
-              >
-                <img
-                  src={hamburgerMenu}
-                  alt="Motel user menu"
-                  className="w-4"
-                />
-                {user ? (
-                  <p className=" bg-[#222222] text-[#efefef] px-3 py-2 rounded-full text-xs">
-                    {user.name?.firstName?.slice(0, 1)}
-                  </p>
-                ) : (
-                  <img
-                    src={userProfile}
-                    alt="user profile icon"
-                    className="w-8"
-                  />
-                )}
               </div>
-
-              {/* menu items code  */}
-
-              {showUserMenu ? (
-                <>
-                  {!user ? (
-                    <div
-                      ref={userMenuRef}
-                      className="shadow-md absolute right-9 top-[74px] bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
+            ) : (
+              <>
+                {/* user bar */}
+                <div className="flex justify-end items-center">
+                  {!inUserDashboard && (
+                    <Link
+                      to="/host/homes"
+                      className=" bg-[#ffffff] hover:bg-[#f0f0f0] transition-all rounded-full p-3 cursor-pointer mr-3"
                     >
-                      <Link
-                        className="font-medium"
-                        onClick={() => {
-                          setShowUserMenu(false);
-                          setPopup(true);
-                        }}
-                      >
-                        Sign up
-                      </Link>
-                      <Link
-                        onClick={() => {
-                          setShowUserMenu(false);
-                          setPopup(true);
-                        }}
-                      >
-                        Login
-                      </Link>
-                      <hr className="h-[1.5px] bg-[#dddddd] my-1" />
-                      <Link>Motel your home</Link>
-                      <Link>Help</Link>
-                    </div>
-                  ) : (
-                    // logged in user menu
-                    <div
-                      ref={userMenuRef}
-                      className="shadow-md absolute right-9 top-[70px] bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
-                      onClick={() => {
-                        setShowUserMenu((prev) => !prev);
-                      }}
-                    >
-                      {user?.role === "host" || user?.role === "admin" ? (
-                        <Link
-                          to={`/users/dashboard/${user._id}/overview=true`}
-                          onClick={() => {
-                            JSON.stringify(
-                              sessionStorage.setItem("activePage", 1)
-                            );
-                          }}
-                          className="font-medium"
-                        >
-                          Dashboard
-                        </Link>
-                      ) : (
-                        <Link className="font-medium">Notifications</Link>
-                      )}
-                      <Link className="font-medium">Trips</Link>
-                      <Link className="font-medium">Wishlists</Link>
-                      <hr className="h-[1.5px] bg-[#dddddd] my-1" />
-                      <Link>Motel your home</Link>
-                      <Link to={`/users/show/${user._id}`}>Account</Link>
-                      <hr className="h-[1.5px] bg-[#dddddd] my-1" />
-                      <Link>Help</Link>
-                      <Link
-                        onClick={() => {
-                          handleLogout();
-                        }}
-                      >
-                        Log out
-                      </Link>
-                    </div>
+                      <p className="text-sm font-medium text-[#222222]">
+                        Motel your home
+                      </p>
+                    </Link>
                   )}
-                </>
-              ) : null}
-            </div>
+
+                  <div
+                    className="border-[1px] border-[#dddddd] rounded-full py-1 px-2 flex flex-row gap-3 hover:shadow-md transition-all cursor-pointer relative"
+                    onClick={() => {
+                      setShowUserMenu((prevValue) => !prevValue);
+                    }}
+                  >
+                    <img
+                      src={hamburgerMenu}
+                      alt="Motel user menu"
+                      className="w-4"
+                    />
+                    {user ? (
+                      <p className=" bg-[#222222] text-[#efefef] px-3 py-2 rounded-full text-xs">
+                        {user.name?.firstName?.slice(0, 1)}
+                      </p>
+                    ) : (
+                      <img
+                        src={userProfile}
+                        alt="user profile icon"
+                        className="w-8"
+                      />
+                    )}
+                  </div>
+
+                  {/* menu items code  */}
+
+                  {showUserMenu ? (
+                    <>
+                      {!user ? (
+                        <div
+                          ref={userMenuRef}
+                          className="shadow-md absolute right-9 top-[74px] bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
+                        >
+                          <Link
+                            className="font-medium"
+                            onClick={() => {
+                              setShowUserMenu(false);
+                              setPopup(true);
+                            }}
+                          >
+                            Sign up
+                          </Link>
+                          <Link
+                            onClick={() => {
+                              setShowUserMenu(false);
+                              setPopup(true);
+                            }}
+                          >
+                            Login
+                          </Link>
+                          <hr className="h-[1.5px] bg-[#dddddd] my-1" />
+                          <Link>Motel your home</Link>
+                          <Link>Help</Link>
+                        </div>
+                      ) : (
+                        // logged in user menu
+                        <div
+                          ref={userMenuRef}
+                          className="shadow-md absolute right-9 top-[70px] bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
+                          onClick={() => {
+                            setShowUserMenu((prev) => !prev);
+                          }}
+                        >
+                          {user?.role === "host" || user?.role === "admin" ? (
+                            <Link
+                              to={`/users/dashboard/${user._id}/overview=true`}
+                              onClick={() => {
+                                JSON.stringify(
+                                  sessionStorage.setItem("activePage", 1)
+                                );
+                              }}
+                              className="font-medium"
+                            >
+                              Dashboard
+                            </Link>
+                          ) : (
+                            <Link className="font-medium">Notifications</Link>
+                          )}
+                          <Link className="font-medium">Trips</Link>
+                          <Link className="font-medium">Wishlists</Link>
+                          <hr className="h-[1.5px] bg-[#dddddd] my-1" />
+                          <Link>Motel your home</Link>
+                          <Link to={`/users/show/${user._id}`}>Account</Link>
+                          <hr className="h-[1.5px] bg-[#dddddd] my-1" />
+                          <Link>Help</Link>
+                          <Link
+                            onClick={() => {
+                              handleLogout();
+                            }}
+                          >
+                            Log out
+                          </Link>
+                        </div>
+                      )}
+                    </>
+                  ) : null}
+                </div>
+              </>
+            )}
           </>
         )}
       </div>

@@ -67,8 +67,8 @@ const ReservationCard = ({ listingData }) => {
 
   console.log(
     new Date(formattedStartDate).toLocaleDateString(),
-    formattedEndDate,
-    selectedDates,
+    localStartDate,
+    localEndDate,
     "dates"
   );
   // Function to handle date selection
@@ -77,8 +77,13 @@ const ReservationCard = ({ listingData }) => {
   };
 
   // booking function
+  const orderNumber = localStorage.getItem("orderId");
+  const orderId = orderNumber ? orderNumber : 1;
+  console.log(orderId);
   const handleBooking = () => {
-    navigate(`/book/stays/${listingData._id}?booking=1`);
+    navigate(
+      `/book/stays/${listingData._id}?numberOfGuests=${totalGuest}&checkin=${localStartDate}&checkout=${localEndDate}&orderId=${orderId}`
+    );
   };
 
   // calculation of price for reservations
