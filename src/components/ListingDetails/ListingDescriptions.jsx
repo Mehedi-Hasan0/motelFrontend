@@ -85,7 +85,7 @@ const ListingDescriptions = ({ listingData, author }) => {
         </h2>
         {/* map */}
         <div className=" w-full min-h-[400px]">
-          <Map latAndLong={latLong} zoom={6} key="listingMap" />
+          {latLong && <Map latAndLong={latLong} zoom={6} key="listingMap" />}
         </div>
       </div>
 
