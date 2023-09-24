@@ -1,7 +1,8 @@
 const initialState = {
     newHouse: null,
     currentListingHouse: null,
-    housesData: []
+    housesData: [],
+    listingDetails: {},
 }
 
 const houseReducer = (state = initialState, { type, payload }) => {
@@ -20,6 +21,11 @@ const houseReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 currentListingHouse: payload
+            }
+        case "GET_LISTING_DETAILS":
+            return {
+                ...state,
+                listingDetails: payload
             }
         default:
             return state

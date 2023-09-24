@@ -29,6 +29,7 @@ import Receipt from "../../Pages/ListingHouseFinalStep/Receipt";
 import Thankyou from "../../Pages/ListingHouseFinalStep/Thankyou";
 import Home from "../../Pages/Home";
 import ListingDetails from "../../Pages/ListingDetails";
+import Book from "../../Pages/Book";
 
 const router = createBrowserRouter([
   {
@@ -40,9 +41,13 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/listing/:id",
+        path: "/rooms/:id",
         element: <ListingDetails />,
         loader: ({ params }) => fetch(`${API}house/listing/${params.id}`),
+      },
+      {
+        path: "/book/stays/:id",
+        element: <Book />,
       },
       {
         path: "/users/show/:id",
