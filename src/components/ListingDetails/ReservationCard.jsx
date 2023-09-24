@@ -9,6 +9,7 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css";
 import { useDispatch } from "react-redux";
 import { newReservation } from "../../redux/actions/reservationsActions";
+import { useNavigate } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 const ReservationCard = ({ listingData }) => {
@@ -17,6 +18,7 @@ const ReservationCard = ({ listingData }) => {
   const dropdownRef = useRef();
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // handling outside click
   const { state: calendarState, setState: setCalendarState } =
@@ -72,6 +74,11 @@ const ReservationCard = ({ listingData }) => {
   // Function to handle date selection
   const handleSelect = (ranges) => {
     setSelectedDates([ranges.selection]);
+  };
+
+  // booking function
+  const handleBooking = () => {
+    navigate(`/book/stays/${listingData._id}?booking=1`);
   };
 
   // calculation of price for reservations
@@ -300,7 +307,12 @@ const ReservationCard = ({ listingData }) => {
         {/* reservation button */}
         {!showDropdown && !calendarState && (
           <div className=" mt-6 flex justify-center rounded-md">
-            <button className="capitalize py-3 w-full bg-[#ff385c] hover:bg-[#d90b63] transition duration-200 ease-in text-white font-medium text-sm rounded-md">
+            <button
+              onClick={() => {
+                handleBooking();
+              }}
+              className="capitalize py-3 w-full bg-[#ff385c] hover:bg-[#d90b63] transition duration-200 ease-in text-white font-medium text-sm rounded-md"
+            >
               reserve
             </button>
           </div>

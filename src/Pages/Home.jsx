@@ -106,7 +106,7 @@ const Home = () => {
                     return (
                       // this will be link to see full details of the listing
                       <Link
-                        to={`/listing/${listing?._id}`}
+                        to={`/rooms/${listing?._id}`}
                         key={listing._id}
                         className=" flex flex-col gap-3 rounded-xl w-[264px] "
                       >

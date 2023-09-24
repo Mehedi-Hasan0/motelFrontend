@@ -1,4 +1,4 @@
-import api from "../../backend"
+import api, { API } from "../../backend"
 
 /* eslint-disable no-undef */
 
@@ -12,6 +12,23 @@ export const getHouseDetails = (id) => async (dispatch) => {
             dispatch({
                 type: "CURRENT_NEW_HOUSE",
                 payload: res.data?.houseDetails
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getOneListingRoomsDetails = (id) => async (dispatch) => {
+    try {
+        let listingId = { id: id }
+        const res = await api.post(`${API}house/room_details`, listingId)
+        console.log(res, "resposnse")
+
+        if (res.status === 200) {
+            dispatch({
+                type: "GET_LISTING_DETAILS",
+                payload: res.data
             })
         }
     } catch (error) {

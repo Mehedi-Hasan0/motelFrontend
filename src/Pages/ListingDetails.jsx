@@ -1,14 +1,31 @@
-import { useLoaderData } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ListingTitle from "../components/ListingDetails/ListingTitle";
 import ListingsPhotos from "../components/ListingDetails/ListingsPhotos";
 import ListingDescriptions from "../components/ListingDetails/ListingDescriptions";
 import ReservationCard from "../components/ListingDetails/ReservationCard";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getOneListingRoomsDetails } from "../redux/actions/houseActions";
 
 const ListingDetails = () => {
-  const data = useLoaderData();
+  const [isLoading, setIsLoading] = useState(true);
+  const data = useSelector((state) => state.house.listingDetails);
+  const params = useParams();
+
+  const dispatch = useDispatch();
+
+  // listing details data
   const listingData = data?.listing;
   const listedAuthor = data?.listingAuthor;
-  console.log(data);
+
+  useEffect(() => {
+    async function getListingData() {
+      await dispatch(getOneListingRoomsDetails(params.id));
+      setIsLoading(false);
+    }
+    getListingData();
+  }, [params.id, dispatch]);
+
   return (
     <main className="max-w-screen-xl xl:px-12 mx-auto py-7">
       <section className=" flex flex-col gap-7">
