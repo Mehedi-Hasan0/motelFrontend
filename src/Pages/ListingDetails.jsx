@@ -6,6 +6,7 @@ import ReservationCard from "../components/ListingDetails/ReservationCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getOneListingRoomsDetails } from "../redux/actions/houseActions";
+import ListingDetailsPageSkeleton from "../components/skeletonLoading/ListingDetailsPageSkeleton";
 
 const ListingDetails = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,6 +27,9 @@ const ListingDetails = () => {
     getListingData();
   }, [params.id, dispatch]);
 
+  if (isLoading) {
+    return <ListingDetailsPageSkeleton />;
+  }
   return (
     <main className="max-w-screen-xl xl:px-12 mx-auto py-7">
       <section className=" flex flex-col gap-7">
