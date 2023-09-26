@@ -19,7 +19,7 @@ const Listing = ({ searchParamsObj }) => {
 
   return (
     <div>
-      <div className=" border border-[#dddddd] rounded-xl p-6 flex flex-col sticky top-28 min-h-[200px]">
+      <div className=" border border-[#dddddd] rounded-xl p-6 flex flex-col sticky top-28 min-h-[200px] bg-white">
         {/* listing data */}
         <div className=" flex flex-row gap-2">
           {/* listing img */}
