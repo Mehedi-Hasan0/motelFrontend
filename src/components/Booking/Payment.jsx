@@ -1,8 +1,18 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import { useDateFormatting } from "../../hooks/useDateFormatting";
-import { PaymentElement } from "@stripe/react-stripe-js";
+import {
+  PaymentElement,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
+import { PulseLoader } from "react-spinners";
 
 const Payment = ({ searchParamsObj }) => {
+  const stripe = useStripe();
+  const elements = useElements();
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [message, setMessage] = useState("");
   //   geting the checkin and checkout dates
   const dateObj = {
     checkin: searchParamsObj?.checkin,
@@ -16,6 +26,31 @@ const Payment = ({ searchParamsObj }) => {
   const checkin = searchParamsObj.checkin;
   const checkout = searchParamsObj?.checkout;
   const orderId = searchParamsObj?.orderId;
+
+  // reservation form handler
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("hit, payment");
+
+    if (!stripe || !elements) {
+      return;
+    }
+
+    setIsProcessing(true);
+
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: `${window.location.origin}`,
+      },
+    });
+
+    if (error) {
+      setMessage(error.message);
+    }
+
+    setIsProcessing(false);
+  };
 
   return (
     <div>
@@ -46,7 +81,7 @@ const Payment = ({ searchParamsObj }) => {
         </div>
         <hr className="w-full h-[1.3px] bg-[#dddddd] my-4" />
         {/* payment element */}
-        <form>
+        <form onSubmit={handleSubmit}>
           <h5 className=" text-[22px] text-[#222222] font-medium pb-4">
             Pay with
           </h5>
@@ -73,10 +108,24 @@ const Payment = ({ searchParamsObj }) => {
             responsible for damage.
           </p>
 
+          {/* <button
+            type="submit"
+            disabled={isProcessing}
+            className=" mt-7 px-5 py-3 rounded-md bg-[#ff385c] hover:bg-[#d90b63] transition duration-200 ease-in text-white font-medium cursor-pointer disabled:cursor-not-allowed disabled:opacity-30 disabled:bg-gray-400 min-w-[180px]"
+          >
+            {isProcessing ? (
+              <>
+                <PulseLoader size={8} color="#000000" speedMultiplier={0.5} />
+              </>
+            ) : (
+              "Confirm and pay"
+            )}
+          </button> */}
           <input
             type="submit"
-            value="Confirm and pay"
-            className=" mt-7 px-5 py-3 rounded-md bg-[#ff385c] hover:bg-[#d90b63] transition duration-200 ease-in text-white font-medium cursor-pointer "
+            value={isProcessing ? "Processing" : "Confirm and pay"}
+            disabled={isProcessing}
+            className=" mt-7 px-5 py-3 rounded-md bg-[#ff385c] hover:bg-[#d90b63] transition duration-200 ease-in text-white font-medium cursor-pointer disabled:cursor-not-allowed disabled:opacity-30 disabled:bg-gray-400 min-w-[180px]"
           />
         </form>
       </div>
