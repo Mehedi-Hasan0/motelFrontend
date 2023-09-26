@@ -82,7 +82,7 @@ const ReservationCard = ({ listingData }) => {
   console.log(orderId);
   const handleBooking = () => {
     navigate(
-      `/book/stays/${listingData._id}?numberOfGuests=${totalGuest}&checkin=${localStartDate}&checkout=${localEndDate}&orderId=${orderId}`
+      `/book/stays/${listingData._id}?numberOfGuests=${totalGuest}&nightStaying=${nightsStaying}&checkin=${localStartDate}&checkout=${localEndDate}&orderId=${orderId}`
     );
   };
 
