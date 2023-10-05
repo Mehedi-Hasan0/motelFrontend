@@ -41,7 +41,7 @@ const Payment = ({ searchParamsObj }) => {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}`,
+        return_url: "http://localhost:5173",
       },
     });
 
@@ -51,6 +51,8 @@ const Payment = ({ searchParamsObj }) => {
 
     setIsProcessing(false);
   };
+
+  console.log(message, "message from payment");
 
   return (
     <div>
@@ -108,7 +110,7 @@ const Payment = ({ searchParamsObj }) => {
             responsible for damage.
           </p>
 
-          {/* <button
+          <button
             type="submit"
             disabled={isProcessing}
             className=" mt-7 px-5 py-3 rounded-md bg-[#ff385c] hover:bg-[#d90b63] transition duration-200 ease-in text-white font-medium cursor-pointer disabled:cursor-not-allowed disabled:opacity-30 disabled:bg-gray-400 min-w-[180px]"
@@ -120,13 +122,7 @@ const Payment = ({ searchParamsObj }) => {
             ) : (
               "Confirm and pay"
             )}
-          </button> */}
-          <input
-            type="submit"
-            value={isProcessing ? "Processing" : "Confirm and pay"}
-            disabled={isProcessing}
-            className=" mt-7 px-5 py-3 rounded-md bg-[#ff385c] hover:bg-[#d90b63] transition duration-200 ease-in text-white font-medium cursor-pointer disabled:cursor-not-allowed disabled:opacity-30 disabled:bg-gray-400 min-w-[180px]"
-          />
+          </button>
         </form>
       </div>
     </div>
