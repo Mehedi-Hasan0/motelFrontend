@@ -28,15 +28,11 @@ const Book = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getOneListingRoomsDetails(listingId));
-
-    const delayLoading = setTimeout(() => {
+    (async () => {
+      setIsLoading(true);
+      await dispatch(getOneListingRoomsDetails(listingId));
       setIsLoading(false);
-    }, 2000);
-
-    return () => {
-      clearTimeout(delayLoading);
-    };
+    })();
   }, [listingId, dispatch, setIsLoading]);
 
   // stripe provider for elements component like paymaent component
@@ -63,7 +59,7 @@ const Book = () => {
 
   if (isLoading) {
     return (
-      <div className=" flex justify-center items-center w-full h-[50dvh]">
+      <div className=" flex justify-center items-center w-full h-[60dvh]">
         <PropagateLoader color="#565656" speedMultiplier={0.8} />
       </div>
     );
