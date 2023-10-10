@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AiFillStar, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { DateRange } from "react-date-range";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
@@ -10,6 +10,9 @@ import "react-date-range/dist/theme/default.css";
 import { useDispatch } from "react-redux";
 import { newReservation } from "../../redux/actions/reservationsActions";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { API } from "../../backend";
+import { eachDayOfInterval, isWithinInterval, parseISO } from "date-fns";
 
 /* eslint-disable react/prop-types */
 const ReservationCard = ({ listingData }) => {
@@ -30,8 +33,7 @@ const ReservationCard = ({ listingData }) => {
   const [guestsNumber, setGuestsNumber] = useState(1);
   const [childrenNumber, setChildrenNumber] = useState(0);
   const [totalGuest, setTotalGuest] = useState(guestsNumber + childrenNumber);
-  // const [showDropdown, setShowDropdown] = useState(false);
-
+  const [reservations, setReservations] = useState([]);
   // pricing state
   const [reservationBasePrice, setReservationBasePrice] = useState(
     listingData?.basePrice
@@ -82,9 +84,23 @@ const ReservationCard = ({ listingData }) => {
   console.log(orderId);
   const handleBooking = () => {
     navigate(
-      `/book/stays/${listingData._id}?numberOfGuests=${totalGuest}&nightStaying=${nightsStaying}&checkin=${localStartDate}&checkout=${localEndDate}&orderId=${orderId}`
+      `/book/stays/${listingData._id}?numberOfGuests=${totalGuest}&nightStaying=${nightsStaying}&checkin=${formattedStartDate}&checkout=${formattedEndDate}&orderId=${orderId}`
     );
   };
+
+  // getting saved reservations data
+  useEffect(() => {
+    (async () => {
+      const res = await axios.post(`${API}reservations/get_reservations`, {
+        id: listingData?._id,
+      });
+
+      if (res.status === 200) {
+        setReservations(res.data);
+      }
+      console.log(res, "reservation data");
+    })();
+  }, [listingData?._id]);
 
   // calculation of price for reservations
   // side effects and logic
@@ -137,6 +153,39 @@ const ReservationCard = ({ listingData }) => {
     tax,
     authorEarned,
   ]);
+
+  // Calculate the disabled date ranges for each object
+  const disabledDateRanges = reservations?.map((obj) => ({
+    startDate: parseISO(obj.checkIn),
+    endDate: parseISO(obj.checkOut),
+  }));
+
+  // Function to check if a date is disabled
+  const isDateDisabled = (date) => {
+    const isDisabled = disabledDateRanges.some((range) =>
+      isWithinInterval(date, { start: range.startDate, end: range.endDate })
+    );
+
+    console.log(date, isDisabled, "line 169"); // Log date and whether it's disabled
+
+    return isDisabled;
+  };
+
+  console.log(disabledDateRanges);
+
+  // Generate an array of individual dates within disabledDateRanges
+  const disabledDates = disabledDateRanges.reduce((dates, range) => {
+    const startDate = new Date(range.startDate);
+    const endDate = new Date(range.endDate);
+    const currentDate = new Date(startDate);
+
+    while (currentDate <= endDate) {
+      dates.push(new Date(currentDate));
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    return dates;
+  }, []);
 
   return (
     <>
@@ -336,7 +385,8 @@ const ReservationCard = ({ listingData }) => {
               onChange={handleSelect}
               moveRangeOnFirstSelection={false}
               ranges={selectedDates}
-              // disabledDates={bookedDates}
+              disabledDates={disabledDates}
+              // isDayBlocked={(date) => isDateDisabled(date)}
               direction="vertical"
               showDateDisplay={false}
               minDate={new Date()}

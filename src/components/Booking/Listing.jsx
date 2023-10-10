@@ -13,9 +13,19 @@ const Listing = ({ searchParamsObj }) => {
 
   const nightStaying = searchParamsObj?.nightStaying;
 
-  const basePrice = parseInt(nightStaying) * listingData?.basePrice;
-  const tax = Math.round((basePrice * 14) / 100);
+  const basePrice =
+    parseInt(nightStaying) !== 0
+      ? parseInt(nightStaying) * listingData?.basePrice
+      : listingData?.basePrice;
+
+  const tax =
+    basePrice !== 0
+      ? Math.round((basePrice * 14) / 100)
+      : Math.round((listingData?.basePrice * 14) / 100);
+
   const totalPrice = basePrice + tax;
+
+  console.log(listingData, "lis");
 
   return (
     <div>
@@ -55,8 +65,14 @@ const Listing = ({ searchParamsObj }) => {
             Your total
           </h5>
           <span className=" flex flex-row justify-between text-base text-[#222]">
-            <p>{nightStaying} nights</p>
-            <p>${basePrice}</p>
+            {/* calculating night/day */}
+            {parseInt(nightStaying) === 0 ? (
+              <p>1 day</p>
+            ) : (
+              <p>{nightStaying} nights</p>
+            )}
+            {/* calculating price */}
+            <p>${basePrice === 0 ? listingData?.basePrice : basePrice}</p>
           </span>
           <span className=" flex flex-row justify-between text-base text-[#222]">
             <p>Taxes</p>
