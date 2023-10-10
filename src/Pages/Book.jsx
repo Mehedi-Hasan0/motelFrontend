@@ -6,7 +6,7 @@ import Listing from "../components/Booking/Listing";
 import { API } from "../backend";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { PropagateLoader } from "react-spinners";
+import { FadeLoader } from "react-spinners";
 import { useDispatch } from "react-redux";
 import { getOneListingRoomsDetails } from "../redux/actions/houseActions";
 
@@ -44,6 +44,7 @@ const Book = () => {
   }, []);
 
   useEffect(() => {
+    // making payment calls
     fetch(`${API}reservations/create_payment_intent`, {
       method: "POST",
       body: JSON.stringify({}),
@@ -60,37 +61,37 @@ const Book = () => {
   if (isLoading) {
     return (
       <div className=" flex justify-center items-center w-full h-[60dvh]">
-        <PropagateLoader color="#565656" speedMultiplier={0.8} />
+        <FadeLoader color="#000" />
       </div>
     );
   }
 
   return (
     <main className=" max-w-screen-2xl xl:px-12 mx-auto py-7 xl:py-20">
-      <div className=" flex flex-row gap-3 items-center">
-        <div
-          onClick={() => {
-            navigate(-1);
-          }}
-          className=" p-2 rounded-full hover:bg-[#f1f1f1] cursor-pointer transition duration-200 ease-in"
-        >
-          <MdKeyboardArrowLeft size={28} />
-        </div>
-        <h2 className=" text-[32px] text-[#222222] font-medium">
-          Confirm and pay
-        </h2>
-      </div>
-      {/* reservations data */}
-      <section className=" grid grid-cols-2 gap-20 pt-10 px-10">
-        {/* left side data => reservations data */}
-        {stripePromise && clientSecret && (
-          <Elements stripe={stripePromise} options={{ clientSecret }}>
+      {stripePromise && clientSecret && (
+        <Elements stripe={stripePromise} options={{ clientSecret }}>
+          <div className=" flex flex-row gap-3 items-center">
+            <div
+              onClick={() => {
+                navigate(-1);
+              }}
+              className=" p-2 rounded-full hover:bg-[#f1f1f1] cursor-pointer transition duration-200 ease-in"
+            >
+              <MdKeyboardArrowLeft size={28} />
+            </div>
+            <h2 className=" text-[32px] text-[#222222] font-medium">
+              Confirm and pay
+            </h2>
+          </div>
+          {/* reservations data */}
+          <section className=" grid grid-cols-2 gap-20 pt-10 px-10">
+            {/* left side data => reservations data */}
             <Payment searchParamsObj={searchParamsObj} />
-          </Elements>
-        )}
-        {/* right side data => listing details */}
-        <Listing searchParamsObj={searchParamsObj} />
-      </section>
+            {/* right side data => listing details */}
+            <Listing searchParamsObj={searchParamsObj} />
+          </section>
+        </Elements>
+      )}
     </main>
   );
 };

@@ -7,8 +7,16 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import { PulseLoader } from "react-spinners";
+import { useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 
 const Payment = ({ searchParamsObj }) => {
+  const newReservationData = useSelector(
+    (state) => state.reservations?.newReservationsData
+  );
+  const listingData = useSelector(
+    (state) => state.house.listingDetails.listing
+  );
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -22,15 +30,23 @@ const Payment = ({ searchParamsObj }) => {
   //   dates
   const formattedDates = useDateFormatting(dateObj);
   //   reservation data
-  const guestNumber = searchParamsObj?.numberOfGuests;
-  const checkin = searchParamsObj.checkin;
-  const checkout = searchParamsObj?.checkout;
-  const orderId = searchParamsObj?.orderId;
+  const guestNumber = newReservationData
+    ? newReservationData.guestNumber
+    : searchParamsObj?.numberOfGuests;
+  const checkin = newReservationData
+    ? newReservationData?.checkIn
+    : searchParamsObj.checkin;
+  const checkout = newReservationData
+    ? newReservationData?.checkOut
+    : searchParamsObj?.checkout;
+  const nightStaying = newReservationData
+    ? newReservationData?.nightStaying
+    : searchParamsObj?.nightStaying;
+  const orderId = Math.round(Math.random() * 10000000000);
 
   // reservation form handler
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("hit, payment");
 
     if (!stripe || !elements) {
       return;
@@ -41,18 +57,17 @@ const Payment = ({ searchParamsObj }) => {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "http://localhost:5173",
+        return_url: `${window.location.origin}/payment-confirmed?guestNumber=${guestNumber}&checkIn=${checkin}&checkOut=${checkout}&listingId=${listingData?._id}&authorId=${listingData?.author}&nightStaying=${nightStaying}&orderId=${orderId}`,
       },
     });
 
     if (error) {
       setMessage(error.message);
+      toast.error("Payment failed. Try again!");
     }
 
     setIsProcessing(false);
   };
-
-  console.log(message, "message from payment");
 
   return (
     <div>
@@ -65,21 +80,13 @@ const Payment = ({ searchParamsObj }) => {
             <p className="font-medium">Dates</p>
             <p>{formattedDates}</p>
           </span>
-          <p className=" text-base text-[#222222] font-medium underline">
-            Edit
-          </p>
-        </div>
-        {/* guests */}
-        <div className=" flex flex-row justify-between">
+          {/* guests */}
           <span className="text-base text-[#222222]">
             <p className="font-medium">Guests</p>
             <p>
               {guestNumber} {guestNumber === "1" ? "guest" : "guests"}
             </p>
           </span>
-          <p className=" text-base text-[#222222] font-medium underline">
-            Edit
-          </p>
         </div>
         <hr className="w-full h-[1.3px] bg-[#dddddd] my-4" />
         {/* payment element */}

@@ -30,6 +30,7 @@ import Thankyou from "../../Pages/ListingHouseFinalStep/Thankyou";
 import Home from "../../Pages/Home";
 import ListingDetails from "../../Pages/ListingDetails";
 import Book from "../../Pages/Book";
+import PaymentConfirmed from "../../Pages/PaymentConfirmed";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "/users/dashboard/:id/admin/addcategories=true",
         element: <AddCategories />,
+      },
+      {
+        path: "/payment-confirmed",
+        element: <PaymentConfirmed />,
       },
     ],
   },
