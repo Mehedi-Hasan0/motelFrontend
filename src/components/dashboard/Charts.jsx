@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -8,30 +10,71 @@ import {
   Tooltip,
 } from "recharts";
 
-const data = [
-  { name: "Jan", earned: 200 },
-  { name: "Feb", earned: 147 },
-  { name: "Mar", earned: 130 },
-  { name: "Apr", earned: 90 },
-  { name: "May", earned: 30 },
-  { name: "Jun", earned: 120 },
-  { name: "Jul", earned: 190 },
-  { name: "Aug", earned: 60 },
-  { name: "Sep", earned: 52 },
-  { name: "Oct", earned: 87 },
-  { name: "Nov", earned: 91 },
-  { name: "Dec", earned: 65 },
-];
-
 const yAxisData = (value) => `$${value}`;
 
-const Charts = () => {
+const Charts = ({ reservations }) => {
+  const [monthlyEarnings, setMonthlyEarnings] = useState(Array(12)?.fill(0));
+
+  // useEffect(() => {
+  //   reservations?.forEach((obj) => {
+  //     const checkInDate = new Date(obj.checkIn);
+  //     const month = checkInDate.getMonth(); // Get the month (0-11)
+
+  //     // Accumulate earnings for the month
+  //     const updatedEarnings = [...monthlyEarnings];
+  //     updatedEarnings[month] += obj.authorEarnedPrice;
+  //     setMonthlyEarnings(updatedEarnings);
+  //   });
+  // }, [reservations]);
+
+  useEffect(() => {
+    if (reservations) {
+      const currentYear = new Date().getFullYear();
+      const filteredReservations = reservations.filter((obj) => {
+        const checkInDate = new Date(obj.checkIn);
+        return checkInDate.getFullYear() === currentYear;
+      });
+
+      const updatedEarnings = Array(12).fill(0);
+
+      filteredReservations.forEach((obj) => {
+        const checkInDate = new Date(obj.checkIn);
+        const month = checkInDate.getMonth();
+        updatedEarnings[month] += obj.authorEarnedPrice;
+      });
+
+      setMonthlyEarnings(updatedEarnings);
+    }
+  }, [reservations]);
+
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const resultArray = months.map((month, index) => ({
+    name: month,
+    earned: monthlyEarnings[index],
+  }));
+
+  console.log(resultArray, " result array");
+
   return (
     <ResponsiveContainer width="100%">
       <BarChart
         // width={400}
         // height={300}
-        data={data}
+        data={resultArray}
         // margin={{ top: 20,, bottom: 5 }}
       >
         <CartesianGrid strokeDasharray="3 3" />

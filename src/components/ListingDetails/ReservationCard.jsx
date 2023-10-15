@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiFillStar, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { DateRange } from "react-date-range";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
@@ -12,7 +12,7 @@ import { newReservation } from "../../redux/actions/reservationsActions";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API } from "../../backend";
-import { eachDayOfInterval, isWithinInterval, parseISO } from "date-fns";
+import { parseISO } from "date-fns";
 
 /* eslint-disable react/prop-types */
 const ReservationCard = ({ listingData }) => {
@@ -159,17 +159,6 @@ const ReservationCard = ({ listingData }) => {
     startDate: parseISO(obj.checkIn),
     endDate: parseISO(obj.checkOut),
   }));
-
-  // Function to check if a date is disabled
-  const isDateDisabled = (date) => {
-    const isDisabled = disabledDateRanges.some((range) =>
-      isWithinInterval(date, { start: range.startDate, end: range.endDate })
-    );
-
-    console.log(date, isDisabled, "line 169"); // Log date and whether it's disabled
-
-    return isDisabled;
-  };
 
   console.log(disabledDateRanges);
 
