@@ -1,27 +1,48 @@
+import { useDispatch, useSelector } from "react-redux";
 import Charts from "../../components/dashboard/Charts";
 import DashboardCards from "../../components/dashboard/DashboardCards";
+import { useEffect, useState } from "react";
+import { getAuthorReservations } from "../../redux/actions/reservationsActions";
+import { removeDuplicates } from "../../hooks/useRemoveDuplicates";
 
 const Overview = () => {
+  const listingReservations = useSelector(
+    (state) => state.reservations.authorReservations
+  );
+  const [reservations, setReservations] = useState([]);
+
+  const dispatch = useDispatch();
+
+  // set reservation to the global store
+  useEffect(() => {
+    dispatch(getAuthorReservations());
+  }, []);
+
+  // remove duplicates and set reservation to state
+  useEffect(() => {
+    setReservations(
+      removeDuplicates(listingReservations, "checkIn", "checkOut")
+    );
+  }, [listingReservations]);
+
+  // calculate total price of the reservations
+  const totalPrice = reservations?.reduce((accumulator, reservation) => {
+    return accumulator + reservation.authorEarnedPrice;
+  }, 0);
+
   return (
     <section className=" max-w-[1200px] mx-auto xl:px-10 py-12">
-      <DashboardCards />
+      <DashboardCards reservations={reservations} totalPrice={totalPrice} />
 
-      <div className=" grid grid-cols-5 gap-x-5 lg:gap-x-10">
-        <div className="bg-white shadow rounded-xl border flex flex-col gap-5 p-7 min-h-[350px] col-span-3">
-          <p className=" text-zinc-800 text-base font-semibold">Overview</p>
+      <div className=" grid">
+        <div className="bg-white shadow rounded-xl border flex flex-col gap-5 p-7 min-h-[350px]">
+          <p className=" text-zinc-800 text-base font-semibold">
+            Overview of earnings
+          </p>
           <>
             {/* dynamic data for charts */}
-            <Charts />
+            <Charts reservations={reservations} />
           </>
-        </div>
-        <div className="col-span-2 bg-white shadow rounded-xl border flex flex-col gap-1 p-7 min-h-[350px] overflow-y-auto">
-          <p className=" text-zinc-800 text-base font-semibold">
-            Recent bookings
-          </p>
-          <p className="text-[#717171] text-sm">
-            You made $0 from recent bookings this month.
-          </p>
-          {/* dynamic data for previous bookings */}
         </div>
       </div>
     </section>
