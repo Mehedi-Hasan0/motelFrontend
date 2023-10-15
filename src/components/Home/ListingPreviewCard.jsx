@@ -2,6 +2,8 @@
 import { AiFillStar } from "react-icons/ai";
 
 const ListingPreviewCard = ({ listingData, showBeforeTaxPrice }) => {
+  const taxes = Math.round((listingData?.basePrice * 14) / 100);
+  const priceAfterTaxes = listingData?.basePrice + taxes;
   return (
     <>
       <div className=" h-[277px] overflow-hidden rounded-xl">
@@ -20,7 +22,7 @@ const ListingPreviewCard = ({ listingData, showBeforeTaxPrice }) => {
           </p>
           {showBeforeTaxPrice && (
             <p className="text-sm text-[#717171]">
-              After tax ${listingData?.priceAfterTaxes}{" "}
+              After tax ${priceAfterTaxes}{" "}
               <span className=" font-normal">night</span>
             </p>
           )}
