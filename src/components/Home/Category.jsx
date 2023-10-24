@@ -18,10 +18,17 @@ const Category = ({ styleGrid }) => {
     // refetching listing based on category
   };
 
+  const breakPoints = [
+    { width: 300, itemsToShow: 3 },
+    { width: 500, itemsToShow: 5 },
+    { width: 768, itemsToShow: 8 },
+  ];
+
   return (
     <div className={` flex flex-row gap-2 ${styleGrid}`}>
       <Carousel
-        itemsToShow={8}
+        // itemsToShow={8}
+        breakPoints={breakPoints}
         pagination={false}
         disableArrowsOnEnd={true}
         itemsToScroll={4}

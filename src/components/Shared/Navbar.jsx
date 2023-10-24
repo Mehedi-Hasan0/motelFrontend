@@ -50,7 +50,7 @@ const Navbar = () => {
   return (
     <nav className="border-b-[1.4px] border-[#f1f1f1] sticky top-0 z-[99] bg-white">
       <div
-        className={`xl:px-10 py-4 xl:mx-auto items-center ${
+        className={`xl:px-10 py-4 xl:mx-auto items-center px-5 ${
           inUserProfile ||
           inUserDashboard ||
           inHostHomesLandingPage ||
@@ -61,7 +61,7 @@ const Navbar = () => {
         ${
           inUserDashboard || inHostHomesLandingPage
             ? "flex flex-row justify-between"
-            : "grid grid-cols-3"
+            : "grid grid-cols-2 lg:grid-cols-3 gap-2"
         }
         ${inHostHomesLandingPage ? " xl:px-20" : ""}
         `}
@@ -96,7 +96,7 @@ const Navbar = () => {
               // if user is in dahsboard
               <div>{inUserDashboard && <MiniNavbar />} </div>
             ) : (
-              <div className="mx-auto">
+              <div className="mx-auto lg:block hidden">
                 <div className="border-[1px] border-[#dddddd] rounded-full px-3 py-2 flex items-center shadow hover:shadow-md transition-all cursor-pointer">
                   <input
                     type="search"
@@ -139,7 +139,7 @@ const Navbar = () => {
                   {!inUserDashboard && (
                     <Link
                       to="/host/homes"
-                      className=" bg-[#ffffff] hover:bg-[#f0f0f0] transition-all rounded-full p-3 cursor-pointer mr-3"
+                      className=" bg-[#ffffff] hover:bg-[#f0f0f0] transition-all rounded-full p-3 cursor-pointer mr-3 md:block hidden"
                     >
                       <p className="text-sm font-medium text-[#222222]">
                         Motel your home
@@ -228,7 +228,7 @@ const Navbar = () => {
                           <Link className="font-medium">Trips</Link>
                           <Link className="font-medium">Wishlists</Link>
                           <hr className="h-[1.5px] bg-[#dddddd] my-1" />
-                          <Link>Motel your home</Link>
+                          <Link to={"/host/homes"}>Motel your home</Link>
                           <Link to={`/users/show/${user._id}`}>Account</Link>
                           <hr className="h-[1.5px] bg-[#dddddd] my-1" />
                           <Link>Help</Link>

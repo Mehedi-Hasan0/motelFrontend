@@ -67,8 +67,6 @@ const Charts = ({ reservations }) => {
     earned: monthlyEarnings[index],
   }));
 
-  console.log(resultArray, " result array");
-
   return (
     <ResponsiveContainer width="100%">
       <BarChart

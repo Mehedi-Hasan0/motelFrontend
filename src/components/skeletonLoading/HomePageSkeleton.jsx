@@ -10,8 +10,8 @@ const HomePageSkeleton = () => {
   ));
   return (
     <>
-      <div className="max-w-screen-2xl xl:px-10 items-center gap-4 mb-10 pt-6 grid grid-cols-12">
-        <div className=" col-span-9 flex flex-row justify-around animate-pulse">
+      <div className="max-w-screen-2xl xl:px-10 items-center gap-4 mb-10 pt-6 grid grid-cols-12 mx-auto">
+        <div className=" col-span-9 lg:flex flex-row justify-around animate-pulse hidden">
           <div className=" bg-[#dddddd] rounded-full w-11 h-11"></div>
           <div className=" bg-[#dddddd] rounded-full w-11 h-11"> </div>
           <div className=" bg-[#dddddd] rounded-full w-11 h-11"> </div>

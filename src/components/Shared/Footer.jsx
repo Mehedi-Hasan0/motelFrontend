@@ -4,7 +4,7 @@ import linkedinIcon from "../../assets/basicIcon/linkedinIcon.svg";
 const Footer = () => {
   return (
     <footer className=" py-12 bg-[#f7f7f7] border-t border-[#dddddd] text-sm text-[#222222] relative bottom-0 z-[20]">
-      <section className=" flex flex-row gap-8 justify-between max-w-screen-2xl mx-auto px-10">
+      <section className=" grid grid-cols-2 md:grid-cols-4 gap-8 justify-between max-w-screen-2xl mx-auto px-10">
         <div className="flex flex-col gap-4 opacity-80">
           <h6 className="font-semibold">Support</h6>
           <p>Help Center</p>
@@ -40,7 +40,7 @@ const Footer = () => {
         </div>
       </section>
       <hr className="bg-[#f7f7f7] mt-10 mb-6" />
-      <section className=" flex flex-row justify-between gap-10 px-20">
+      <section className=" flex flex-row flex-wrap justify-between gap-10 px-5 md:px-10 lg:px-20">
         <div className=" flex flex-row items-center">
           <p>© 2023 Motel, Inc.</p>
           <span className=" p-3">·</span>

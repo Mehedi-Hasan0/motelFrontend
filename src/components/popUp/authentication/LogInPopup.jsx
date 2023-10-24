@@ -49,7 +49,6 @@ const LogInPopup = ({
       });
       const userData = response.data;
       setIsLoading(false);
-      console.log(userData);
 
       if (userData?.success === 0) {
         setShowErrorMessage(true);
@@ -57,7 +56,6 @@ const LogInPopup = ({
         dispatch(userLogIn(userData));
         let accessToken = localStorage.getItem("accessToken");
         let refreshToken = localStorage.getItem("refreshToken");
-        console.log(refreshToken);
 
         if (!accessToken) {
           localStorage.setItem(
@@ -78,6 +76,7 @@ const LogInPopup = ({
           console.log(refreshToken);
           localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
         }
+        window.location.reload();
         setShowLoginPopup(false);
         setDefaultPopup(true);
         setPopup(false);
