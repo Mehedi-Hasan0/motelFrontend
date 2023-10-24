@@ -96,9 +96,15 @@ const Home = () => {
       {/* house listing data section */}
       {/* if sub cat listing data is loading else */}
       {isLoading ? (
-        <div>
-          <SkeletonLoadingCards />
-        </div>
+        <>
+          {window.innerWidth <= 1080 ? (
+            <div className="flex justify-center items-center h-[80dvh]">
+              <FadeLoader color="#000" />;
+            </div>
+          ) : (
+            <SkeletonLoadingCards />
+          )}
+        </>
       ) : (
         <>
           {/* all listing data fetching */}
