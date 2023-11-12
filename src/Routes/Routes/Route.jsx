@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { API } from "../../backend";
 import EditProfile from "../../Pages/UserProfile/EditProfile";
@@ -12,24 +13,64 @@ import ListHouseOverview from "../../Pages/ListHouseOverview";
 import ListHouseStepOne from "../../Pages/ListingHouseStepOne/ListHouseStepOne";
 import ListHouseStepOneStructure from "../../Pages/ListingHouseStepOne/ListHouseStepOneStructure";
 import ListHouseStepOnePlacetype from "../../Pages/ListingHouseStepOne/ListHouseStepOnePlacetype";
-import ListingHouseStepOneAddress from "../../Pages/ListingHouseStepOne/ListingHouseStepOneAddress";
-import ListingHouseStepOneFloorPlan from "../../Pages/ListingHouseStepOne/ListingHouseStepOneFloorPlan";
-import StepTwoOverview from "../../Pages/ListingHouseStepTwo/StepTwoOverview";
-import Amenities from "../../Pages/ListingHouseStepTwo/Amenities";
-import ListingHousePhotos from "../../Pages/ListingHouseStepTwo/ListingHousePhotos";
-import HouseTitle from "../../Pages/ListingHouseStepTwo/HouseTitle";
-import Highlight from "../../Pages/ListingHouseStepTwo/Highlight";
-import Description from "../../Pages/ListingHouseStepTwo/Description";
-import FinalStepOverview from "../../Pages/ListingHouseFinalStep/FinalStepOverview";
-import Visibility from "../../Pages/ListingHouseFinalStep/Visibility";
-import Pricing from "../../Pages/ListingHouseFinalStep/Pricing";
-import Legal from "../../Pages/ListingHouseFinalStep/Legal";
-import Receipt from "../../Pages/ListingHouseFinalStep/Receipt";
-import Thankyou from "../../Pages/ListingHouseFinalStep/Thankyou";
-import Home from "../../Pages/Home";
-import ListingDetails from "../../Pages/ListingDetails";
-import Book from "../../Pages/Book";
-import PaymentConfirmed from "../../Pages/PaymentConfirmed";
+import { FadeLoader } from "react-spinners";
+// import ListingHouseStepOneAddress from "../../Pages/ListingHouseStepOne/ListingHouseStepOneAddress";
+// import ListingHouseStepOneFloorPlan from "../../Pages/ListingHouseStepOne/ListingHouseStepOneFloorPlan";
+// import StepTwoOverview from "../../Pages/ListingHouseStepTwo/StepTwoOverview";
+// import Amenities from "../../Pages/ListingHouseStepTwo/Amenities";
+// import ListingHousePhotos from "../../Pages/ListingHouseStepTwo/ListingHousePhotos";
+// import HouseTitle from "../../Pages/ListingHouseStepTwo/HouseTitle";
+// import Highlight from "../../Pages/ListingHouseStepTwo/Highlight";
+// import Description from "../../Pages/ListingHouseStepTwo/Description";
+// import FinalStepOverview from "../../Pages/ListingHouseFinalStep/FinalStepOverview";
+// import Visibility from "../../Pages/ListingHouseFinalStep/Visibility";
+// import Pricing from "../../Pages/ListingHouseFinalStep/Pricing";
+// import Legal from "../../Pages/ListingHouseFinalStep/Legal";
+// import Receipt from "../../Pages/ListingHouseFinalStep/Receipt";
+// import Thankyou from "../../Pages/ListingHouseFinalStep/Thankyou";
+// import Home from "../../Pages/Home"; = lazy (() => import)
+const ListingHouseStepOneAddress = lazy(() =>
+  import("../../Pages/ListingHouseStepOne/ListingHouseStepOneAddress")
+);
+const ListingHouseStepOneFloorPlan = lazy(() =>
+  import("../../Pages/ListingHouseStepOne/ListingHouseStepOneFloorPlan")
+);
+const StepTwoOverview = lazy(() =>
+  import("../../Pages/ListingHouseStepTwo/StepTwoOverview")
+);
+const Amenities = lazy(() =>
+  import("../../Pages/ListingHouseStepTwo/Amenities")
+);
+const ListingHousePhotos = lazy(() =>
+  import("../../Pages/ListingHouseStepTwo/ListingHousePhotos")
+);
+const HouseTitle = lazy(() =>
+  import("../../Pages/ListingHouseStepTwo/HouseTitle")
+);
+const Home = lazy(() => import("../../Pages/Home"));
+const ListingDetails = lazy(() => import("../../Pages/ListingDetails"));
+// import Book from "../../Pages/Book";
+const Book = lazy(() => import("../../Pages/Book"));
+const PaymentConfirmed = lazy(() => import("../../Pages/PaymentConfirmed"));
+const Thankyou = lazy(() =>
+  import("../../Pages/ListingHouseFinalStep/Thankyou")
+);
+const Receipt = lazy(() => import("../../Pages/ListingHouseFinalStep/Receipt"));
+const Legal = lazy(() => import("../../Pages/ListingHouseFinalStep/Legal"));
+const Pricing = lazy(() => import("../../Pages/ListingHouseFinalStep/Pricing"));
+const Visibility = lazy(() =>
+  import("../../Pages/ListingHouseFinalStep/Visibility")
+);
+const FinalStepOverview = lazy(() =>
+  import("../../Pages/ListingHouseFinalStep/FinalStepOverview")
+);
+const Description = lazy(() =>
+  import("../../Pages/ListingHouseStepTwo/Description")
+);
+const Highlight = lazy(() =>
+  import("../../Pages/ListingHouseStepTwo/Highlight")
+);
+// import PaymentConfirmed from "../../Pages/PaymentConfirmed";
 
 const router = createBrowserRouter([
   {
@@ -38,16 +79,46 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: "/rooms/:id",
-        element: <ListingDetails />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <ListingDetails />
+          </Suspense>
+        ),
         loader: ({ params }) => fetch(`${API}house/listing/${params.id}`),
       },
       {
         path: "/book/stays/:id",
-        element: <Book />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <Book />,
+          </Suspense>
+        ),
       },
       {
         path: "/users/show/:id",
@@ -75,7 +146,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/payment-confirmed",
-        element: <PaymentConfirmed />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <PaymentConfirmed />
+          </Suspense>
+        ),
       },
     ],
   },
@@ -101,59 +182,199 @@ const router = createBrowserRouter([
       },
       {
         path: "/become-a-host/:id/location",
-        element: <ListingHouseStepOneAddress />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <ListingHouseStepOneAddress />
+          </Suspense>
+        ),
       },
       {
         path: "/become-a-host/:id/floor-plan",
-        element: <ListingHouseStepOneFloorPlan />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <ListingHouseStepOneFloorPlan />
+          </Suspense>
+        ),
       },
       {
         path: "/become-a-host/:id/stand-out",
-        element: <StepTwoOverview />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <StepTwoOverview />
+          </Suspense>
+        ),
       },
       {
         path: "/become-a-host/:id/amenities",
-        element: <Amenities />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <Amenities />
+          </Suspense>
+        ),
       },
       {
         path: "/become-a-host/:id/photos",
-        element: <ListingHousePhotos />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <ListingHousePhotos />
+          </Suspense>
+        ),
       },
       {
         path: "/become-a-host/:id/title",
-        element: <HouseTitle />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <HouseTitle />
+          </Suspense>
+        ),
       },
       {
         path: "/become-a-host/:id/highlight",
-        element: <Highlight />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <Highlight />
+          </Suspense>
+        ),
       },
       {
         path: "/become-a-host/:id/description",
-        element: <Description />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <Description />
+          </Suspense>
+        ),
       },
       {
         path: "/become-a-host/:id/finish-step",
-        element: <FinalStepOverview />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <FinalStepOverview />
+          </Suspense>
+        ),
       },
       {
         path: "/become-a-host/:id/visiblity",
-        element: <Visibility />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <Visibility />
+          </Suspense>
+        ),
       },
       {
         path: "/become-a-host/:id/price",
-        element: <Pricing />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <Pricing />
+          </Suspense>
+        ),
       },
       {
         path: "/become-a-host/:id/legal",
-        element: <Legal />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <Legal />
+          </Suspense>
+        ),
       },
       {
         path: "/become-a-host/:id/receipt",
-        element: <Receipt />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <Receipt />
+          </Suspense>
+        ),
       },
       {
         path: "/become-a-host/:id/published",
-        element: <Thankyou />,
+        element: (
+          <Suspense
+            fallback={
+              <div className=" flex justify-center items-center w-full h-[60dvh]">
+                <FadeLoader color="#000" />
+              </div>
+            }
+          >
+            <Thankyou />
+          </Suspense>
+        ),
       },
     ],
   },
