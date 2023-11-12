@@ -57,18 +57,18 @@ const UpcomingReservation = ({ data }) => {
                       </td>
                       {/* see listing btn */}
                       <td className=" px-6 py-4 flex flex-row items-center gap-2">
+                        <p className="text-sm text-[#222222]">
+                          {listing.orderId}
+                        </p>
+                      </td>
+                      {/* order id*/}
+                      <td className=" px-6 py-4 w-[120px]">
                         <Link
                           to={`/rooms/${listing.listingId}`}
                           className=" text-sm text-[#222222] font-medium w-[120px] underline hover:text-blue-500 transition-colors duration-200 ease-in"
                         >
                           See listing
                         </Link>
-                      </td>
-                      {/* order id*/}
-                      <td className=" px-6 py-4 w-[120px]">
-                        <p className="text-sm text-[#222222]">
-                          {listing.orderId}
-                        </p>
                       </td>
                       {/* guest number */}
                       <td className=" px-6 py-4 w-[120px]">

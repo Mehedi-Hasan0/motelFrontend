@@ -10,7 +10,7 @@ const SkeletonLoadingCards = () => {
   ));
 
   return (
-    <div className=" py-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 mx-auto gap-5 max-w-screen-2xl">
+    <div className=" py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mx-auto gap-5 max-w-screen-2xl">
       {/* <SkeletonLoading /> */}
       {cards}
     </div>

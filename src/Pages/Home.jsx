@@ -9,6 +9,7 @@ import ListingPreviewCard from "../components/Home/ListingPreviewCard";
 import { Link, useLocation } from "react-router-dom";
 import { useGetSubCatListing } from "../hooks/useGetSubCatListing";
 import SkeletonLoadingCards from "../components/skeletonLoading/SkeletonLoadingCards";
+import { FadeLoader } from "react-spinners";
 
 const Home = () => {
   const [hasScroll, setHasScroll] = useState(false);
@@ -31,7 +32,6 @@ const Home = () => {
 
   const handleScrollTracking = () => {
     const scrollPosition = window.scrollY;
-
     // checking if we scroll from top
     if (scrollPosition >= 20) {
       setHasScroll(true);
@@ -42,7 +42,6 @@ const Home = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScrollTracking);
-
     return () => {
       window.removeEventListener("scroll", handleScrollTracking);
     };
@@ -66,22 +65,30 @@ const Home = () => {
   }, [location.search]);
 
   if (allListingData.isLoading) {
-    return <HomePageSkeleton />;
+    if (window.innerWidth <= 1080) {
+      return (
+        <div className="flex justify-center items-center h-[80dvh]">
+          <FadeLoader color="#000" />;
+        </div>
+      );
+    } else {
+      return <HomePageSkeleton />;
+    }
   }
 
   return (
-    <main className="max-w-screen-2xl xl:px-10 mx-auto">
+    <main className="max-w-screen-2xl xl:px-10 px-5 sm:px-16 mx-auto">
       <section
-        className={` pt-8 grid grid-cols-12 gap-5 bg-white sticky top-16 z-30 ${
+        className={` pt-8 grid md:grid-cols-12 gap-5 bg-white sticky top-16 z-30 ${
           hasScroll ? " shadow" : " shadow-none"
         }`}
       >
         {/* categories */}
-        <Category styleGrid={"col-span-9"} />
+        <Category styleGrid={"md:col-span-8 lg:col-span-9"} />
         {/* taxes toggle card */}
         <PriceWithTaxCard
           style={
-            " col-span-3 border-[#e2e2e2] border rounded-xl h-14 flex justify-around items-center"
+            " md:col-span-4 lg:col-span-3 border-[#e2e2e2] border rounded-xl h-14 md:flex justify-around items-center hidden"
           }
           setShowBeforeTaxPrice={setShowBeforeTaxPrice}
         />
@@ -89,13 +96,19 @@ const Home = () => {
       {/* house listing data section */}
       {/* if sub cat listing data is loading else */}
       {isLoading ? (
-        <div>
-          <SkeletonLoadingCards />
-        </div>
+        <>
+          {window.innerWidth <= 1080 ? (
+            <div className="flex justify-center items-center h-[80dvh]">
+              <FadeLoader color="#000" />;
+            </div>
+          ) : (
+            <SkeletonLoadingCards />
+          )}
+        </>
       ) : (
         <>
           {/* all listing data fetching */}
-          <section className=" py-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 mx-auto gap-5">
+          <section className=" py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mx-auto gap-x-7 gap-y-10">
             {location?.search?.split("=")[1]?.includes("House") ||
             (location?.pathname === "/" &&
               !location?.search?.split("?")[1]?.includes("category")) ? (
@@ -108,7 +121,7 @@ const Home = () => {
                       <Link
                         to={`/rooms/${listing?._id}`}
                         key={listing._id}
-                        className=" flex flex-col gap-3 rounded-xl w-[264px] "
+                        className=" flex flex-col gap-3 rounded-xl w-full sm:max-w-[300px] md:w-full mx-auto"
                       >
                         <ListingPreviewCard
                           listingData={listing}
@@ -127,7 +140,7 @@ const Home = () => {
                       // this will be link to see full details of the listing
                       <Link
                         key={listing._id}
-                        className=" flex flex-col gap-3 rounded-xl w-[264px] "
+                        className=" flex flex-col gap-3 rounded-xl w-[320px] md:w-[264px] mx-auto"
                       >
                         <ListingPreviewCard
                           listingData={listing}

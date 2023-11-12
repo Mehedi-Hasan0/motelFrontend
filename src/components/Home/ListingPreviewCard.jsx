@@ -6,11 +6,11 @@ const ListingPreviewCard = ({ listingData, showBeforeTaxPrice }) => {
   const priceAfterTaxes = listingData?.basePrice + taxes;
   return (
     <>
-      <div className=" h-[277px] overflow-hidden rounded-xl">
+      <div className=" h-[310px] md:h-[277px] overflow-hidden rounded-xl">
         <img
           src={listingData?.photos[0]}
           alt="Listing images"
-          className=" w-full h-[277px] object-cover object-center rounded-xl hover:scale-110 transition duration-500 ease-in-out cursor-pointer"
+          className=" w-full h-[310px] md:h-[277px] object-cover object-center rounded-xl hover:scale-110 transition duration-500 ease-in-out cursor-pointer"
         />
       </div>
       <div className=" flex flex-row justify-between items-start w-full">
