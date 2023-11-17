@@ -365,7 +365,7 @@ const ReservationCard = ({ listingData }) => {
         {!calendarState ? null : (
           <div
             ref={calendarRef}
-            className=" absolute border-b-[1.2px] border-neutral-200 left-[2px] shadow-md"
+            className=" absolute border-b-[1.2px] border-neutral-200 shadow-md left-[2px] sm:translate-x-[30%] sm:translate-y-[0%] md:translate-x-[-30%] lg:translate-x-[-20%] xl:translate-x-0 xl:translate-y-0"
           >
             <DateRange
               rangeColors={["#262626"]}
