@@ -68,7 +68,7 @@ const Home = () => {
     if (window.innerWidth <= 1080) {
       return (
         <div className="flex justify-center items-center h-[80dvh]">
-          <FadeLoader color="#000" />;
+          <FadeLoader color="#000" />
         </div>
       );
     } else {
@@ -99,7 +99,7 @@ const Home = () => {
         <>
           {window.innerWidth <= 1080 ? (
             <div className="flex justify-center items-center h-[80dvh]">
-              <FadeLoader color="#000" />;
+              <FadeLoader color="#000" />
             </div>
           ) : (
             <SkeletonLoadingCards />
