@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export const API = "http://localhost:5000/";
-// export const API = "https://fierce-life-jacket-frog.cyclic.cloud/";
+// export const API = "http://localhost:5000/";
+export const API = "https://fierce-life-jacket-frog.cyclic.cloud/";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000",
-  // baseURL: "https://fierce-life-jacket-frog.cyclic.cloud",
+  // baseURL: "http://localhost:5000",
+  baseURL: "https://fierce-life-jacket-frog.cyclic.cloud",
 });
 
 api.interceptors.request.use(
