@@ -9,19 +9,23 @@ const SetupCard = ({ heading, subHeading, img }) => {
       <img
         src={img}
         alt="apartment"
-        className={` max-w-xs rounded-lg ${img ? "block" : "hidden"}`}
+        className={` w-[340px] sm:w-[280px] lg:max-w-[300px] 2xl:max-w-[340px] rounded-lg ${
+          img ? "block" : "hidden"
+        }`}
       />
       <div className={`${img ? "" : "flex flex-col gap-2"}`}>
         <h3
           className={` text-[#222222]  font-medium ${
-            img ? " text-center text-xs" : " text-lg"
+            img ? " text-center text-xs md:text-sm xl:text-base" : " text-lg"
           }`}
         >
           {heading}
         </h3>
         <p
           className={`text-[#717171] ${
-            img ? "text-center text-xs" : "text-base"
+            img
+              ? "text-center text-xs md:text-sm xl:text-base"
+              : "text-sm sm:text-base"
           }`}
         >
           {subHeading}
