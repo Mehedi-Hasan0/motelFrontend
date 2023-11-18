@@ -70,7 +70,7 @@ const Book = () => {
     <main className=" max-w-screen-2xl xl:px-12 mx-auto py-7 xl:py-20">
       {stripePromise && clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
-          <div className=" flex flex-row gap-3 items-center">
+          <div className=" flex flex-row gap-3 items-center px-3 md:px-0">
             <div
               onClick={() => {
                 navigate(-1);
@@ -79,16 +79,20 @@ const Book = () => {
             >
               <MdKeyboardArrowLeft size={28} />
             </div>
-            <h2 className=" text-[32px] text-[#222222] font-medium">
+            <h2 className="text-lg sm:text-xl md:text-[32px] text-[#222222] font-medium text-center">
               Confirm and pay
             </h2>
           </div>
           {/* reservations data */}
-          <section className=" grid grid-cols-2 gap-20 pt-10 px-10">
+          <section className=" grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 pt-10 px-8 md:px-10">
             {/* left side data => reservations data */}
-            <Payment searchParamsObj={searchParamsObj} />
+            <div className="order-2 md:order-1">
+              <Payment searchParamsObj={searchParamsObj} />
+            </div>
             {/* right side data => listing details */}
-            <Listing searchParamsObj={searchParamsObj} />
+            <div className="order-1 md:order-2">
+              <Listing searchParamsObj={searchParamsObj} />
+            </div>
           </section>
         </Elements>
       )}

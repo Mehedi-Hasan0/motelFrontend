@@ -36,7 +36,7 @@ const Listing = ({ searchParamsObj }) => {
           <img
             src={listingData?.photos[0]}
             alt="listing houses"
-            className=" rounded-md object-cover w-[124px] h-[106px]"
+            className=" rounded-md object-cover w-[110px] h-[96px] sm:w-[124px] sm:h-[106px]"
           />
           {/* title & desc */}
           <div className=" flex flex-col justify-between">
