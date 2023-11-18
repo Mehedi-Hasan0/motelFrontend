@@ -123,15 +123,15 @@ const Navbar = () => {
             {/* if user is in the hosting house landing page we want to show different button */}
             {inHostHomesLandingPage ? (
               <div className=" flex flex-row items-center justify-between gap-4">
-                <p className=" text-[#222222] text-sm font-medium">
+                <p className=" text-[#222222] text-sm font-medium hidden sm:block">
                   Ready to Motel it?
                 </p>
                 <Link
                   to="/become-a-host"
                   className=" flex flex-row justify-between items-center gap-2 bg-[#ff385c] hover:bg-[#d90b63] transition-all duration-300 px-3 py-2 rounded-lg"
                 >
-                  <img src={house} alt="House setup" className="w-5" />
-                  <p className=" font-semibold text-base text-white">
+                  <img src={house} alt="House setup" className=" w-4 md:w-5" />
+                  <p className=" font-semibold text-sm md:text-base text-white">
                     Motel setup
                   </p>
                 </Link>
