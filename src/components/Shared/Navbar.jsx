@@ -48,7 +48,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="border-b-[1.4px] border-[#f1f1f1] sticky top-0 z-[99] bg-white">
+    <nav
+      className={`border-b-[1.4px] border-[#f1f1f1] sticky top-0 z-[99] bg-white ${
+        inBookingPage && "hidden md:block"
+      }`}
+    >
       <div
         className={`xl:px-10 py-4 xl:mx-auto items-center px-5 ${
           inUserProfile ||
