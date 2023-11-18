@@ -70,7 +70,7 @@ const Book = () => {
     <main className=" max-w-screen-2xl xl:px-12 mx-auto py-7 xl:py-20">
       {stripePromise && clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
-          <div className=" flex flex-row gap-3 items-center px-3 md:px-0">
+          <div className=" flex flex-row gap-3 items-center px-3 md:px-5">
             <div
               onClick={() => {
                 navigate(-1);
