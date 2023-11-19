@@ -45,11 +45,11 @@ const Legal = () => {
     <>
       <div className=" flex flex-col max-w-screen-sm mx-auto my-6 min-h-[70vh]">
         <div>
-          <h1 className=" text-[#222222] text-[32px] font-semibold">
+          <h1 className=" text-[#222222] text-3xl sm:text-[32px] font-semibold">
             Just one last step!
           </h1>
           <div className="mt-5 flex flex-row items-center gap-2">
-            <p className="text-lg text-[#222222] font-medium">
+            <p className="text-base sm:text-lg text-[#222222] font-medium">
               Does your place have any of these?
             </p>
             <div
@@ -60,7 +60,7 @@ const Legal = () => {
             </div>
           </div>
         </div>
-        <div className=" mt-6 flex flex-col gap-6 w-full min-w-[400px]">
+        <div className=" mt-6 flex flex-col gap-6 w-full sm:min-w-[400px]">
           <div className="flex flex-row justify-between items-center">
             <label htmlFor="checkbox1" className=" cursor-pointer">
               Security camera(s)
@@ -99,8 +99,10 @@ const Legal = () => {
         <hr className="h-[1px] bg-[#dddddd] my-12" />
 
         <div className=" opacity-60 text-[#222222]">
-          <h6 className=" text-xl font-semibold">Important things to know </h6>
-          <p className=" text-sm mt-2">
+          <h6 className=" text-lg sm:text-xl font-semibold">
+            Important things to know{" "}
+          </h6>
+          <p className="text-xs sm:text-sm mt-2">
             Be sure to comply with your local laws and review Motel&apos;s
             nondiscrimination policy and guest and Host fees.
           </p>
