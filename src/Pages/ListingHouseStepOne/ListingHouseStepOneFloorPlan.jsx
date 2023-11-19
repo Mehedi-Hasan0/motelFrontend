@@ -46,12 +46,12 @@ const ListingHouseStepOneFloorPlan = () => {
     newHouseData?.privacyType,
   ]);
   return (
-    <section className=" flex flex-col gap-10 max-w-screen-md mx-auto my-6 2xl:h-[80vh]">
+    <section className=" flex flex-col gap-10 max-w-screen-md mx-auto my-6 min-h-[70dvh] 2xl:h-[80vh]">
       <div className=" flex flex-col gap-2">
-        <h1 className=" text-[#222222] text-[32px] font-medium">
+        <h1 className=" text-[#222222] text-xl sm:text-2xl md:text-[32px] font-medium">
           Share some basics about your place
         </h1>
-        <p className="text-lg text-[#717171]">
+        <p className="text-sm sm:text-base md:text-lg text-[#717171]">
           You&apos;ll add more details later, like bed types
         </p>
       </div>
