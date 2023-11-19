@@ -30,12 +30,12 @@ const Visibility = () => {
   };
 
   return (
-    <div className=" flex flex-col gap-10 max-w-screen-md mx-auto my-6">
+    <div className=" flex flex-col gap-10 max-w-screen-md mx-auto my-6 min-h-[70vh]">
       <div>
-        <h1 className=" text-[#222222] text-[32px] font-medium">
+        <h1 className=" text-[#222222] text-xl sm:text-2xl md:text-[32px] font-medium">
           Choose who to welcome for your first reservation
         </h1>
-        <p className="text-lg text-[#717171]">
+        <p className="text-sm sm:text-base md:text-lg text-[#717171]">
           After your first guest, anyone can book your place.
         </p>
       </div>
