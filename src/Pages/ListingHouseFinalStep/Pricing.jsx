@@ -23,7 +23,7 @@ const Pricing = () => {
   };
 
   // Price calculation
-  const basePrice = parseInt(inputValue);
+  const basePrice = parseInt(inputValue ? inputValue : 0);
   const taxesPercentValue = 14;
   const hostServiceFee = 3;
   const taxBasedOnBasePrice = Math.round((basePrice * taxesPercentValue) / 100);
@@ -61,28 +61,32 @@ const Pricing = () => {
   return (
     <div className=" flex flex-col max-w-screen-md mx-auto my-6 min-h-[70vh]">
       <div>
-        <h1 className=" text-[#222222] text-[32px] font-medium">
+        <h1 className=" text-[#222222] text-xl sm:text-2xl md:text-[32px] font-medium">
           Now, set your price
         </h1>
-        <p className="text-lg text-[#717171]">You can change it anytime.</p>
+        <p className=" text-sm sm:text-base md:text-lg text-[#717171]">
+          You can change it anytime.
+        </p>
       </div>
       {/* Price */}
       <div className=" mx-auto mt-10">
         <div className=" flex flex-row items-center relative">
-          <span className=" text-[#222222] text-9xl font-semibold">$</span>
+          <span className=" text-[#222222] text-4xl sm:text-6xl md:text-9xl font-semibold">
+            $
+          </span>
           <input
             type="text"
             inputMode="numeric"
             placeholder="0"
             value={inputValue}
             onChange={handleInputChange}
-            className=" text-[#222222] text-9xl font-semibold focus:outline-none placeholder:text-[#222222] max-w-[308px] mx-auto"
+            className=" text-[#222222] text-4xl sm:text-6xl md:text-9xl font-semibold focus:outline-none placeholder:text-[#222222] max-w-[308px] mx-auto"
             onFocus={handleEdit}
             onBlur={handleEdit}
           />
           {showEdit && (
             <div
-              className={` absolute  bottom-12 p-1 rounded-full shadow-sm hover:shadow-md border cursor-pointer ${
+              className={` absolute  bottom-12 p-1 rounded-full shadow-sm hover:shadow-md border cursor-pointer hidden lg:block ${
                 inputValue.length >= 4
                   ? "-right-9"
                   : inputValue.length == 2
@@ -113,7 +117,7 @@ const Pricing = () => {
       </div>
       {/* group-open:animate-fadeIn */}
       {showPricingTable && (
-        <div className=" mt-5 flex flex-col gap-4 min-w-[600px] mx-auto">
+        <div className=" mt-5 flex flex-col gap-4 min-w-[300px] md:min-w-[600px] mx-auto">
           <div className=" flex flex-col gap-3 px-4 py-6 rounded-xl border border-[#b0b0b0]">
             {/* house price calculation */}
             <div className=" flex flex-row justify-between items-center">
