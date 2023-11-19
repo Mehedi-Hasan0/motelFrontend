@@ -39,12 +39,12 @@ const ListingHouseStepOneAddress = () => {
   };
 
   return (
-    <section className=" flex flex-col gap-10 max-w-screen-md mx-auto my-6 2xl:h-[80vh]">
+    <section className=" flex flex-col gap-10 max-w-screen-md mx-auto my-6 min-h-[70vh] 2xl:h-[80vh]">
       <div className=" flex flex-col gap-2">
-        <h1 className=" text-[#222222] text-[32px] font-medium">
+        <h1 className=" text-[#222222] text-xl sm:text-2xl md:text-[32px] font-medium">
           Confirm your address
         </h1>
-        <p className="text-lg text-[#717171]">
+        <p className=" text-sm sm:text-base md:text-lg text-[#717171]">
           Your address is only shared with guests after they’ve made a
           reservation.
         </p>
