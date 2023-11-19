@@ -9,7 +9,7 @@ const ListingHousePhotos = () => {
   }, [photos]);
   return (
     <div className=" flex flex-col gap-20 max-w-screen-md mx-auto my-6 min-h-[70vh]">
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 md:gap-0">
         <h1 className=" text-[#222222] text-2xl md:text-[32px] font-medium">
           {/* cabin will be dynamic */}
           Add some photos of your cabin
