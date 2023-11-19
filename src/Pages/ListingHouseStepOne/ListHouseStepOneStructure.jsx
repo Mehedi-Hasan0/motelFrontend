@@ -22,7 +22,7 @@ import { createNewHouse } from "../../redux/actions/houseActions";
 const ListHouseStepOneStructure = () => {
   const [storedCardData, setStoredCardData] = useState("");
   const dispatch = useDispatch();
-  const svgSize = 40;
+  const svgSize = window.innerWidth < 768 ? 28 : 40;
 
   const handleStoreCardData = (name) => {
     setStoredCardData(name);
@@ -31,10 +31,10 @@ const ListHouseStepOneStructure = () => {
 
   return (
     <div className=" flex flex-col gap-10 max-w-screen-md mx-auto my-6">
-      <h1 className=" text-[#222222] text-[32px] font-medium">
+      <h1 className=" text-[#222222] text-xl sm:text-2xl md:text-[32px] font-medium">
         Which of these best describes <br /> your place?
       </h1>
-      <div className=" grid grid-cols-3 gap-5">
+      <div className=" grid grid-cols-2 md:grid-cols-3 gap-5 mx-auto md:mx-0">
         <StructureCard
           style={structureCardStyle}
           Img={PiHouseLine}
@@ -167,7 +167,7 @@ const ListHouseStepOneStructure = () => {
 
 // styles for STructuredCard component
 const structureCardStyle =
-  "flex flex-col gap-1 px-6 rounded-xl transition duration-300 h-[120px] w-[220px] cursor-pointer justify-center";
-const structurePtagClass = "text-[#222222] text-lg font-medium";
+  "flex flex-col gap-1 px-6 rounded-xl transition duration-300 h-[120px] w-[150px] sm:w-[220px] cursor-pointer justify-center";
+const structurePtagClass = "text-[#222222] text-base md:text-lg font-medium";
 
 export default ListHouseStepOneStructure;
