@@ -241,7 +241,7 @@ URL. */
       )}
 
       {/* button */}
-      <div className=" flex justify-between py-4 px-20 top-0 z-10 bg-white max-w-screen-xl xl:px-20 xl:mx-auto">
+      <div className=" flex justify-between py-4 px-6 sm:px-10 md:px-20 top-0 z-10 bg-white max-w-screen-xl xl:px-20 xl:mx-auto">
         {/* if in the success/last page don't show the back button */}
         {!url.includes("/published") ? (
           <button

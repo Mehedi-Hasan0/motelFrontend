@@ -32,7 +32,7 @@ const ListingNavbar = () => {
 
   return (
     <nav
-      className={` top-0 z-10 bg-white transition-all duration-300 max-w-screen-xl xl:px-20 xl:mx-auto ${
+      className={` top-0 z-10 bg-white transition-all duration-300 max-w-screen-xl px-4 sm:px-8 md:px-10 xl:px-20 xl:mx-auto ${
         isSticky ? " border-b-[1.4px] border-[#f1f1f1] sticky bottom-0" : ""
       }`}
     >
