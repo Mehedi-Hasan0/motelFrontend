@@ -27,7 +27,7 @@ const Amenities = () => {
   const newHouseData = useSelector((state) => state.house.newHouse);
   const [storedCardData, setStoredCardData] = useState([]);
   const dispatch = useDispatch();
-  const svgSize = 40;
+  const svgSize = window.innerWidth < 768 ? 28 : 40;
 
   const handleStoreCardData = (name) => {
     if (storedCardData.includes(name)) {
@@ -54,15 +54,15 @@ const Amenities = () => {
   return (
     <div className=" flex flex-col gap-10 max-w-screen-md mx-auto my-6">
       <div>
-        <h1 className=" text-[#222222] text-[32px] font-medium">
+        <h1 className=" text-[#222222] text-xl sm:text-2xl md:text-[32px] font-medium">
           Tell guests what your place has to offer
         </h1>
-        <p className="text-lg text-[#717171]">
+        <p className="text-sm sm:text-base md:text-lg text-[#717171]">
           You can add more amenities after you publish your listing.
         </p>
       </div>
       {/* 1st section */}
-      <div className=" grid grid-cols-3 gap-5">
+      <div className=" grid grid-cols-2 md:grid-cols-3 gap-5">
         <StructureCard
           style={amenitisCardStyle}
           Img={HiOutlineWifi}
@@ -141,7 +141,7 @@ const Amenities = () => {
         <h6 className=" text-lg text-[#222222] font-medium my-2">
           Do you have any stand out amenities?
         </h6>
-        <div className=" grid grid-cols-3 gap-5">
+        <div className=" grid grid-cols-2 md:grid-cols-3 gap-5">
           <StructureCard
             style={amenitisCardStyle}
             Img={MdOutlinePool}
@@ -239,7 +239,7 @@ const Amenities = () => {
         <h6 className=" text-lg text-[#222222] font-medium my-2">
           Do you have any of these safety items?
         </h6>
-        <div className=" grid grid-cols-3 gap-5">
+        <div className=" grid grid-cols-2 md:grid-cols-3 gap-5">
           <StructureCard
             style={amenitisCardStyle}
             Img={AiOutlineAlert}
@@ -284,7 +284,7 @@ const Amenities = () => {
 
 // styles for STructuredCard component
 const amenitisCardStyle =
-  "flex flex-col gap-1 px-6 rounded-xl transition duration-300 h-[120px] w-[220px] cursor-pointer justify-center";
-const amenitesPtagClass = "text-[#222222] text-lg font-medium";
+  "flex flex-col gap-1 px-6 rounded-xl transition duration-300 h-[120px] w-[150px] sm:w-[220px] cursor-pointer justify-center";
+const amenitesPtagClass = "text-[#222222] text-base md:text-lg font-medium";
 
 export default Amenities;
