@@ -9,7 +9,7 @@ const PreviewCard = () => {
   return (
     <>
       <div
-        className=" flex flex-col gap-3 rounded-2xl shadow-lg bg-white border-[#f1f1f1] border max-w-sm p-4 cursor-pointer"
+        className=" flex flex-col gap-3 rounded-2xl shadow-lg bg-white border-[#f1f1f1] border max-w-sm p-4 cursor-pointer mx-auto"
         onClick={() => window.my_modal_4.showModal()}
       >
         <div className=" relative ">
@@ -51,7 +51,7 @@ const PreviewCard = () => {
             ✕
           </button>
           <h3 className="font-bold text-lg text-center">Full preview</h3>
-          <div className=" grid grid-cols-2 gap-10 overflow-y-auto py-7">
+          <div className=" grid grid-cols-1 md:grid-cols-2 gap-10 overflow-y-auto py-7">
             <div>
               <img
                 src={currentHouseData?.photos[0]}

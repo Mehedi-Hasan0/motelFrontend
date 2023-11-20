@@ -26,11 +26,11 @@ const HouseTitle = () => {
   console.log(title, "title");
   return (
     <div className=" flex flex-col gap-10 max-w-screen-sm mx-auto my-6 min-h-[80vh]">
-      <div>
+      <div className=" flex flex-col gap-3 md:gap-0">
         <h1 className=" text-[#222222] text-[32px] font-medium">
           Now, let&apos;s give your apartment a title
         </h1>
-        <p className="text-lg text-[#717171]">
+        <p className="text-sm sm:text-base md:text-lg text-[#717171]">
           Short titles work best. Have fun with it—you can always change it
           later.
         </p>

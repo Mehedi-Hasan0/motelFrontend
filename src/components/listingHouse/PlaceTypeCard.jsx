@@ -12,6 +12,7 @@ const PlaceTypeCard = ({
   CheckFill,
 }) => {
   const [scale, setScale] = useState(false);
+  const svgSize = window.innerWidth < 768 ? 28 : 40;
   return (
     <div
       onClick={() => {
@@ -23,7 +24,7 @@ const PlaceTypeCard = ({
       onMouseUp={() => {
         setScale(false);
       }}
-      className={`flex flex-row px-8 items-center py-4 bg-white hover:bg-[#f7f7f7] hover:border-black hover:border-2 rounded-2xl cursor-pointer h-[120px] transition duration-300
+      className={`flex flex-row px-4 sm:px-8 items-center py-4 bg-white hover:bg-[#f7f7f7] hover:border-black hover:border-2 rounded-2xl cursor-pointer h-[120px] transition duration-300
       ${
         storedCardData === head
           ? "border-2 border-black bg-[#f7f7f7]"
@@ -43,11 +44,11 @@ const PlaceTypeCard = ({
           )}
         </>
       )}
-      <div className=" flex flex-col gap-1">
+      <div className=" flex flex-col gap-1 pr-2 md:pr-0">
         <h4 className=" text-[#222222] text-lg font-medium">{head}</h4>
-        <p className=" text-sm text-[#717171]">{desc}</p>
+        <p className="text-xs sm:text-sm text-[#717171]">{desc}</p>
       </div>
-      {Img && <Img size={40} />}
+      <div>{Img && <Img size={svgSize} />}</div>
     </div>
   );
 };

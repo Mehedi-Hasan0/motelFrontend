@@ -8,13 +8,13 @@ const ListingHousePhotos = () => {
     setHousePhoto([...housePhoto, photos]);
   }, [photos]);
   return (
-    <div className=" flex flex-col gap-20 max-w-screen-md mx-auto my-6">
-      <div>
-        <h1 className=" text-[#222222] text-[32px] font-medium">
+    <div className=" flex flex-col gap-20 max-w-screen-md mx-auto my-6 min-h-[70vh]">
+      <div className="flex flex-col gap-3 md:gap-0">
+        <h1 className=" text-[#222222] text-2xl md:text-[32px] font-medium">
           {/* cabin will be dynamic */}
           Add some photos of your cabin
         </h1>
-        <p className="text-lg text-[#717171]">
+        <p className="text-base md:text-lg text-[#717171]">
           You&apos;ll need 5 photos to get started. You can add more or make
           changes later.
         </p>
