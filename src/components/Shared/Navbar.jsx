@@ -54,7 +54,7 @@ const Navbar = () => {
       }`}
     >
       <div
-        className={`xl:px-10 py-4 xl:mx-auto items-center px-5 ${
+        className={`xl:px-10 py-4 xl:mx-auto items-center px-5 relative ${
           inUserProfile ||
           inUserDashboard ||
           inHostHomesLandingPage ||
@@ -215,17 +215,25 @@ const Navbar = () => {
                           }}
                         >
                           {user?.role === "host" || user?.role === "admin" ? (
-                            <Link
-                              to={`/users/dashboard/${user._id}/overview=true`}
-                              onClick={() => {
-                                JSON.stringify(
-                                  sessionStorage.setItem("activePage", 1)
-                                );
-                              }}
-                              className="font-medium"
-                            >
-                              Dashboard
-                            </Link>
+                            <>
+                              {!inUserDashboard ? (
+                                <Link
+                                  to={`/users/dashboard/${user._id}/overview=true`}
+                                  onClick={() => {
+                                    JSON.stringify(
+                                      sessionStorage.setItem("activePage", 1)
+                                    );
+                                  }}
+                                  className="font-medium"
+                                >
+                                  Dashboard
+                                </Link>
+                              ) : (
+                                <Link className="font-medium" to={"/"}>
+                                  Home
+                                </Link>
+                              )}
+                            </>
                           ) : (
                             <Link className="font-medium">Notifications</Link>
                           )}

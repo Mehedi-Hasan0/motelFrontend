@@ -40,8 +40,8 @@ const Footer = () => {
         </div>
       </section>
       <hr className="bg-[#f7f7f7] mt-10 mb-6" />
-      <section className=" flex flex-row flex-wrap justify-between gap-10 px-5 md:px-10 lg:px-20">
-        <div className=" flex flex-row items-center">
+      <section className=" flex flex-row flex-wrap justify-between gap-10 px-10 max-w-screen-2xl mx-auto">
+        <div className=" flex flex-row flex-wrap items-center">
           <p>© 2023 Motel, Inc.</p>
           <span className=" p-3">·</span>
           <p>Terms</p>

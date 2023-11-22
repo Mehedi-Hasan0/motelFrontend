@@ -1,11 +1,12 @@
 import axios from "axios";
+const liveAPI = import.meta.env.VITE_REACT_APP_LIVE_SERVER;
 
-// export const API = "http://localhost:5000/";
-export const API = "https://fierce-life-jacket-frog.cyclic.cloud/";
+export const API = "http://localhost:5000/";
+// export const API = liveAPI;
 
 const api = axios.create({
-  // baseURL: "http://localhost:5000",
-  baseURL: "https://fierce-life-jacket-frog.cyclic.cloud",
+  baseURL: "http://localhost:5000",
+  // baseURL: liveAPI,
 });
 
 api.interceptors.request.use(
@@ -42,7 +43,7 @@ api.interceptors.response.use(
         const response = await axios.post(`${API}auth/refresh_token`, {
           refreshToken,
         });
-        console.log(response);
+        // console.log(response);
 
         const newAccessToken = response.data.accessToken;
 
