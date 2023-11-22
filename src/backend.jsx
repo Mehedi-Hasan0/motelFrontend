@@ -1,12 +1,11 @@
 import axios from "axios";
-const liveAPI = import.meta.env.VITE_REACT_APP_LIVE_SERVER;
 
 // export const API = "http://localhost:5000/";
-export const API = liveAPI;
+export const API = "https://fierce-life-jacket-frog.cyclic.cloud/";
 
 const api = axios.create({
   // baseURL: "http://localhost:5000",
-  baseURL: liveAPI,
+  baseURL: "https://fierce-life-jacket-frog.cyclic.cloud/",
 });
 
 api.interceptors.request.use(
