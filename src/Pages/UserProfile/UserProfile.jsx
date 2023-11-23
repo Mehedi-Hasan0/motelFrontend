@@ -38,7 +38,7 @@ const UserProfile = () => {
               <div className="flex flex-col gap-4 justify-center items-center min-w-[100%] shadow-xl rounded-3xl p-7 border sticky top-[128px] profile__container__div">
                 <div className=" min-w-[114px] min-h-[114px] bg-[#222222] rounded-full flex justify-center itmes-center">
                   <p className="text-4xl text-white font-semibold m-auto">
-                    {user?.name.firstName.slice(0, 1)}
+                    {user?.name?.firstName?.slice(0, 1)}
                   </p>
                 </div>
                 <div className=" flex flex-col justify-center items-center">

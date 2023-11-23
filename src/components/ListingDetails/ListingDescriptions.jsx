@@ -43,7 +43,7 @@ const ListingDescriptions = ({ listingData, author }) => {
       {/* description in short */}
       <div>
         <p className=" whitespace-pre-wrap">
-          {listingData?.description.slice(0, 300)}...
+          {listingData?.description?.slice(0, 300)}...
         </p>
       </div>
       {/* modal button */}
