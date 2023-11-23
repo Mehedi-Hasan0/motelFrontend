@@ -157,7 +157,7 @@ database when the `image` state variable changes. */
             <div className="flex flex-col gap-4 justify-center items-center w-[350px] h-[220px] p-7 sticky top-[128px]">
               <div className=" min-w-[214px] min-h-[214px] bg-[#222222] rounded-full flex justify-center items-center relative">
                 <p className=" text-8xl text-white font-semibold mb-2">
-                  {user?.name.firstName.slice(0, 1)}
+                  {user?.name?.firstName?.slice(0, 1)}
                 </p>
                 <label
                   htmlFor="imageUpload"
