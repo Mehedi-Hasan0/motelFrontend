@@ -8,6 +8,8 @@ const ListingDescriptions = ({ listingData, author }) => {
   const latitude = Number(listingData?.location?.city?.latitude);
   const longitude = Number(listingData?.location?.city?.longitude);
   const latLong = [latitude, longitude];
+  const latLongNaN = isNaN(latitude) || isNaN(longitude);
+  console.log(latLongNaN, "lat long");
   return (
     <>
       <div className=" flex flex-row justify-between items-center max-h-16">
@@ -87,7 +89,9 @@ const ListingDescriptions = ({ listingData, author }) => {
         </h2>
         {/* map */}
         <div className=" w-full min-h-[400px]">
-          {latLong && <Map latAndLong={latLong} zoom={6} key="listingMap" />}
+          {!latLongNaN && (
+            <Map latAndLong={latLong} zoom={6} key="listingMap" />
+          )}
         </div>
       </div>
 
