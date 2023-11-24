@@ -13,7 +13,7 @@ const ListingStatus = () => {
       </label>
       <div
         tabIndex={0}
-        className="dropdown-content z-30 menu p-4 bg-base-100 rounded-box min-w-[300px] flex flex-col gap-4 border border-neutral-200 shadow-lg"
+        className="dropdown-content z-30 menu p-4 bg-base-100 rounded-box min-w-[250px] sm:min-w-[300px] flex flex-col gap-4 border border-neutral-200 shadow-lg -left-20 md:left-0"
       >
         <div className=" flex flex-col gap-5">
           <div className=" flex flex-row items-center gap-2">

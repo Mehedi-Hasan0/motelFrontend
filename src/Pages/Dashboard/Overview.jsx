@@ -31,7 +31,7 @@ const Overview = () => {
   }, 0);
 
   return (
-    <section className=" max-w-[1200px] mx-auto px-4 sm:px-8 md:px-10 xl:px-20 py-12">
+    <section className=" max-w-[1200px] mx-auto px-4 sm:px-8 md:px-10 xl:px-20 py-8 md:py-12">
       <DashboardCards reservations={reservations} totalPrice={totalPrice} />
 
       <div className=" grid">
