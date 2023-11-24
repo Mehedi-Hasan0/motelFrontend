@@ -11,7 +11,7 @@ const ReservationsList = ({ active, setActivePage }) => {
     <section className=" mt-6">
       <h1 className=" text-[#222222] text-3xl font-semibold">Reservations</h1>
       <div className=" relative">
-        <div className=" pt-10 flex flex-row gap-6 relative z-10">
+        <div className=" pt-10 flex flex-row gap-2 sm:gap-6 relative z-10 justify-between sm:justify-start">
           {reservationListItems.map((list, i) => {
             return (
               <div
@@ -28,7 +28,7 @@ const ReservationsList = ({ active, setActivePage }) => {
                 `}
               >
                 <p
-                  className={` text-[#222222] cursor-pointer hover:bg-[#f0f0f0] p-2 transition duration-300 rounded-lg ${
+                  className={`text-sm sm:text-base text-[#222222] cursor-pointer hover:bg-[#f0f0f0] p-2 transition duration-300 rounded-lg ${
                     active === list.id ? " font-medium mb-1" : " opacity-80"
                   }`}
                 >

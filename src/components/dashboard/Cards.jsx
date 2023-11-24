@@ -2,7 +2,7 @@
 
 const Cards = ({ title, icon, heading, subHead }) => {
   return (
-    <div className=" w-[250px] h-[138px] bg-white shadow rounded-xl border flex flex-col gap-2  p-7">
+    <div className=" w-full xl:w-[250px] h-[138px] bg-white shadow rounded-xl border flex flex-col gap-2  p-7">
       <div className=" flex flex-row justify-between items-center">
         <p className=" text-zinc-800 font-medium text-sm">{title}</p>
         <img src={icon} alt="dollar" className=" w-6" />

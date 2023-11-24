@@ -18,7 +18,7 @@ const Reservations = () => {
   }, [activePage]);
 
   return (
-    <section className=" max-w-[1200px] mx-auto xl:px-11 py-8">
+    <section className=" max-w-[1200px] mx-auto px-4 sm:px-8 md:px-10 xl:px-20 py-5 md:py-12">
       <div
         onClick={() => {
           location("/");

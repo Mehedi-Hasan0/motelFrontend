@@ -17,7 +17,7 @@ const AmenitiesFilterCard = () => {
       </label>
       <div
         tabIndex={0}
-        className="dropdown-content z-30 menu p-4 bg-base-100 rounded-box min-w-[450px] flex flex-col gap-4 border border-neutral-200 shadow-lg"
+        className="dropdown-content z-30 menu p-4 bg-base-100 rounded-box min-w-[320px] sm:min-w-[450px] flex flex-col gap-4 border border-neutral-200 shadow-lg -left-20 md:left-0"
       >
         {/* filter options */}
         <div className=" grid grid-cols-2 gap-y-4 gap-x-7 max-h-[200px] overflow-x-auto">

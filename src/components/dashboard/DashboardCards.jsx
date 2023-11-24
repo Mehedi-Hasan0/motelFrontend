@@ -60,8 +60,7 @@ const DashboardCards = ({ reservations, totalPrice }) => {
 
   console.log(reservations, "reservations data");
   return (
-    <div className=" flex flex-row justify-between items-center gap-5 md:gap-0 mb-12">
-      {/* later it'll be dynamic data */}
+    <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-12">
       <Cards
         title={"Total Revenue"}
         icon={revenueIcon}

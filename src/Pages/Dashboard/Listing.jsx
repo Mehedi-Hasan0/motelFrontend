@@ -9,8 +9,9 @@ import ListingTable from "../../components/dashboard/listing/ListingTable";
 
 const Listing = () => {
   const allListingsData = useSelector((state) => state.house.housesData);
+  const isSmallDevice = window.innerWidth < 640;
   return (
-    <main className=" max-w-screen-xl xl:px-14 xl:mx-auto pb-10">
+    <main className=" max-w-screen-xl mx-auto px-4 sm:px-8 md:px-10 xl:px-20 pb-10">
       <section className=" pt-8 flex flex-col gap-5">
         {/* about listings */}
         <div className=" flex flex-row justify-between items-center">
@@ -28,9 +29,13 @@ const Listing = () => {
         </div>
         {/* filtering options */}
         <div className=" flex flex-row gap-5">
-          <RoomFilterCard />
-          <AmenitiesFilterCard />
-          <ListingStatus />
+          {!isSmallDevice && (
+            <>
+              <RoomFilterCard />
+              <AmenitiesFilterCard />
+              <ListingStatus />
+            </>
+          )}
         </div>
         {/* table contents */}
         <ListingTable />

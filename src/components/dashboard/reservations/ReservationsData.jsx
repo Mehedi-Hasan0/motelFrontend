@@ -45,7 +45,7 @@ const ReservationsData = ({ active }) => {
   }, [reservations]);
 
   return (
-    <section className="  py-10 flex justify-center items-center">
+    <section className="  py-10 flex justify-center items-center overflow-x-auto pl-10 sm:pl-44 lg:pl-0">
       <div className=" text-xl font-semibold">
         {active === 1 ? (
           <>
