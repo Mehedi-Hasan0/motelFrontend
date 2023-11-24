@@ -59,12 +59,20 @@ const DashboardMenu = () => {
                 return (
                   <div key={i} className=" px-4 py-3 hover:bg-[#f1f1f1]">
                     <Link
-                      className="text-sm sm:text-base font-medium"
+                      className={`text-sm font-medium ${
+                        activePage === item.id
+                          ? "font-medium text-[#ff3f62ff] hover:bg-white transition duration-200"
+                          : " opacity-80"
+                      }`}
                       to={`${
                         item.id === 4
                           ? `${item.to}`
                           : `/users/dashboard/${user?._id}${item.to}`
                       }`}
+                      onClick={() => {
+                        handleItemClick(item.id);
+                        setShowDashboardMenu(false);
+                      }}
                     >
                       {item.name}
                     </Link>
