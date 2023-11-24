@@ -22,6 +22,7 @@ const Navbar = () => {
   const inHostHomesLandingPage = pathName?.includes("/host/homes");
   const inListingDetailsPage = pathName?.includes("/listing");
   const inBookingPage = pathName?.includes("/book/stays");
+  const isSmallDevice = window.innerWidth < 768;
 
   const [popup, setPopup] = useState(false);
 
@@ -85,7 +86,7 @@ const Navbar = () => {
               }}
             />
             {/* if user is in hosting homes page we want only logo */}
-            {inHostHomesLandingPage ? null : (
+            {inHostHomesLandingPage || isSmallDevice ? null : (
               <p className="text-xl text-[#ff385c] font-bold">motel</p>
             )}
           </span>

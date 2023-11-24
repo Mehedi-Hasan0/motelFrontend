@@ -68,7 +68,7 @@ const Charts = ({ reservations }) => {
   }));
 
   return (
-    <ResponsiveContainer width="100%">
+    <ResponsiveContainer width={"100%"}>
       <BarChart
         // width={400}
         // height={300}
