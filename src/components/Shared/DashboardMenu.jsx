@@ -52,7 +52,7 @@ const DashboardMenu = () => {
           {showDashboardMenu && (
             <div
               ref={userDashboardMenu}
-              className="shadow-md absolute -right-12 top-12 bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
+              className="shadow-md absolute right-28 top-16 sm:-right-12 sm:top-12 bg-[#ffffff] border-[1px] border-[#dddddd] rounded-lg flex flex-col py-2 w-[230px] transition-all user__menu"
             >
               {/* dashboard nav menu options */}
               {navItem.map((item, i) => {
