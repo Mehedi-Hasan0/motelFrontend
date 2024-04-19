@@ -9,6 +9,7 @@ import motelLogo from "../../assets/Travel_Logo.png";
 import userProfile from "../../assets/basicIcon/user-profile.png";
 import searchIcon from "../../assets/basicIcon/search.svg";
 import house from "../../assets/basicIcon/houseWhite.png";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user.userDetails);
@@ -47,6 +48,18 @@ const Navbar = () => {
       document.removeEventListener("mouseup", handleOutsideClick);
     };
   }, []);
+
+  const isUserExist = () => {
+    if (!user) {
+      toast.error("You need to log in first!");
+
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
+    } else {
+      navigate("/become-a-host");
+    }
+  };
 
   return (
     <nav
@@ -127,15 +140,17 @@ const Navbar = () => {
                 <p className=" text-[#222222] text-sm font-medium hidden sm:block">
                   Ready to Motel it?
                 </p>
-                <Link
-                  to="/become-a-host"
+                <div
+                  onClick={() => {
+                    isUserExist();
+                  }}
                   className=" flex flex-row justify-between items-center gap-2 bg-[#ff385c] hover:bg-[#d90b63] transition-all duration-300 px-3 py-2 rounded-lg"
                 >
                   <img src={house} alt="House setup" className=" w-4 md:w-5" />
                   <p className=" font-semibold text-sm md:text-base text-white">
                     Motel setup
                   </p>
-                </Link>
+                </div>
               </div>
             ) : (
               <>
@@ -203,7 +218,7 @@ const Navbar = () => {
                             Login
                           </Link>
                           <hr className="h-[1.5px] bg-[#dddddd] my-1" />
-                          <Link>Motel your home</Link>
+                          <Link to={"/host/homes"}>Motel your home</Link>
                           <Link>Help</Link>
                         </div>
                       ) : (

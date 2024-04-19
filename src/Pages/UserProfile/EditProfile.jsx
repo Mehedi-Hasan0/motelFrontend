@@ -21,7 +21,7 @@ const EditProfile = () => {
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
-    console.log(e.target.files[0]);
+    // // console.log(e.target.files[0]);
   };
 
   /* The `useEffect` hook in the provided code is responsible for uploading an image file to the
@@ -55,7 +55,7 @@ Cloudinary service when the `image` state variable changes. */
             setIsImgUploading(false);
           });
       } catch (error) {
-        console.log(error);
+        // // console.log(error);
         toast.error(error);
         setIsImgUploading(false);
       } finally {
@@ -98,7 +98,7 @@ database when the `image` state variable changes. */
             },
           }
         );
-        console.log(response);
+        // // console.log(response);
         setProfileImageLink(null);
         setIsImgUploading(false);
         window.location.reload();

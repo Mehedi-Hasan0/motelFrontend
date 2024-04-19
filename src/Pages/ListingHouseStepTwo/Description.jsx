@@ -25,7 +25,7 @@ const Description = () => {
       )
     );
   };
-  console.log(description, "description");
+  // // console.log(description, "description");
   return (
     <div className=" flex flex-col gap-8 max-w-screen-sm mx-auto my-6 min-h-[80vh]">
       <div>

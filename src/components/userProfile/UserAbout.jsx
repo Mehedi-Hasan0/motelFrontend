@@ -25,7 +25,7 @@ const UserAbout = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-      console.log(postUserAboutData);
+      // // console.log(postUserAboutData);
       if (postUserAboutData.status === 200) {
         toast.success(postUserAboutData.data.message);
       }
@@ -35,7 +35,7 @@ const UserAbout = () => {
       }, 150);
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
+      // // console.log(error);
     } finally {
       setIsLoading(false);
     }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import facebookIcon from "../../assets/basicIcon/facebookIcon.svg";
 import linkedinIcon from "../../assets/basicIcon/linkedinIcon.svg";
 
@@ -22,7 +23,7 @@ const Footer = () => {
         </div>
         <div className="flex flex-col gap-4 opacity-80">
           <h6 className="font-semibold">Hosting</h6>
-          <p>Motel your home</p>
+          <Link to={"/host/homes"}>Motel your home</Link>
           <p>MotelCover for Hosts</p>
           <p>Explore hosting resources</p>
           <p>Visit our community forum</p>

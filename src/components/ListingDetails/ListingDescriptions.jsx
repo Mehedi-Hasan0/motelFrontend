@@ -9,7 +9,7 @@ const ListingDescriptions = ({ listingData, author }) => {
   const longitude = Number(listingData?.location?.city?.longitude);
   const latLong = [latitude, longitude];
   const latLongNaN = isNaN(latitude) || isNaN(longitude);
-  console.log(latLongNaN, "lat long");
+  // // console.log(latLongNaN, "lat long");
   return (
     <>
       <div className=" flex flex-row justify-between items-center max-h-16">

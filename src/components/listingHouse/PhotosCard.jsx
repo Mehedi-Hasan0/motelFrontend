@@ -19,13 +19,13 @@ const PhotosCard = () => {
     function and returns, preventing further execution of the code. If the number of images is less
     than 3, it sets the selected image file as the value of the `inputImage` state variable using
     `setInputImage(event.target.files[0])` and logs the selected file to the console using
-    `console.log(event.target.files[0])`. */
+    `// console.log(event.target.files[0])`. */
     if (images.length >= 3) {
       toast.error("Maximum images uploaded");
       return;
     } else {
       setInputImage(event.target.files[0]);
-      console.log(event.target.files[0]);
+      // // console.log(event.target.files[0]);
     }
   };
 
@@ -46,7 +46,7 @@ const PhotosCard = () => {
   useEffect(() => {
     async function uploadImagetoCloudinary() {
       if (inputImage !== null && inputImage?.size / 500000 < 5) {
-        // console.log(isImgUploading, "loading state");
+        // // console.log(isImgUploading, "loading state");
         const imageFormData = new FormData();
         imageFormData.append("file", inputImage);
         imageFormData.append("upload_preset", "house-hunter");
@@ -64,7 +64,7 @@ const PhotosCard = () => {
           )
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
+              // // console.log(data);
               setImages([...images, data.url]);
               if (data.error) {
                 toast.error(data?.error?.message);
@@ -79,7 +79,7 @@ const PhotosCard = () => {
               setIsImgUploading(false);
             });
         } catch (error) {
-          console.log(error);
+          // // console.log(error);
           toast.error(error);
           setIsImgUploading(false);
         } finally {
@@ -95,7 +95,7 @@ const PhotosCard = () => {
     // only when input file takes an image we want to save it to cloudinary that's why only one dependency
   }, [inputImage]);
 
-  console.log(images);
+  // // console.log(images);
   return (
     <label
       htmlFor="houseImage"

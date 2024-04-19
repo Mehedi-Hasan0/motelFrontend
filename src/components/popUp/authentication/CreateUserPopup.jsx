@@ -41,7 +41,7 @@ const CreateUserPopup = ({
   };
 
   const handleCreateUser = async (data) => {
-    console.log(data);
+    // // console.log(data);
     let user = {
       name: {
         firstName: data.firstName,
@@ -57,13 +57,13 @@ const CreateUserPopup = ({
         headers: { "Content-Type": "application/json" },
       });
 
-      console.log(response);
+      // // console.log(response);
       const responseData = response?.data;
       dispatch(userSignUp(responseData));
       let accessToken = localStorage.getItem("accessToken");
       let refreshToken = localStorage.getItem("refreshToken");
       if (responseData?.success === 1) {
-        console.log(refreshToken);
+        // // console.log(refreshToken);
         toast.success(responseData.info);
         if (!accessToken) {
           localStorage.setItem(
@@ -81,7 +81,7 @@ const CreateUserPopup = ({
           );
         } else if (refreshToken) {
           refreshToken = responseData?.refreshToken;
-          console.log(refreshToken);
+          // // console.log(refreshToken);
           localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
         }
         showCreatePopUp(false);
@@ -95,7 +95,7 @@ const CreateUserPopup = ({
         reset();
       }, 100);
     } catch (error) {
-      console.log(error);
+      // // console.log(error);
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
       toast.error("Network error try again later!");

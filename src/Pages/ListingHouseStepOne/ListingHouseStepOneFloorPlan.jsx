@@ -11,7 +11,7 @@ const ListingHouseStepOneFloorPlan = () => {
   const [bathroomsNumber, setBathroomsNumber] = useState(0);
   const dispatch = useDispatch();
 
-  console.log(newHouseData);
+  // // console.log(newHouseData);
 
   useEffect(() => {
     let floorPlan = {

@@ -73,7 +73,7 @@ const LogInPopup = ({
           );
         } else if (refreshToken) {
           refreshToken = userData?.refreshToken;
-          console.log(refreshToken);
+          // // console.log(refreshToken);
           localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
         }
         window.location.reload();
@@ -82,7 +82,7 @@ const LogInPopup = ({
         setPopup(false);
       }
     } catch (error) {
-      console.log(error);
+      // // console.log(error);
       setIsLoading(false);
       toast.warn("Network error try again!");
     } finally {
