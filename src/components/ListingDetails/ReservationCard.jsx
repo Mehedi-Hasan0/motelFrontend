@@ -57,7 +57,7 @@ const ReservationCard = ({ listingData }) => {
   // calculating how many nights guest is staying
   const [nightsStaying, setNightStaying] = useState(1);
 
-  console.log(nightsStaying, typeof nightsStaying, "nights");
+  // // console.log(nightsStaying, typeof nightsStaying, "nights");
 
   // formatted dates to save in the db
   const formattedStartDate = selectedDates[0]?.startDate?.toISOString();
@@ -67,12 +67,12 @@ const ReservationCard = ({ listingData }) => {
   const localStartDate = new Date(formattedStartDate).toLocaleDateString();
   const localEndDate = new Date(formattedEndDate).toLocaleDateString();
 
-  console.log(
-    new Date(formattedStartDate).toLocaleDateString(),
-    localStartDate,
-    localEndDate,
-    "dates"
-  );
+  // // console.log(
+  //   new Date(formattedStartDate).toLocaleDateString(),
+  //   localStartDate,
+  //   localEndDate,
+  //   "dates"
+  // );
   // Function to handle date selection
   const handleSelect = (ranges) => {
     setSelectedDates([ranges.selection]);
@@ -81,7 +81,7 @@ const ReservationCard = ({ listingData }) => {
   // booking function
   const orderNumber = localStorage.getItem("orderId");
   const orderId = orderNumber ? orderNumber : 1;
-  console.log(orderId);
+  // // console.log(orderId);
   const handleBooking = () => {
     navigate(
       `/book/stays/${listingData._id}?numberOfGuests=${totalGuest}&nightStaying=${nightsStaying}&checkin=${formattedStartDate}&checkout=${formattedEndDate}&orderId=${orderId}`
@@ -98,7 +98,7 @@ const ReservationCard = ({ listingData }) => {
       if (res.status === 200) {
         setReservations(res.data);
       }
-      console.log(res, "reservation data");
+      // // console.log(res, "reservation data");
     })();
   }, [listingData?._id]);
 
@@ -160,7 +160,7 @@ const ReservationCard = ({ listingData }) => {
     endDate: parseISO(obj.checkOut),
   }));
 
-  console.log(disabledDateRanges);
+  // // console.log(disabledDateRanges);
 
   // Generate an array of individual dates within disabledDateRanges
   const disabledDates = disabledDateRanges.reduce((dates, range) => {

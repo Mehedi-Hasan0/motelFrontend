@@ -50,7 +50,7 @@ const Amenities = () => {
     );
   }, [storedCardData, dispatch]);
 
-  console.log(storedCardData, "amenities");
+  // // console.log(storedCardData, "amenities");
   return (
     <div className=" flex flex-col gap-10 max-w-screen-md mx-auto my-6">
       <div>

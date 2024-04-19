@@ -38,7 +38,7 @@ const Highlight = () => {
     );
   }, [storedCardData, dispatch]);
 
-  console.log(storedCardData, "from descriptions");
+  // // console.log(storedCardData, "from descriptions");
 
   return (
     <div className=" flex flex-col gap-10 max-w-screen-md mx-auto my-8 xl:py-[15vh] min-h-[70vh]">

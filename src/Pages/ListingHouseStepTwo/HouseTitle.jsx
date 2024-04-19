@@ -23,7 +23,7 @@ const HouseTitle = () => {
       )
     );
   };
-  console.log(title, "title");
+  // // console.log(title, "title");
   return (
     <div className=" flex flex-col gap-10 max-w-screen-sm mx-auto my-6 min-h-[80vh]">
       <div className=" flex flex-col gap-3 md:gap-0">

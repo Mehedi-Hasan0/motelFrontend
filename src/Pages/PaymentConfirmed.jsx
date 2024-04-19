@@ -46,19 +46,19 @@ const PaymentConfirmed = () => {
               toast.error(error.response.data);
             }
           });
-        console.log(res, "response");
+        // // console.log(res, "response");
 
         if (res.status === 200) {
           setIsLoading(false);
         }
       })();
     } catch (error) {
-      console.log(error, "from error");
+      // // console.log(error, "from error");
       setIsLoading(false);
     }
   }, []);
 
-  console.log(reservationData, "reservation");
+  // // console.log(reservationData, "reservation");
 
   if (isLoading) {
     return (

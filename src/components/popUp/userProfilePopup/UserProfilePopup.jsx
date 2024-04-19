@@ -7,7 +7,7 @@ import closeIcon from "../../../assets/basicIcon/closeIcon.svg";
 import api from "../../../backend";
 
 const UserProfilePopup = ({ showPopup, setShowPopup, popupData }) => {
-  console.log(popupData);
+  // // console.log(popupData);
   const [characterCount, setCharacterCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const { handleSubmit, register, watch } = useForm();
@@ -28,7 +28,7 @@ const UserProfilePopup = ({ showPopup, setShowPopup, popupData }) => {
         sendDataToBackend,
         { headers: { "Content-Type": "application/json" } }
       );
-      console.log(responseOfPostingProfileData);
+      // // console.log(responseOfPostingProfileData);
       if (responseOfPostingProfileData.status === 200) {
         setTimeout(() => {
           setShowPopup(false);
@@ -36,7 +36,7 @@ const UserProfilePopup = ({ showPopup, setShowPopup, popupData }) => {
       }
       toast.success(responseOfPostingProfileData.data.message);
     } catch (error) {
-      console.log(error);
+      // // console.log(error);
       setIsLoading(false);
     } finally {
       setIsLoading(false);

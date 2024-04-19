@@ -13,8 +13,8 @@ const ShowUserProfileData = () => {
   const values =
     userProfile &&
     Object.entries(user?.profileDetails?.profile).map(([key, value]) => {
-      value.value;
-      console.log(key);
+      return value.value;
+      // // console.log(key);
     });
 
   return (
@@ -31,7 +31,7 @@ const ShowUserProfileData = () => {
           Edit Details
         </Link>
       </div>
-      <div className=" grid grid-cols-2 gap-x-16 gap-y-4 mt-6">
+      <div className=" grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 mt-6">
         {filteredNewOptions.map((option, index) => {
           return (
             <div key={index} className=" flex flex-row gap-3 items-center py-1">

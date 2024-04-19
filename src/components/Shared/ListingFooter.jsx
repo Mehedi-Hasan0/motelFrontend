@@ -31,7 +31,7 @@ const ListingFooter = () => {
   const dispatch = useDispatch();
   const currentHouseId = localStorage.getItem("currentHouseId");
 
-  console.log(createHouseData);
+  // // console.log(createHouseData);
 
   useEffect(() => {
     dispatch(getHouseDetails(currentHouseId));

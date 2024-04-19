@@ -25,7 +25,7 @@ const Listing = ({ searchParamsObj }) => {
 
   const totalPrice = basePrice + tax;
 
-  console.log(listingData, "lis");
+  // // console.log(listingData, "lis");
 
   return (
     <div>
