@@ -7,7 +7,6 @@ import { getUser, userLogOut } from "../../redux/actions/userActions";
 import hamburgerMenu from "../../assets/basicIcon/hamburgerMenu.svg";
 import motelLogo from "../../assets/Travel_Logo.png";
 import userProfile from "../../assets/basicIcon/user-profile.png";
-import searchIcon from "../../assets/basicIcon/search.svg";
 import house from "../../assets/basicIcon/houseWhite.png";
 import toast from "react-hot-toast";
 
@@ -114,18 +113,7 @@ const Navbar = () => {
               // if user is in dahsboard
               <div>{inUserDashboard && <MiniNavbar />} </div>
             ) : (
-              <div className="mx-auto lg:block hidden">
-                <div className="border-[1px] border-[#dddddd] rounded-full px-3 py-2 flex items-center shadow hover:shadow-md transition-all cursor-pointer">
-                  <input
-                    type="search"
-                    className=" focus:outline-none pl-2"
-                    placeholder="Search for places"
-                  />
-                  <div className="bg-[#ff385c] rounded-full p-2">
-                    <img src={searchIcon} alt="Search hotel" className="w-4" />
-                  </div>
-                </div>
-              </div>
+              <div className="mx-auto lg:block hidden"></div>
             )}
           </>
         )}
